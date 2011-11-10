@@ -8,13 +8,22 @@
 require 'rubygems'
 require 'mysql'
 
+## Schema info ##
+CELL_TABLE_NAME = "cells"
+CELL_TABLE_ID = "id"
+CELL_FOOTPRINT_COLUMN = "footprint_id"
+CELL_NAME_COLUMN = "name"
+FOOTPRINT_TABLE_NAME = "footprints"
+FOOTPRINT_TABLE_ID = "id"
+FOOTPRINT_NAME_COLUMN = "name"
+
 class LibertyDatabase
   attr_reader :pvt, :db
 
   def initialize( options = {} )
-    defaults = { :process => "tt",
-                 :voltage => "1.8",
-                 :temperature => "25",
+    defaults = { :process => nil,
+                 :voltage => nil,
+                 :temperature => nil,
                  :mysqlhost => "localhost",
                  :mysqlport => 3306,
                  :mysqldb => "LibertyFile",
@@ -22,9 +31,17 @@ class LibertyDatabase
                  :mysqlpass => "liberty" }
     options = defaults.merge(options)
 
-    @pvt = { :process => options[:process],
-             :voltage => options[:voltage],
-             :temperature => options[:temperature] }
+    if options[:process] and options[:voltage] and options[:temperature] then
+      @pvt = { :process => options[:process],
+               :voltage => options[:voltage],
+               :temperature => options[:temperature] }
+    elsif options[:process] or options[:voltage] or options[:temperature] then
+      #partial definition of PVT, error
+      @pvt = nil
+      $stderr.puts "Warning: partial definition of PVT is not allowed, setting to default"
+    else
+      @pvt = nil
+    end
 
     begin #catching Mysql::Error
       @db = Mysql.real_connect( options[:mysqlhost],
@@ -32,6 +49,10 @@ class LibertyDatabase
                                 options[:mysqlpass],
                                 options[:mysqldb],
                                 options[:mysqlport] )
+      unless @pvt #is defined
+        #query for a default
+        #TODO
+      end
     rescue Mysql::Error => e
       @db = nil
       $stderr.puts "Error connecting to mysql database.  Debug info:"
@@ -43,6 +64,38 @@ class LibertyDatabase
     end #catching Mysql::Error
 
   end #initialize
+
+  def getData( parameter, options={} )
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+
+    #build the SQL query
+    query_string =  "SELECT #{parameter},#{CELL_NAME_COLUMN}\n"
+    query_string >> "FROM #{CELL_TABLE_NAME}\n"
+    if options[:footprint] then
+      query_string >> "LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
+      query_string >> "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
+      query_string >> "= #{CELL_TABLE_NAME}.#{CELL_TABLE_ID}\n"
+      query_string >> "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
+      query_string >> "LIKE '#{options[:footprint]}' "
+    end
+    query_string >> ";"
+
+    begin #catching Mysql::Error
+      results = @db.query(query_string)
+      if options[:cells] then
+        #extract only the cells of interest
+        #TODO
+      else
+        #TODO
+      end
+    rescue Mysql::Error => e
+      $stderr.puts "Error executing database query.  Debug info:"
+      $stderr.puts query_string.gsub(/^/,"  ")
+    end #catching Mysql::Error
+  end #query
 
   def close
     @db.close if @db
