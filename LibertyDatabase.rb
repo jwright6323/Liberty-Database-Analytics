@@ -1,5 +1,5 @@
 #!/usr/bin/ruby -w0
-# LibertyFile.rb
+# LibertyDatabase.rb
 # 2011-11-10
 # John Wright
 # jcwr@cypress.com
@@ -8,7 +8,7 @@
 require 'rubygems'
 require 'mysql'
 
-class LibertyFile
+class LibertyDatabase
   attr_reader :pvt, :db
 
   def initialize( options = {} )
@@ -25,6 +25,7 @@ class LibertyFile
     @pvt = { :process => options[:process],
              :voltage => options[:voltage],
              :temperature => options[:temperature] }
+
     begin #catching Mysql::Error
       @db = Mysql.real_connect( options[:mysqlhost],
                                 options[:mysqluser],
@@ -36,13 +37,16 @@ class LibertyFile
       $stderr.puts "Error connecting to mysql database.  Debug info:"
       $stderr.puts "  host : #{options[:mysqlhost]}"
       $stderr.puts "  port : #{options[:mysqlport]}"
-      $stderr.puts "  user : #{options[:mysqlhost]}"
+      $stderr.puts "  user : #{options[:mysqluser]}"
       $stderr.puts "  pass : #{options[:mysqlpass]}"
       $stderr.puts "  db   : #{options[:mysqldb]}"
     end #catching Mysql::Error
 
-
   end #initialize
+
+  def close
+    @db.close if @db
+  end #close
 
 end #LibertyFile
 
