@@ -73,18 +73,21 @@ class LibertyDatabase
 
     #build the SQL query
     query_string =  "SELECT #{parameter},#{CELL_NAME_COLUMN}\n"
-    query_string >> "FROM #{CELL_TABLE_NAME}\n"
+    query_string << "FROM #{CELL_TABLE_NAME}\n"
     if options[:footprint] then
-      query_string >> "LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
-      query_string >> "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
-      query_string >> "= #{CELL_TABLE_NAME}.#{CELL_TABLE_ID}\n"
-      query_string >> "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
-      query_string >> "LIKE '#{options[:footprint]}' "
+      query_string << "LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
+      query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
+      query_string << "= #{CELL_TABLE_NAME}.#{CELL_TABLE_ID}\n"
+      query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
+      query_string << "LIKE '#{options[:footprint]}' "
     end
-    query_string >> ";"
+    query_string << ";"
 
+    results = Hash.new
     begin #catching Mysql::Error
-      results = @db.query(query_string)
+      @db.query(query_string).each_hash { |row|
+        results.store( row[CELL_NAME_COLUMN], row[parameter] )
+      }
       if options[:cells] then
         #extract only the cells of interest
         #TODO
@@ -95,6 +98,8 @@ class LibertyDatabase
       $stderr.puts "Error executing database query.  Debug info:"
       $stderr.puts query_string.gsub(/^/,"  ")
     end #catching Mysql::Error
+
+    results
   end #query
 
   def close

@@ -9,6 +9,6 @@ require 'LibertyDatabase.rb'
 
 test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu"
 
-puts  test.db
-
+obj = test.getData "area"
+puts obj.inspect
 test.close
