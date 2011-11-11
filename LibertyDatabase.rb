@@ -18,10 +18,11 @@ FOOTPRINT_TABLE_ID = "id"
 FOOTPRINT_NAME_COLUMN = "name"
 
 class LibertyDatabase
-  attr_reader :pvt, :db
+  attr_reader :pvt, :db, :logfile
 
   def initialize( options = {} )
     defaults = { :pvt => nil,
+                 :logfile => nil,
                  :mysqlhost => "localhost",
                  :mysqlport => 3306,
                  :mysqldb => "LibertyFile",
@@ -35,6 +36,17 @@ class LibertyDatabase
       @pvt = nil
     end
 
+    begin #catchiing File::IOError
+      if options[:logfile] then
+        @logfile = File.open(options[:logfile],"w")
+      else
+        @logfile = nil
+      end
+    rescue File::IOError => e
+      @logfile = nil
+      errlog "Error opening log file. :logfile => '#{options[:logfile]}'"
+    end #catching File::IOError
+
     begin #catching Mysql::Error
       @db = Mysql.real_connect( options[:mysqlhost],
                                 options[:mysqluser],
@@ -45,14 +57,15 @@ class LibertyDatabase
         #query for a default
         #TODO
       end
+      log "Connected to mysql database successfully."
     rescue Mysql::Error => e
       @db = nil
-      $stderr.puts "Error connecting to mysql database.  Debug info:"
-      $stderr.puts "  host : #{options[:mysqlhost]}"
-      $stderr.puts "  port : #{options[:mysqlport]}"
-      $stderr.puts "  user : #{options[:mysqluser]}"
-      $stderr.puts "  pass : #{options[:mysqlpass]}"
-      $stderr.puts "  db   : #{options[:mysqldb]}"
+      errlog "Error connecting to mysql database.  Debug info:"
+      errlog "  host : #{options[:mysqlhost]}"
+      errlog "  port : #{options[:mysqlport]}"
+      errlog "  user : #{options[:mysqluser]}"
+      errlog "  pass : #{options[:mysqlpass]}"
+      errlog "  db   : #{options[:mysqldb]}"
     end #catching Mysql::Error
 
   end #initialize
@@ -88,21 +101,14 @@ class LibertyDatabase
       query_string << ")"
     end
     query_string << ";"
-    puts query_string
     results = Hash.new
     begin #catching Mysql::Error
       @db.query(query_string).each_hash { |row|
         results.store( row[CELL_NAME_COLUMN], row[parameter] )
       }
-      if options[:cells] then
-        #extract only the cells of interest
-        #TODO
-      else
-        #TODO
-      end
     rescue Mysql::Error => e
-      $stderr.puts "Error executing database query.  Debug info:"
-      $stderr.puts query_string.gsub(/^/,"  ")
+      errlog "Error executing database query.  Debug info:"
+      errlog query_string.gsub(/^/,"  ")
     end #catching Mysql::Error
 
     results
@@ -110,7 +116,18 @@ class LibertyDatabase
 
   def close
     @db.close if @db
+    @logfile.close if @logfile
   end #close
+
+  def errlog( str )
+    $stderr.puts str
+    @logfile.puts str if @logfile
+  end #errlog
+
+  def log( str )
+    $stdout.puts str if $verbose
+    @logfile.puts str if @logfile
+  end #log
 
 end #LibertyFile
 
