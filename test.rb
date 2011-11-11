@@ -9,8 +9,8 @@ require 'LibertyDatabase.rb'
 
 test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu"
 
-areas = test.getData "area"
-lkgs  = test.getData "cell_leakage_power"
+areas = test.getData "area", :footprint => "INV"
+lkgs  = test.getData "cell_leakage_power", :footprint => "INV"
 
 x = Array.new
 y = Array.new

@@ -11,7 +11,7 @@ require 'mysql'
 ## Schema info ##
 CELL_TABLE_NAME = "cells"
 CELL_TABLE_ID = "id"
-CELL_FOOTPRINT_COLUMN = "footprint_id"
+CELL_FOOTPRINT_COLUMN = "cell_footprint"
 CELL_NAME_COLUMN = "name"
 FOOTPRINT_TABLE_NAME = "footprints"
 FOOTPRINT_TABLE_ID = "id"
@@ -21,9 +21,7 @@ class LibertyDatabase
   attr_reader :pvt, :db
 
   def initialize( options = {} )
-    defaults = { :process => nil,
-                 :voltage => nil,
-                 :temperature => nil,
+    defaults = { :pvt => nil,
                  :mysqlhost => "localhost",
                  :mysqlport => 3306,
                  :mysqldb => "LibertyFile",
@@ -31,14 +29,8 @@ class LibertyDatabase
                  :mysqlpass => "liberty" }
     options = defaults.merge(options)
 
-    if options[:process] and options[:voltage] and options[:temperature] then
-      @pvt = { :process => options[:process],
-               :voltage => options[:voltage],
-               :temperature => options[:temperature] }
-    elsif options[:process] or options[:voltage] or options[:temperature] then
-      #partial definition of PVT, error
-      @pvt = nil
-      $stderr.puts "Warning: partial definition of PVT is not allowed, setting to default"
+    if options[:pvt]
+      @pvt = options[:pvt]
     else
       @pvt = nil
     end
@@ -72,17 +64,18 @@ class LibertyDatabase
     options = defaults.merge(options)
 
     #build the SQL query
-    query_string =  "SELECT #{parameter},#{CELL_NAME_COLUMN}\n"
+    query_string =  "SELECT #{CELL_TABLE_NAME}.#{parameter},"
+    query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
     query_string << "FROM #{CELL_TABLE_NAME}\n"
     if options[:footprint] then
       query_string << "LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
       query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
-      query_string << "= #{CELL_TABLE_NAME}.#{CELL_TABLE_ID}\n"
+      query_string << "= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n"
       query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
       query_string << "LIKE '#{options[:footprint]}' "
     end
     query_string << ";"
-
+    puts query_string
     results = Hash.new
     begin #catching Mysql::Error
       @db.query(query_string).each_hash { |row|
