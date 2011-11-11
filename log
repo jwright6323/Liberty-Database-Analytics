@@ -1,0 +1,26 @@
+Connected to mysql database successfully.  Info:
+  host : wildcat.ee.engr.uky.edu
+  port : 3306
+  user : guest
+  pass : liberty
+  db   : LibertyFile
+Query completed successfully:
+  SELECT cells.area,cells.name
+  FROM cells;
+Query completed successfully:
+  SELECT cells.cell_leakage_power,cells.name
+  FROM cells;
+Database closed
+Connected to mysql database successfully.  Info:
+  host : wildcat.ee.engr.uky.edu
+  port : 3306
+  user : guest
+  pass : liberty
+  db   : LibertyFile
+Query completed successfully:
+  SELECT cells.area,cells.name
+  FROM cells;
+Query completed successfully:
+  SELECT cells.cell_leakage_power,cells.name
+  FROM cells;
+Database closed

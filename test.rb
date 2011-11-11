@@ -6,8 +6,8 @@ require 'LibertyDatabase.rb'
 #y = x.collect { |val| val ** 2 }
 
 #plot(x, y, "x", "x^2", "X squared")
-
-test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu"
+$verbose = true
+test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => "log"
 
 areas = test.getData "area"
 lkgs  = test.getData "cell_leakage_power"

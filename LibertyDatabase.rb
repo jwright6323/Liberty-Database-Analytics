@@ -38,7 +38,7 @@ class LibertyDatabase
 
     begin #catchiing File::IOError
       if options[:logfile] then
-        @logfile = File.open(options[:logfile],"w")
+        @logfile = File.open(options[:logfile],"a+")
       else
         @logfile = nil
       end
@@ -57,7 +57,12 @@ class LibertyDatabase
         #query for a default
         #TODO
       end
-      log "Connected to mysql database successfully."
+      log "Connected to mysql database successfully.  Info:"
+      log "  host : #{options[:mysqlhost]}"
+      log "  port : #{options[:mysqlport]}"
+      log "  user : #{options[:mysqluser]}"
+      log "  pass : #{options[:mysqlpass]}"
+      log "  db   : #{options[:mysqldb]}"
     rescue Mysql::Error => e
       @db = nil
       errlog "Error connecting to mysql database.  Debug info:"
@@ -79,9 +84,9 @@ class LibertyDatabase
     #build the SQL query
     query_string =  "SELECT #{CELL_TABLE_NAME}.#{parameter},"
     query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
-    query_string << "FROM #{CELL_TABLE_NAME}\n"
+    query_string << "FROM #{CELL_TABLE_NAME}"
     if options[:footprint] then
-      query_string << "LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
+      query_string << "\nLEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
       query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
       query_string << "= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n"
       query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
@@ -90,7 +95,7 @@ class LibertyDatabase
         query_string << "\nAND "
       end
     elsif options[:cells] then
-      query_string << "WHERE "
+      query_string << "\nWHERE "
     end
     if options[:cells] then
       query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
@@ -101,6 +106,8 @@ class LibertyDatabase
       query_string << ")"
     end
     query_string << ";"
+    log "Query completed successfully:"
+    log query_string.gsub(/^/,"  ")
     results = Hash.new
     begin #catching Mysql::Error
       @db.query(query_string).each_hash { |row|
@@ -116,6 +123,7 @@ class LibertyDatabase
 
   def close
     @db.close if @db
+    log "Database closed"
     @logfile.close if @logfile
   end #close
 
