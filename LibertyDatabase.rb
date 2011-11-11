@@ -90,7 +90,7 @@ class LibertyDatabase
       query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
       query_string << "= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n"
       query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
-      query_string << "LIKE '#{options[:footprint]}'"
+      query_string << "= '#{options[:footprint]}'"
       if options[:cells] then
         query_string << "\nAND "
       end
@@ -106,19 +106,61 @@ class LibertyDatabase
       query_string << ")"
     end
     query_string << ";"
-    log "Query completed successfully:"
-    log query_string.gsub(/^/,"  ")
     results = Hash.new
-    begin #catching Mysql::Error
-      @db.query(query_string).each_hash { |row|
-        results.store( row[CELL_NAME_COLUMN], row[parameter] )
-      }
-    rescue Mysql::Error => e
-      errlog "Error executing database query.  Debug info:"
-      errlog query_string.gsub(/^/,"  ")
-    end #catching Mysql::Error
+    query(query_string) { |row|
+      results.store( row[CELL_NAME_COLUMN], row[parameter] )
+    }
 
     results
+  end #getData
+
+  def getPVTs
+    #TODO
+    nil
+  end #getPVTs
+
+  def getFootprints
+    #TODO
+    nil
+  end #getFootprints
+
+  def getCellFootprint( cell )
+    query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
+    query_string << "FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
+    query_string << "ON #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN} = "
+    query_string << "#{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID}\n"
+    query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} "
+    query_string << "= '#{cell}';"
+    result = nil
+    query(query_string) { |row|
+      result = row.inspect
+    }
+
+    result
+  end #getCellFootprint
+
+  def getCells
+    query_string =  "SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
+    query_string << "FROM #{CELL_TABLE_NAME};"
+    results = Array.new
+    query(query_string) { |row|
+      results.push( row[CELL_NAME_COLUMN] )
+    }
+
+    results
+  end #getCells
+
+  def query( string, &block )
+    begin #catching Mysql::Error
+      @db.query(string).each_hash { |row|
+        yield row
+      }
+      log "Query completed successfully:"
+      log string.gsub(/^/,"  ")
+    rescue Mysql::Error => e
+      errlog "Error executing database query.  Debug info:"
+      errlog string.gsub(/^/,"  ")
+    end #catching Mysql::Error
   end #query
 
   def close
