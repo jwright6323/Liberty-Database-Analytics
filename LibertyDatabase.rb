@@ -72,7 +72,20 @@ class LibertyDatabase
       query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
       query_string << "= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n"
       query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
-      query_string << "LIKE '#{options[:footprint]}' "
+      query_string << "LIKE '#{options[:footprint]}'"
+      if options[:cells] then
+        query_string << "\nAND "
+      end
+    elsif options[:cells] then
+      query_string << "WHERE "
+    end
+    if options[:cells] then
+      query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")"
     end
     query_string << ";"
     puts query_string
