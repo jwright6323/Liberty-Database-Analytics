@@ -9,6 +9,16 @@ require 'LibertyDatabase.rb'
 
 test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu"
 
-obj = test.getData "area"
-puts obj.inspect
+areas = test.getData "area"
+lkgs  = test.getData "cell_leakage_power"
+
+x = Array.new
+y = Array.new
+
+areas.keys.each { |key|
+  x.push(areas[key])
+  y.push(lkgs[key])
+}
+plot(x, y, "Area (um)", "Leakage (uW)", "A vs. Lkg")
+
 test.close
