@@ -8,18 +8,31 @@
 require 'rubygems'
 require 'mysql'
 
-## Schema info ##
-CELL_TABLE_NAME = "cells"
-CELL_TABLE_ID = "id"
-CELL_FOOTPRINT_COLUMN = "cell_footprint"
-CELL_NAME_COLUMN = "name"
-FOOTPRINT_TABLE_NAME = "footprints"
-FOOTPRINT_TABLE_ID = "id"
-FOOTPRINT_NAME_COLUMN = "name"
-
+# LibertyDatabase is a class to connect to and query  a MySQL database containing Liberty file data
 class LibertyDatabase
   attr_reader :pvt, :db, :logfile
 
+  CELL_TABLE_NAME = "cells"
+  CELL_TABLE_ID = "id"
+  CELL_FOOTPRINT_COLUMN = "cell_footprint"
+  CELL_NAME_COLUMN = "name"
+  FOOTPRINT_TABLE_NAME = "footprints"
+  FOOTPRINT_TABLE_ID = "id"
+  FOOTPRINT_NAME_COLUMN = "name"
+
+  # Constructor
+  #
+  # ==== Parameters
+  #
+  # ==== Options
+  #
+  # * +:pvt+ - The PVT used by this database.  Defaullt is +nil+.
+  # * +:logfile+ - The log file name.  nil disables logging.  Default is +nil+.
+  # * +:mysqlhost+ - The MySQL server host name.  Default is +nil+.
+  # * +:mysqlport+ - The MySQL server port number.  Default is +3306+.
+  # * +:mysqldb+ - The MySQL database name.  Default is +LibertyFile+.  Do not change.
+  # * +:mysqluser+ - The MySQL username.  Default is +guest+.  Do not change.
+  # * +:mysqlpass+ - The MySQL password.  Default is +liberty+.  Do not change.
   def initialize( options = {} )
     defaults = { :pvt => nil,
                  :logfile => nil,

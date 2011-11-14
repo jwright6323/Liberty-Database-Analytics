@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: LibertyDatabase</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>LibertyDatabase.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Object
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-new">::new</a>
+    
+    <li><a href="#method-i-close">#close</a>
+    
+    <li><a href="#method-i-errlog">#errlog</a>
+    
+    <li><a href="#method-i-getCellFootprint">#getCellFootprint</a>
+    
+    <li><a href="#method-i-getCells">#getCells</a>
+    
+    <li><a href="#method-i-getData">#getData</a>
+    
+    <li><a href="#method-i-getFootprints">#getFootprints</a>
+    
+    <li><a href="#method-i-getPVTs">#getPVTs</a>
+    
+    <li><a href="#method-i-log">#log</a>
+    
+    <li><a href="#method-i-query">#query</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class LibertyDatabase</h1>
+
+  <div id="description" class="description">
+    
+<p><a href="LibertyDatabase.html">LibertyDatabase</a> is a class to connect to
+and query  a MySQL database containing Liberty file data</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="CELL_FOOTPRINT_COLUMN">CELL_FOOTPRINT_COLUMN
+        
+        <dd class="description">
+        
+      
+        <dt id="CELL_NAME_COLUMN">CELL_NAME_COLUMN
+        
+        <dd class="description">
+        
+      
+        <dt id="CELL_TABLE_ID">CELL_TABLE_ID
+        
+        <dd class="description">
+        
+      
+        <dt id="CELL_TABLE_NAME">CELL_TABLE_NAME
+        
+        <dd class="description">
+        
+      
+        <dt id="FOOTPRINT_NAME_COLUMN">FOOTPRINT_NAME_COLUMN
+        
+        <dd class="description">
+        
+      
+        <dt id="FOOTPRINT_TABLE_ID">FOOTPRINT_TABLE_ID
+        
+        <dd class="description">
+        
+      
+        <dt id="FOOTPRINT_TABLE_NAME">FOOTPRINT_TABLE_NAME
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-db" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">db</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-logfile" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">logfile</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-pvt" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">pvt</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">( options = {} )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Constructor</p>
+
+<h4 id="method-c-new-label-Parameters">Parameters</h4>
+
+<h4 id="method-c-new-label-Options">Options</h4>
+<ul><li>
+<p><code>:pvt</code> - The PVT used by this database.  Defaullt is
+<code>nil</code>.</p>
+</li><li>
+<p><code>:logfile</code> - The log file name.  nil disables logging.  Default
+is <code>nil</code>.</p>
+</li><li>
+<p><code>:mysqlhost</code> - The MySQL server host name.  Default is
+<code>nil</code>.</p>
+</li><li>
+<p><code>:mysqlport</code> - The MySQL server port number.  Default is
+<code>3306</code>.</p>
+</li><li>
+<p><code>:mysqldb</code> - The MySQL database name.  Default is
+<code>LibertyFile</code>.  Do not change.</p>
+</li><li>
+<p><code>:mysqluser</code> - The MySQL username.  Default is
+<code>guest</code>.  Do not change.</p>
+</li><li>
+<p><code>:mysqlpass</code> - The MySQL password.  Default is
+<code>liberty</code>.  Do not change.</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">options</span> = {} )
+  <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:pvt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:logfile</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:mysqlhost</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;localhost&quot;</span>,
+               <span class="ruby-value">:mysqlport</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3306</span>,
+               <span class="ruby-value">:mysqldb</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;LibertyFile&quot;</span>,
+               <span class="ruby-value">:mysqluser</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;guest&quot;</span>,
+               <span class="ruby-value">:mysqlpass</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;liberty&quot;</span> }
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pvt</span>]
+    <span class="ruby-ivar">@pvt</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:pvt</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@pvt</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">begin</span> <span class="ruby-comment">#catchiing File::IOError</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:logfile</span>] <span class="ruby-keyword">then</span>
+      <span class="ruby-ivar">@logfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:logfile</span>],<span class="ruby-string">&quot;a+&quot;</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@logfile</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">IOError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-ivar">@logfile</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;Error opening log file. :logfile =&gt; '#{options[:logfile]}'&quot;</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-comment">#catching File::IOError</span>
+
+  <span class="ruby-keyword">begin</span> <span class="ruby-comment">#catching Mysql::Error</span>
+    <span class="ruby-ivar">@db</span> = <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">real_connect</span>( <span class="ruby-identifier">options</span>[<span class="ruby-value">:mysqlhost</span>],
+                              <span class="ruby-identifier">options</span>[<span class="ruby-value">:mysqluser</span>],
+                              <span class="ruby-identifier">options</span>[<span class="ruby-value">:mysqlpass</span>],
+                              <span class="ruby-identifier">options</span>[<span class="ruby-value">:mysqldb</span>],
+                              <span class="ruby-identifier">options</span>[<span class="ruby-value">:mysqlport</span>] )
+    <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@pvt</span> <span class="ruby-comment">#is defined</span>
+      <span class="ruby-comment">#query for a default</span>
+      <span class="ruby-comment">#TODO</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Connected to mysql database successfully.  Info:&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;  host : #{options[:mysqlhost]}&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;  port : #{options[:mysqlport]}&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;  user : #{options[:mysqluser]}&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;  pass : #{options[:mysqlpass]}&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-node">&quot;  db   : #{options[:mysqldb]}&quot;</span>
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-ivar">@db</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-string">&quot;Error connecting to mysql database.  Debug info:&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;  host : #{options[:mysqlhost]}&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;  port : #{options[:mysqlport]}&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;  user : #{options[:mysqluser]}&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;  pass : #{options[:mysqlpass]}&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-node">&quot;  db   : #{options[:mysqldb]}&quot;</span>
+  <span class="ruby-keyword">end</span> <span class="ruby-comment">#catching Mysql::Error</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-close" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">close</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="close-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 185</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
+  <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@db</span>
+  <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Database closed&quot;</span>
+  <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logfile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- close-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- close-method -->
+
+    
+      <div id="method-i-errlog" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">errlog</span><span
+            class="method-args">( str )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="errlog-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">errlog</span>( <span class="ruby-identifier">str</span> )
+  <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span>
+  <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logfile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- errlog-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- errlog-method -->
+
+    
+      <div id="method-i-getCellFootprint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getCellFootprint</span><span
+            class="method-args">( cell )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getCellFootprint-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getCellFootprint</span>( <span class="ruby-identifier">cell</span> )
+  <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;ON #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN} = &quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} &quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;= '#{cell}';&quot;</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;name&quot;</span>]
+  }
+
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getCellFootprint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getCellFootprint-method -->
+
+    
+      <div id="method-i-getCells" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getCells</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getCells-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getCells</span>
+  <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME};&quot;</span>
+  <span class="ruby-identifier">results</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">results</span>.<span class="ruby-identifier">push</span>( <span class="ruby-identifier">row</span>[<span class="ruby-constant">CELL_NAME_COLUMN</span>] )
+  }
+
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getCells-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getCells-method -->
+
+    
+      <div id="method-i-getData" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getData</span><span
+            class="method-args">( parameter, options={} )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getData-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getData</span>( <span class="ruby-identifier">parameter</span>, <span class="ruby-identifier">options</span>={} )
+  <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:cells</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:footprint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:pvt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pvt</span> }
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-comment">#build the SQL query</span>
+  <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{CELL_TABLE_NAME}.#{parameter},&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME}&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:footprint</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\nLEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} &quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} &quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;= '#{options[:footprint]}'&quot;</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\nAND &quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;\nWHERE &quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN (&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{cell}',&quot;</span>
+    }
+    <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">','</span>)
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;;&quot;</span>
+  <span class="ruby-identifier">results</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">results</span>.<span class="ruby-identifier">store</span>( <span class="ruby-identifier">row</span>[<span class="ruby-constant">CELL_NAME_COLUMN</span>], <span class="ruby-identifier">row</span>[<span class="ruby-identifier">parameter</span>] )
+  }
+
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getData-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getData-method -->
+
+    
+      <div id="method-i-getFootprints" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getFootprints</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getFootprints-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 135</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getFootprints</span>
+  <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{FOOTPRINT_TABLE_NAME}\n;&quot;</span>
+  <span class="ruby-identifier">result</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;name&quot;</span>])
+  }
+
+  <span class="ruby-identifier">result</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getFootprints-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getFootprints-method -->
+
+    
+      <div id="method-i-getPVTs" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getPVTs</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="getPVTs-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getPVTs</span>
+  <span class="ruby-comment">#TODO</span>
+  <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getPVTs-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getPVTs-method -->
+
+    
+      <div id="method-i-log" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">log</span><span
+            class="method-args">( str )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="log-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>( <span class="ruby-identifier">str</span> )
+  <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$verbose</span>
+  <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logfile</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- log-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- log-method -->
+
+    
+      <div id="method-i-query" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">query</span><span
+            class="method-args">( string ) { |row| ... }</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="query-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 172</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">query</span>( <span class="ruby-identifier">string</span>, &amp;<span class="ruby-identifier">block</span> )
+  <span class="ruby-keyword">begin</span> <span class="ruby-comment">#catching Mysql::Error</span>
+    <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">string</span>).<span class="ruby-identifier">each_hash</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">yield</span> <span class="ruby-identifier">row</span>
+    }
+    <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Query completed successfully:&quot;</span>
+    <span class="ruby-identifier">log</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^/</span>,<span class="ruby-string">&quot;  &quot;</span>)
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-string">&quot;Error executing database query.  Debug info:&quot;</span>
+    <span class="ruby-identifier">errlog</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^/</span>,<span class="ruby-string">&quot;  &quot;</span>)
+  <span class="ruby-keyword">end</span> <span class="ruby-comment">#catching Mysql::Error</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- query-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- query-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
