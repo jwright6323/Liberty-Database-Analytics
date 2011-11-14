@@ -120,8 +120,14 @@ class LibertyDatabase
   end #getPVTs
 
   def getFootprints
-    #TODO
-    nil
+    query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
+    query_string << "FROM #{FOOTPRINT_TABLE_NAME}\n;"
+    result = Array.new
+    query(query_string) { |row|
+      result.push(row["name"])
+    }
+
+    result
   end #getFootprints
 
   def getCellFootprint( cell )
