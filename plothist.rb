@@ -6,17 +6,19 @@ require 'rubygems'
 require 'gnuplot'
 
 
-def plothist(numBins, x, x_label, title, min=nil, max=nil, filename ="out")
-   
+def plothist( numBins, x, x_label, title, options={} )
+    defaults = { :min => x.min,
+                 :max => x.max,
+                 :filename => "out" }
+    options = defaults.merge(options)
+
+    min = options[:min]
+    max = options[:max]
+    filename = options[:filename]
+
     # if numBins is zero...
     if(numBins <= 0)
         numBins = 1
-    end
-
-    # if no max and min are specified, set them
-    if(min == nil or max == nil)
-        max = x.max
-        min = x.min
     end
 
     bw = (max.to_f - min.to_f) / numBins.to_f
@@ -32,12 +34,10 @@ def plothist(numBins, x, x_label, title, min=nil, max=nil, filename ="out")
             }
        x_count.push(count)
        }
-                
+
      (1..numBins).each {|n|
         x_axis.push(min.to_f + (0.5*bw.to_f + bw.to_f * (n-1)))
         }
-     
-
 
         Gnuplot.open do |gp|
             Gnuplot::Plot.new( gp ) do |plot|
