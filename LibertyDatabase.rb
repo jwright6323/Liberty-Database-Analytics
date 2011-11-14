@@ -1,8 +1,8 @@
 #!/usr/bin/ruby -w0
 # LibertyDatabase.rb
 # 2011-11-10
-# John Wright
-# jcwr@cypress.com
+# John Wright, Daniel Peters, Edward Poore
+# jcwr@cypress.com, danmanstx@gmail.com, edward.poore@gmail.com
 #
 
 require 'rubygems'
@@ -139,7 +139,7 @@ class LibertyDatabase
     query_string << "= '#{cell}';"
     result = nil
     query(query_string) { |row|
-      result = row.inspect
+      result = row["name"]
     }
 
     result

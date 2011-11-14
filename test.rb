@@ -12,8 +12,8 @@ test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => 
 t = test.getCellFootprint("INVM1S")
 puts t
 #puts test.getData "area", :footprint => t
-areas = test.getData "area"
-lkgs  = test.getData "cell_leakage_power"
+areas = test.getData :area
+lkgs  = test.getData :cell_leakage_power
 
 x = Array.new
 y = Array.new
