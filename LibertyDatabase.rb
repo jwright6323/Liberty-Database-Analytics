@@ -174,9 +174,9 @@ class LibertyDatabase
     query_string << "FROM #{LEAKAGE_WHEN_TABLE_NAME}\n"
     query_string << "LEFT OUTER JOIN #{CELL_TABLE_NAME}\n"
     query_string << "ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = "
-    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n"
+    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}"
     if options[:cells] then
-      query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
+      query_string << "\nWHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
       options[:cells].each { |cell|
         query_string << "'#{cell}',"
       }
