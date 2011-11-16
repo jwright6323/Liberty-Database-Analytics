@@ -167,17 +167,26 @@ class LibertyDatabase
       results.delete(key)
       results.store(key,Hash.new)
       results[key].store(:wc,val.to_f)
-      query_string =  "SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},"
-      query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN}\n"
-      query_string << "FROM #{LEAKAGE_WHEN_TABLE_NAME}\n"
-      query_string << "LEFT OUTER JOIN #{CELL_TABLE_NAME}\n"
-      query_string << "ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = "
-      query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n"
-      query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} = '#{key}';"
-      query(query_string) { |row|
-        results[key].store(row[LEAKAGE_WHEN_NAME_COLUMN],row[LEAKAGE_WHEN_VALUE_COLUMN].to_f)
-      }
     end #results.each
+    query_string =  "SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},"
+    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN},"
+    query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
+    query_string << "FROM #{LEAKAGE_WHEN_TABLE_NAME}\n"
+    query_string << "LEFT OUTER JOIN #{CELL_TABLE_NAME}\n"
+    query_string << "ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = "
+    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n"
+    if options[:cells] then
+      query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")"
+    end
+    query_string << ";"
+    query(query_string) { |row|
+      results[row[CELL_NAME_COLUMN]].store(row[LEAKAGE_WHEN_NAME_COLUMN],row[LEAKAGE_WHEN_VALUE_COLUMN].to_f)
+    }
 
     results
   end #getWhenData
