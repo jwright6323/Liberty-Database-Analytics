@@ -7,11 +7,20 @@ require 'LibertyDatabase.rb'
 #y = x.collect { |val| val ** 2 }
 
 #plot(x, y, "x", "x^2", "X squared")
-$verbose = true
+#$verbose = true
 test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => "log"
 
 puts test.getLeakage(:cells => "INVM1S").inspect
 
+fh = File.new("testout","w")
+
+test.getLeakage.each do |cell_name,leakage_data|
+  min = leakage_data.values.sort[0]
+  max = leakage_data.values.sort[-1]
+  diff = (max-min)*200/(max+min)
+  fh.puts("#{cell_data},#{diff}")
+end
+fh.close
 #t = test.getCellFootprint("INVM1S")
 #puts t
 #puts test.getData "area", :footprint => t
