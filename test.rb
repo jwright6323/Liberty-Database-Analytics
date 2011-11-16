@@ -18,7 +18,7 @@ test.getLeakage.each do |cell_name,leakage_data|
   min = leakage_data.values.sort[0]
   max = leakage_data.values.sort[-1]
   diff = (max-min)*200/(max+min)
-  fh.puts("#{cell_data},#{diff}")
+  fh.puts("#{cell_name},#{diff}")
 end
 fh.close
 #t = test.getCellFootprint("INVM1S")
