@@ -28,7 +28,7 @@ class LibertyDatabase
   #
   # * +:pvt+ - The PVT used by this database.  Defaullt is +nil+.
   # * +:logfile+ - The log file name.  nil disables logging.  Default is +nil+.
-  # * +:mysqlhost+ - The MySQL server host name.  Default is +nil+.
+  # * +:mysqlhost+ - The MySQL server host name.  Default is +localhost+.
   # * +:mysqlport+ - The MySQL server port number.  Default is +3306+.
   # * +:mysqldb+ - The MySQL database name.  Default is +LibertyFile+.  Do not change.
   # * +:mysqluser+ - The MySQL username.  Default is +guest+.  Do not change.
