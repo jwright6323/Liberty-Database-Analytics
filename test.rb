@@ -13,14 +13,16 @@ test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => 
 puts test.getLeakage(:cells => "INVM1S").inspect
 
 fh = File.new("testout","w")
-
+x = Array.new
 test.getLeakage.each do |cell_name,leakage_data|
   min = leakage_data.values.sort[0]
   max = leakage_data.values.sort[-1]
   diff = (max-min)*200/(max+min)
+  x.push(diff)
   fh.puts("#{cell_name},#{diff}")
 end
 fh.close
+plothist( 10, x, "%diff", "%diff between BC and WC when condition leakages" )
 #t = test.getCellFootprint("INVM1S")
 #puts t
 #puts test.getData "area", :footprint => t
