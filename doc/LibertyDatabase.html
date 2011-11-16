@@ -84,7 +84,9 @@
     
     <li><a href="#method-i-getFootprints">#getFootprints</a>
     
-    <li><a href="#method-i-getPVTs">#getPVTs</a>
+    <li><a href="#method-i-getLeakage">#getLeakage</a>
+    
+    <li><a href="#method-i-getPVT">#getPVT</a>
     
     <li><a href="#method-i-log">#log</a>
     
@@ -139,6 +141,11 @@ and query  a MySQL database containing Liberty file data</p>
         <dd class="description">
         
       
+        <dt id="CELL_LEAKAGE_COLUMN">CELL_LEAKAGE_COLUMN
+        
+        <dd class="description">
+        
+      
         <dt id="CELL_NAME_COLUMN">CELL_NAME_COLUMN
         
         <dd class="description">
@@ -165,6 +172,26 @@ and query  a MySQL database containing Liberty file data</p>
         
       
         <dt id="FOOTPRINT_TABLE_NAME">FOOTPRINT_TABLE_NAME
+        
+        <dd class="description">
+        
+      
+        <dt id="LEAKAGE_WHEN_CELL_COLUMN">LEAKAGE_WHEN_CELL_COLUMN
+        
+        <dd class="description">
+        
+      
+        <dt id="LEAKAGE_WHEN_NAME_COLUMN">LEAKAGE_WHEN_NAME_COLUMN
+        
+        <dd class="description">
+        
+      
+        <dt id="LEAKAGE_WHEN_TABLE_NAME">LEAKAGE_WHEN_TABLE_NAME
+        
+        <dd class="description">
+        
+      
+        <dt id="LEAKAGE_WHEN_VALUE_COLUMN">LEAKAGE_WHEN_VALUE_COLUMN
         
         <dd class="description">
         
@@ -269,7 +296,7 @@ is <code>nil</code>.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 36</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">options</span> = {} )
   <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:pvt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
                <span class="ruby-value">:logfile</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
@@ -351,12 +378,16 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Close the database and logfile</p>
+
+<h4 id="method-i-close-label-Parameters">Parameters</h4>
+
+<h4 id="method-i-close-label-Options">Options</h4>
           
 
           
           <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 185</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 271</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@db</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Database closed&quot;</span>
@@ -388,7 +419,7 @@ is <code>nil</code>.</p>
 
           
           <div class="method-source-code" id="errlog-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 191</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 278</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">errlog</span>( <span class="ruby-identifier">str</span> )
   <span class="ruby-identifier">$stderr</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span>
   <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logfile</span>
@@ -414,12 +445,19 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Get the footprint of a single cell.</p>
+
+<h4 id="method-i-getCellFootprint-label-Parameters">Parameters</h4>
+<ul><li>
+<p><code>cell</code> - The cell to query.</p>
+</li></ul>
+
+<h4 id="method-i-getCellFootprint-label-Options">Options</h4>
           
 
           
           <div class="method-source-code" id="getCellFootprint-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 146</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 213</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getCellFootprint</span>( <span class="ruby-identifier">cell</span> )
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n&quot;</span>
@@ -455,12 +493,16 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Get all cells in the database.</p>
+
+<h4 id="method-i-getCells-label-Parameters">Parameters</h4>
+
+<h4 id="method-i-getCells-label-Options">Options</h4>
           
 
           
           <div class="method-source-code" id="getCells-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 161</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 234</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getCells</span>
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME};&quot;</span>
@@ -492,12 +534,30 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Retrieve data from the SQL database</p>
+
+<h4 id="method-i-getData-label-Parameters">Parameters</h4>
+<ul><li>
+<p><code>parameter</code> - The database parameter to query.  Must be the same
+as the database column (case sensitive).</p>
+</li></ul>
+
+<h4 id="method-i-getData-label-Options">Options</h4>
+<ul><li>
+<p><code>:cells</code> - An array of cells to query.  <code>nil</code> uses
+all cells.  Default is <code>nil</code>.</p>
+</li><li>
+<p><code>:footprint</code> - A single footprint to query.  <code>nil</code>
+uses all footprints.  Default is <code>nil</code>.</p>
+</li><li>
+<p><code>:pvt</code> - The PVT corner to use.  Default is
+<code>this.pvt</code>.</p>
+</li></ul>
           
 
           
           <div class="method-source-code" id="getData-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 91</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getData</span>( <span class="ruby-identifier">parameter</span>, <span class="ruby-identifier">options</span>={} )
   <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:cells</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
                <span class="ruby-value">:footprint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
@@ -557,12 +617,16 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Get an array of all cell footprints.</p>
+
+<h4 id="method-i-getFootprints-label-Parameters">Parameters</h4>
+
+<h4 id="method-i-getFootprints-label-Options">Options</h4>
           
 
           
           <div class="method-source-code" id="getFootprints-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 135</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 196</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getFootprints</span>
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{FOOTPRINT_TABLE_NAME}\n;&quot;</span>
@@ -583,10 +647,76 @@ is <code>nil</code>.</p>
       </div><!-- getFootprints-method -->
 
     
-      <div id="method-i-getPVTs" class="method-detail ">
+      <div id="method-i-getLeakage" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">getPVTs</span><span
+          <span class="method-name">getLeakage</span><span
+            class="method-args">( options={} )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Retrieve leakage data with “when” conditions</p>
+
+<h4 id="method-i-getLeakage-label-Parameters">Parameters</h4>
+
+<h4 id="method-i-getLeakage-label-Options">Options</h4>
+<ul><li>
+<p><code>:cells</code> - An array of cells to query.  <code>nil</code> uses
+all cells.  Default is <code>nil</code>.</p>
+</li><li>
+<p><code>:footprint</code> - A single footprint to query.  <code>nil</code>
+uses all footprints.  Default is <code>nil</code>.</p>
+</li><li>
+<p><code>:pvt</code> - The PVT corner to use.  Default is
+<code>this.pvt</code>.</p>
+</li></ul>
+          
+
+          
+          <div class="method-source-code" id="getLeakage-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getLeakage</span>( <span class="ruby-identifier">options</span>={} )
+  <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:cells</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:footprint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:pvt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pvt</span> }
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">results</span> = <span class="ruby-identifier">getData</span>(<span class="ruby-constant">CELL_LEAKAGE_COLUMN</span>,<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">results</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>,<span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">results</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">key</span>)
+    <span class="ruby-identifier">results</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">key</span>,<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
+    <span class="ruby-identifier">results</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">store</span>(<span class="ruby-value">:wc</span>,<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_f</span>)
+    <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{LEAKAGE_WHEN_TABLE_NAME}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;LEFT OUTER JOIN #{CELL_TABLE_NAME}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = &quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n&quot;</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} = '#{key}';&quot;</span>
+    <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">results</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">store</span>(<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_NAME_COLUMN</span>],<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_VALUE_COLUMN</span>].<span class="ruby-identifier">to_f</span>)
+    }
+  <span class="ruby-keyword">end</span> <span class="ruby-comment">#results.each</span>
+
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getLeakage-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getLeakage-method -->
+
+    
+      <div id="method-i-getPVT" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getPVT</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -594,24 +724,28 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Get the current PVT corner.  Returns <code>nil</code>.</p>
+
+<h4 id="method-i-getPVT-label-Parameters">Parameters</h4>
+
+<h4 id="method-i-getPVT-label-Options">Options</h4>
           
 
           
-          <div class="method-source-code" id="getPVTs-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 130</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getPVTs</span>
+          <div class="method-source-code" id="getPVT-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 185</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getPVT</span>
   <span class="ruby-comment">#TODO</span>
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- getPVTs-source -->
+          </div><!-- getPVT-source -->
           
         </div>
 
         
 
         
-      </div><!-- getPVTs-method -->
+      </div><!-- getPVT-method -->
 
     
       <div id="method-i-log" class="method-detail ">
@@ -630,7 +764,7 @@ is <code>nil</code>.</p>
 
           
           <div class="method-source-code" id="log-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 196</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 283</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">log</span>( <span class="ruby-identifier">str</span> )
   <span class="ruby-identifier">$stdout</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$verbose</span>
   <span class="ruby-ivar">@logfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">str</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@logfile</span>
@@ -656,12 +790,23 @@ is <code>nil</code>.</p>
 
         <div class="method-description">
           
-          
+          <p>Perform a custom database query with logging</p>
+
+<h4 id="method-i-query-label-Parameters">Parameters</h4>
+<ul><li>
+<p><code>string</code> - A string containing the SQL query terminated by a
+‘;’</p>
+</li><li>
+<p><code>block</code> - The code block to process each row hash returned by
+the query.</p>
+</li></ul>
+
+<h4 id="method-i-query-label-Options">Options</h4>
           
 
           
           <div class="method-source-code" id="query-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 172</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 252</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">query</span>( <span class="ruby-identifier">string</span>, &amp;<span class="ruby-identifier">block</span> )
   <span class="ruby-keyword">begin</span> <span class="ruby-comment">#catching Mysql::Error</span>
     <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">string</span>).<span class="ruby-identifier">each_hash</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>

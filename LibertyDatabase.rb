@@ -14,11 +14,16 @@ class LibertyDatabase
 
   CELL_TABLE_NAME = "cells"
   CELL_TABLE_ID = "id"
+  CELL_LEAKAGE_COLUMN = "cell_leakage_power"
   CELL_FOOTPRINT_COLUMN = "cell_footprint"
   CELL_NAME_COLUMN = "name"
   FOOTPRINT_TABLE_NAME = "footprints"
   FOOTPRINT_TABLE_ID = "id"
   FOOTPRINT_NAME_COLUMN = "name"
+  LEAKAGE_WHEN_TABLE_NAME = "leakage_power"
+  LEAKAGE_WHEN_CELL_COLUMN = "cell_id"
+  LEAKAGE_WHEN_VALUE_COLUMN = "value"
+  LEAKAGE_WHEN_NAME_COLUMN = "when"
 
   # Constructor
   #
@@ -88,6 +93,16 @@ class LibertyDatabase
 
   end #initialize
 
+  # Retrieve data from the SQL database
+  #
+  # ==== Parameters
+  # * +parameter+ - The database parameter to query.  Must be the same as the database column (case sensitive).
+  # ==== Options
+  #
+  # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  #
   def getData( parameter, options={} )
     defaults = { :cells => nil,
                  :footprint => nil,
@@ -127,11 +142,57 @@ class LibertyDatabase
     results
   end #getData
 
-  def getPVTs
+  # Retrieve leakage data with "when" conditions
+  #
+  # ==== Parameters
+  # ==== Options
+  #
+  # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  def getLeakage( options={} )
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+
+    results = getData(CELL_LEAKAGE_COLUMN,options)
+    results.each do |key,val|
+      results.delete(key)
+      results.store(key,Hash.new)
+      results[key].store(:wc,val.to_f)
+      query_string =  "SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},"
+      query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN}\n"
+      query_string << "FROM #{LEAKAGE_WHEN_TABLE_NAME}\n"
+      query_string << "LEFT OUTER JOIN #{CELL_TABLE_NAME}\n"
+      query_string << "ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = "
+      query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n"
+      query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} = '#{key}';"
+      query(query_string) { |row|
+        results[key].store(row[LEAKAGE_WHEN_NAME_COLUMN],row[LEAKAGE_WHEN_VALUE_COLUMN].to_f)
+      }
+    end #results.each
+
+    results
+  end #getWhenData
+
+  # Get the current PVT corner.  Returns +nil+.
+  #
+  # ==== Parameters
+  #
+  # ==== Options
+  #
+  def getPVT
     #TODO
     nil
   end #getPVTs
 
+  # Get an array of all cell footprints.
+  #
+  # ==== Parameters
+  #
+  # ==== Options
+  #
   def getFootprints
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
     query_string << "FROM #{FOOTPRINT_TABLE_NAME}\n;"
@@ -143,6 +204,12 @@ class LibertyDatabase
     result
   end #getFootprints
 
+  # Get the footprint of a single cell.
+  #
+  # ==== Parameters
+  # * +cell+ - The cell to query.
+  # ==== Options
+  #
   def getCellFootprint( cell )
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
     query_string << "FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
@@ -158,6 +225,12 @@ class LibertyDatabase
     result
   end #getCellFootprint
 
+  # Get all cells in the database.
+  #
+  # ==== Parameters
+  #
+  # ==== Options
+  #
   def getCells
     query_string =  "SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
     query_string << "FROM #{CELL_TABLE_NAME};"
@@ -169,6 +242,13 @@ class LibertyDatabase
     results
   end #getCells
 
+  # Perform a custom database query with logging
+  #
+  # ==== Parameters
+  # * +string+ - A string containing the SQL query terminated by a ';'
+  # * +block+ - The code block to process each row hash returned by the query.
+  # ==== Options
+  #
   def query( string, &block )
     begin #catching Mysql::Error
       @db.query(string).each_hash { |row|
@@ -182,12 +262,19 @@ class LibertyDatabase
     end #catching Mysql::Error
   end #query
 
+  # Close the database and logfile
+  #
+  # ==== Parameters
+  #
+  # ==== Options
+  #
   def close
     @db.close if @db
     log "Database closed"
     @logfile.close if @logfile
   end #close
 
+private:
   def errlog( str )
     $stderr.puts str
     @logfile.puts str if @logfile
