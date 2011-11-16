@@ -2,18 +2,31 @@
 #Danny Peters, Edward Poore, John Wright
 #2011
 
-# basic test to use gnuplot in ruby
-# plots a curve as defined by x and y
-
 require 'rubygems'
 require 'gnuplot'
 
 
-# log_x and log_y - bool - turn log scales on (true) or off (false)
-# x and y are arrays of data to plot (must be the same size)
-# filename - string - determines the name of the generated plot and data file (filename.dat)
+# plotpoints is a function to scatter plot two arrays of equal size. 
+#
+# ==== Options
+#
+# [+:logx+] Bool. True displays the x axis on a log scale. Default is false.
+# [+:logy+] Bool. True displays the y axis on a log scale. Default is false.
+# [+:filename+] String. Define a filename to write data/gif to. Default is out.
+# [+:linreg+] Bool. True adds a linear regression line. Default is false.
+#
 
-def plotpoints(x, y, x_label, y_label, title, log_x, log_y, filename="out")
+def plotpoints(x, y, x_label, y_label, title, options={} )  
+    defaults = { :logx => false,
+                 :logy => false,
+                 :filename => "out",
+                 :linreg => false }
+    options = defaults.merge(options)
+
+    logx = options[:logx]
+    logy = options[:logy]
+    filename = options[:filename]
+    linreg = options[:linreg]    
 
     if(x.length == y.length)
 
@@ -42,20 +55,31 @@ def plotpoints(x, y, x_label, y_label, title, log_x, log_y, filename="out")
               plot.xlabel  x_label
 
         # check if graphs need to be logscaled
-              if (log_x)
+              if (logx)
                     plot.arbitrary_lines << "set logscale x"
               end
           
-              if (log_y)
+              if (logy)
                     plot.arbitrary_lines << "set logscale y"
               end
 
-              plot.data << Gnuplot::DataSet.new( [x, y] ) do |ds|
-                ds.with = "point"
-                ds.notitle
-                      
-              end
-            end
+        # check if a linear regression is desired
+              if (linreg)
+                    plot.arbitrary_lines << "f(x) = m*x + b"
+                    plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
+             end
+
+        # plot with a regression line
+             if
+             plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
+             end
+        
+
+
+        # otherwise dont add it
+             plot.arbitrary_lines << "plot '#{datfile}'"
+           
+           end
         end    
     
     else
@@ -64,3 +88,4 @@ def plotpoints(x, y, x_label, y_label, title, log_x, log_y, filename="out")
 
 
 end
+
