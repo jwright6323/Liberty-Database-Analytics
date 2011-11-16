@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
+# Danny Peters, Edward Poore, John Wright
+# 2011
+
 # basic test to use gnuplot in ruby
 # plots a curve as defined by x and y
 
 require 'rubygems'
 require 'gnuplot'
-
 
 def plothist( numBins, x, x_label, title, options={} )
     defaults = { :min => x.min,
@@ -25,6 +27,8 @@ def plothist( numBins, x, x_label, title, options={} )
     x_count = Array.new
     x_axis = Array.new
 
+
+# checks which values belong in each bin. Edgecases go to the higher bin.
     (1..numBins).each {|n|
        count = 0
        x.each {|v|
@@ -35,6 +39,7 @@ def plothist( numBins, x, x_label, title, options={} )
        x_count.push(count)
        }
 
+# generates the x axis
      (1..numBins).each {|n|
         x_axis.push(min.to_f + (0.5*bw.to_f + bw.to_f * (n-1)))
         }
