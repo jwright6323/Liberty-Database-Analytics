@@ -8,7 +8,7 @@
 require 'rubygems'
 require 'mysql'
 
-# LibertyDatabase is a class to connect to and query  a MySQL database containing Liberty file data
+# LibertyDatabase is a class to connect to and query a MySQL database containing Liberty file data
 class LibertyDatabase
   attr_reader :pvt, :db, :logfile
 
@@ -29,8 +29,6 @@ class LibertyDatabase
   #
   # ==== Parameters
   #
-  # ==== Options
-  #
   # * +:pvt+ - The PVT used by this database.  Defaullt is +nil+.
   # * +:logfile+ - The log file name.  nil disables logging.  Default is +nil+.
   # * +:mysqlhost+ - The MySQL server host name.  Default is +localhost+.
@@ -38,6 +36,7 @@ class LibertyDatabase
   # * +:mysqldb+ - The MySQL database name.  Default is +LibertyFile+.  Do not change.
   # * +:mysqluser+ - The MySQL username.  Default is +guest+.  Do not change.
   # * +:mysqlpass+ - The MySQL password.  Default is +liberty+.  Do not change.
+  #
   def initialize( options = {} )
     defaults = { :pvt => nil,
                  :logfile => nil,
@@ -97,11 +96,15 @@ class LibertyDatabase
   #
   # ==== Parameters
   # * +parameter+ - The database parameter to query.  Must be the same as the database column (case sensitive).
+  #
   # ==== Options
   #
   # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
   # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
   # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  #
+  # ==== Returns
+  # * +results+ - A Hash keyed by cell names.  The value of each entry is the value of +parameter+ for that cell.
   #
   def getData( parameter, options={} )
     defaults = { :cells => nil,
@@ -144,12 +147,15 @@ class LibertyDatabase
 
   # Retrieve leakage data with "when" conditions
   #
-  # ==== Parameters
   # ==== Options
   #
   # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
   # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
   # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  #
+  # ==== Returns
+  # * +results+ - A Hash keyed by cell names.  The value of each entry is another Hash, keyed by "when" condition, containing leakage data.
+  #
   def getLeakage( options={} )
     defaults = { :cells => nil,
                  :footprint => nil,
@@ -176,22 +182,20 @@ class LibertyDatabase
     results
   end #getWhenData
 
-  # Get the current PVT corner.  Returns +nil+.
+  # Get the current PVT corner (Not Implemented)
   #
-  # ==== Parameters
-  #
-  # ==== Options
+  # ==== Returns
+  # * +nil+
   #
   def getPVT
     #TODO
     nil
   end #getPVTs
 
-  # Get an array of all cell footprints.
+  # Get an array of all cell footprints
   #
-  # ==== Parameters
-  #
-  # ==== Options
+  # ==== Returns
+  # * +result+ - An Array containing the names of all cell footprints as strings
   #
   def getFootprints
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
@@ -204,11 +208,13 @@ class LibertyDatabase
     result
   end #getFootprints
 
-  # Get the footprint of a single cell.
+  # Get the footprint of a single cell
   #
   # ==== Parameters
   # * +cell+ - The cell to query.
-  # ==== Options
+  #
+  # ==== Returns
+  # * +result+ - The name of the given cell's footprint as a string
   #
   def getCellFootprint( cell )
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
@@ -225,11 +231,10 @@ class LibertyDatabase
     result
   end #getCellFootprint
 
-  # Get all cells in the database.
+  # Get all cells in the database
   #
-  # ==== Parameters
-  #
-  # ==== Options
+  # ==== Returns
+  # * +result+ - An Array containing the names of all cells as strings
   #
   def getCells
     query_string =  "SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
@@ -247,7 +252,6 @@ class LibertyDatabase
   # ==== Parameters
   # * +string+ - A string containing the SQL query terminated by a ';'
   # * +block+ - The code block to process each row hash returned by the query.
-  # ==== Options
   #
   def query( string, &block )
     begin #catching Mysql::Error
@@ -263,23 +267,21 @@ class LibertyDatabase
   end #query
 
   # Close the database and logfile
-  #
-  # ==== Parameters
-  #
-  # ==== Options
-  #
   def close
     @db.close if @db
     log "Database closed"
     @logfile.close if @logfile
   end #close
 
-private:
+  private
+
+  # Log an error to the logfile and stderr
   def errlog( str )
     $stderr.puts str
     @logfile.puts str if @logfile
   end #errlog
 
+  # Log to the logfile and stdout if in verbose mode
   def log( str )
     $stdout.puts str if $verbose
     @logfile.puts str if @logfile
