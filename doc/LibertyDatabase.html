@@ -263,29 +263,30 @@ and query a MySQL database containing Liberty file data</p>
           
           <p>Constructor</p>
 
-<h4 id="method-c-new-label-Parameters">Parameters</h4>
-<ul><li>
-<p><code>:pvt</code> - The PVT used by this database.  Defaullt is
-<code>nil</code>.</p>
-</li><li>
-<p><code>:logfile</code> - The log file name.  nil disables logging.  Default
-is <code>nil</code>.</p>
-</li><li>
-<p><code>:mysqlhost</code> - The MySQL server host name.  Default is
-<code>localhost</code>.</p>
-</li><li>
-<p><code>:mysqlport</code> - The MySQL server port number.  Default is
-<code>3306</code>.</p>
-</li><li>
-<p><code>:mysqldb</code> - The MySQL database name.  Default is
-<code>LibertyFile</code>.  Do not change.</p>
-</li><li>
-<p><code>:mysqluser</code> - The MySQL username.  Default is
-<code>guest</code>.  Do not change.</p>
-</li><li>
-<p><code>:mysqlpass</code> - The MySQL password.  Default is
-<code>liberty</code>.  Do not change.</p>
-</li></ul>
+<h4 id="method-c-new-label-Options">Options</h4>
+<dl class="rdoc-list label-list"><dt><code>:pvt</code>
+<dd>
+<p>The PVT used by this database.  Defaullt is <code>nil</code>.</p>
+</dd><dt><code>:logfile</code>
+<dd>
+<p>The log file name.  nil disables logging.  Default is <code>nil</code>.</p>
+</dd><dt><code>:mysqlhost</code>
+<dd>
+<p>The MySQL server host name.  Default is <code>localhost</code>.</p>
+</dd><dt><code>:mysqlport</code>
+<dd>
+<p>The MySQL server port number.  Default is <code>3306</code>.</p>
+</dd><dt><code>:mysqldb</code>
+<dd>
+<p>The MySQL database name.  Default is <code>LibertyFile</code>.  Do not
+change.</p>
+</dd><dt><code>:mysqluser</code>
+<dd>
+<p>The MySQL username.  Default is <code>guest</code>.  Do not change.</p>
+</dd><dt><code>:mysqlpass</code>
+<dd>
+<p>The MySQL password.  Default is <code>liberty</code>.  Do not change.</p>
+</dd></dl>
           
 
           
@@ -407,14 +408,16 @@ is <code>nil</code>.</p>
           <p>Get the footprint of a single cell</p>
 
 <h4 id="method-i-getCellFootprint-label-Parameters">Parameters</h4>
-<ul><li>
-<p><code>cell</code> - The cell to query.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>cell</code>
+<dd>
+<p>The cell to query.</p>
+</dd></dl>
 
 <h4 id="method-i-getCellFootprint-label-Returns">Returns</h4>
-<ul><li>
-<p><code>result</code> - The name of the given cell’s footprint as a string</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>result</code>
+<dd>
+<p>The name of the given cell’s footprint as a string</p>
+</dd></dl>
           
 
           
@@ -458,9 +461,10 @@ is <code>nil</code>.</p>
           <p>Get all cells in the database</p>
 
 <h4 id="method-i-getCells-label-Returns">Returns</h4>
-<ul><li>
-<p><code>result</code> - An Array containing the names of all cells as strings</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>result</code>
+<dd>
+<p>An Array containing the names of all cells as strings</p>
+</dd></dl>
           
 
           
@@ -500,28 +504,32 @@ is <code>nil</code>.</p>
           <p>Retrieve data from the SQL database</p>
 
 <h4 id="method-i-getData-label-Parameters">Parameters</h4>
-<ul><li>
-<p><code>parameter</code> - The database parameter to query.  Must be the same
-as the database column (case sensitive).</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>parameter</code>
+<dd>
+<p>The database parameter to query.  Must be the same as the database column
+(case sensitive).</p>
+</dd></dl>
 
 <h4 id="method-i-getData-label-Options">Options</h4>
-<ul><li>
-<p><code>:cells</code> - An array of cells to query.  <code>nil</code> uses
-all cells.  Default is <code>nil</code>.</p>
-</li><li>
-<p><code>:footprint</code> - A single footprint to query.  <code>nil</code>
-uses all footprints.  Default is <code>nil</code>.</p>
-</li><li>
-<p><code>:pvt</code> - The PVT corner to use.  Default is
-<code>this.pvt</code>.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>:cells</code>
+<dd>
+<p>An array of cells to query.  <code>nil</code> uses all cells.  Default is
+<code>nil</code>.</p>
+</dd><dt><code>:footprint</code>
+<dd>
+<p>A single footprint to query.  <code>nil</code> uses all footprints. 
+Default is <code>nil</code>.</p>
+</dd><dt><code>:pvt</code>
+<dd>
+<p>The PVT corner to use.  Default is <code>this.pvt</code>.</p>
+</dd></dl>
 
 <h4 id="method-i-getData-label-Returns">Returns</h4>
-<ul><li>
-<p><code>results</code> - A Hash keyed by cell names.  The value of each entry
-is the value of <code>parameter</code> for that cell.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>results</code>
+<dd>
+<p>A Hash keyed by cell names.  The value of each entry is the value of
+<code>parameter</code> for that cell.</p>
+</dd></dl>
           
 
           
@@ -589,10 +597,10 @@ is the value of <code>parameter</code> for that cell.</p>
           <p>Get an array of all cell footprints</p>
 
 <h4 id="method-i-getFootprints-label-Returns">Returns</h4>
-<ul><li>
-<p><code>result</code> - An Array containing the names of all cell footprints
-as strings</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>result</code>
+<dd>
+<p>An Array containing the names of all cell footprints as strings</p>
+</dd></dl>
           
 
           
@@ -632,22 +640,25 @@ as strings</p>
           <p>Retrieve leakage data with “when” conditions</p>
 
 <h4 id="method-i-getLeakage-label-Options">Options</h4>
-<ul><li>
-<p><code>:cells</code> - An array of cells to query.  <code>nil</code> uses
-all cells.  Default is <code>nil</code>.</p>
-</li><li>
-<p><code>:footprint</code> - A single footprint to query.  <code>nil</code>
-uses all footprints.  Default is <code>nil</code>.</p>
-</li><li>
-<p><code>:pvt</code> - The PVT corner to use.  Default is
-<code>this.pvt</code>.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>:cells</code>
+<dd>
+<p>An array of cells to query.  <code>nil</code> uses all cells.  Default is
+<code>nil</code>.</p>
+</dd><dt><code>:footprint</code>
+<dd>
+<p>A single footprint to query.  <code>nil</code> uses all footprints. 
+Default is <code>nil</code>.</p>
+</dd><dt><code>:pvt</code>
+<dd>
+<p>The PVT corner to use.  Default is <code>this.pvt</code>.</p>
+</dd></dl>
 
 <h4 id="method-i-getLeakage-label-Returns">Returns</h4>
-<ul><li>
-<p><code>results</code> - A Hash keyed by cell names.  The value of each entry
-is another Hash, keyed by “when” condition, containing leakage data.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>results</code>
+<dd>
+<p>A Hash keyed by cell names.  The value of each entry is another Hash, keyed
+by “when” condition, containing leakage data.</p>
+</dd></dl>
           
 
           
@@ -738,13 +749,13 @@ is another Hash, keyed by “when” condition, containing leakage data.</p>
           <p>Perform a custom database query with logging</p>
 
 <h4 id="method-i-query-label-Parameters">Parameters</h4>
-<ul><li>
-<p><code>string</code> - A string containing the SQL query terminated by a
-‘;’</p>
-</li><li>
-<p><code>block</code> - The code block to process each row hash returned by
-the query.</p>
-</li></ul>
+<dl class="rdoc-list label-list"><dt><code>string</code>
+<dd>
+<p>A string containing the SQL query terminated by a ‘;’</p>
+</dd><dt><code>block</code>
+<dd>
+<p>The code block to process each row hash returned by the query.</p>
+</dd></dl>
           
 
           

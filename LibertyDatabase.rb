@@ -27,15 +27,15 @@ class LibertyDatabase
 
   # Constructor
   #
-  # ==== Parameters
+  # ==== Options
   #
-  # * +:pvt+ - The PVT used by this database.  Defaullt is +nil+.
-  # * +:logfile+ - The log file name.  nil disables logging.  Default is +nil+.
-  # * +:mysqlhost+ - The MySQL server host name.  Default is +localhost+.
-  # * +:mysqlport+ - The MySQL server port number.  Default is +3306+.
-  # * +:mysqldb+ - The MySQL database name.  Default is +LibertyFile+.  Do not change.
-  # * +:mysqluser+ - The MySQL username.  Default is +guest+.  Do not change.
-  # * +:mysqlpass+ - The MySQL password.  Default is +liberty+.  Do not change.
+  # [+:pvt+] The PVT used by this database.  Defaullt is +nil+.
+  # [+:logfile+] The log file name.  nil disables logging.  Default is +nil+.
+  # [+:mysqlhost+] The MySQL server host name.  Default is +localhost+.
+  # [+:mysqlport+] The MySQL server port number.  Default is +3306+.
+  # [+:mysqldb+] The MySQL database name.  Default is +LibertyFile+.  Do not change.
+  # [+:mysqluser+] The MySQL username.  Default is +guest+.  Do not change.
+  # [+:mysqlpass+] The MySQL password.  Default is +liberty+.  Do not change.
   #
   def initialize( options = {} )
     defaults = { :pvt => nil,
@@ -95,16 +95,16 @@ class LibertyDatabase
   # Retrieve data from the SQL database
   #
   # ==== Parameters
-  # * +parameter+ - The database parameter to query.  Must be the same as the database column (case sensitive).
+  # [+parameter+] The database parameter to query.  Must be the same as the database column (case sensitive).
   #
   # ==== Options
   #
-  # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
-  # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
-  # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  # [+:cells+] An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # [+:footprint+] A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # [+:pvt+] The PVT corner to use.  Default is +this.pvt+.
   #
   # ==== Returns
-  # * +results+ - A Hash keyed by cell names.  The value of each entry is the value of +parameter+ for that cell.
+  # [+results+] A Hash keyed by cell names.  The value of each entry is the value of +parameter+ for that cell.
   #
   def getData( parameter, options={} )
     defaults = { :cells => nil,
@@ -149,12 +149,12 @@ class LibertyDatabase
   #
   # ==== Options
   #
-  # * +:cells+ - An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
-  # * +:footprint+ - A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
-  # * +:pvt+ - The PVT corner to use.  Default is +this.pvt+.
+  # [+:cells+] An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # [+:footprint+] A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # [+:pvt+] The PVT corner to use.  Default is +this.pvt+.
   #
   # ==== Returns
-  # * +results+ - A Hash keyed by cell names.  The value of each entry is another Hash, keyed by "when" condition, containing leakage data.
+  # [+results+] A Hash keyed by cell names.  The value of each entry is another Hash, keyed by "when" condition, containing leakage data.
   #
   def getLeakage( options={} )
     defaults = { :cells => nil,
@@ -195,7 +195,7 @@ class LibertyDatabase
   # Get an array of all cell footprints
   #
   # ==== Returns
-  # * +result+ - An Array containing the names of all cell footprints as strings
+  # [+result+] An Array containing the names of all cell footprints as strings
   #
   def getFootprints
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
@@ -211,10 +211,10 @@ class LibertyDatabase
   # Get the footprint of a single cell
   #
   # ==== Parameters
-  # * +cell+ - The cell to query.
+  # [+cell+] The cell to query.
   #
   # ==== Returns
-  # * +result+ - The name of the given cell's footprint as a string
+  # [+result+] The name of the given cell's footprint as a string
   #
   def getCellFootprint( cell )
     query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
@@ -234,7 +234,7 @@ class LibertyDatabase
   # Get all cells in the database
   #
   # ==== Returns
-  # * +result+ - An Array containing the names of all cells as strings
+  # [+result+] An Array containing the names of all cells as strings
   #
   def getCells
     query_string =  "SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
@@ -250,8 +250,8 @@ class LibertyDatabase
   # Perform a custom database query with logging
   #
   # ==== Parameters
-  # * +string+ - A string containing the SQL query terminated by a ';'
-  # * +block+ - The code block to process each row hash returned by the query.
+  # [+string+] A string containing the SQL query terminated by a ';'
+  # [+block+] The code block to process each row hash returned by the query.
   #
   def query( string, &block )
     begin #catching Mysql::Error
