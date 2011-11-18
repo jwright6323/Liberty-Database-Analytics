@@ -14,7 +14,7 @@ class Plot
 
     def initialize( x, y=nil )
         @x_data = x.clone
-        @y_data = y.clone
+        @y_data = y.clone if y
         @plottype = :scatter
 
         # Check for 1D vs 2D plotting
@@ -301,5 +301,42 @@ class Plot
         end # scatter
     end # plotToScreen
 
+    def fiveNumSum( opt=:x )
+        unless (opt == :x || (opt = :y && @y_data))
+          puts "Error: invalid fiveNumSum selection"
+          return nil
+        end
+        if (opt == :y) then
+          data = @y_data
+        else #default to :x
+          data = @x_data
+        end
+        data.sort!
+        min = data[0].to_f
+        max = data[-1].to_f
+        med = median( data )
+        low_half = nil
+        hi_half = nil
+        if (data.size % 2 == 0) then #even
+          low_half = data[0..(data.size/2-1)]
+          hi_half =  data[(data.size/2)..(data.size-1)]
+        else #odd
+          low_half = data[0..(data.size/2-1)]
+          hi_half =  data[(data.size/2+1)..(data.size-1)]
+        end
+        q1  = median( low_half )
+        q3  = median( hi_half )
+        Array.[](min,q1,med,q3,max)
+    end # fiveNumSum
+
+    private
+
+    def median( data )
+      if (data.size % 2 == 0) then #even
+        (data[data.size/2-1].to_f + data[data.size/2].to_f)/2
+      else #odd
+        data[(data.size-1)/2].to_f
+      end
+    end # median
 end # Plot class
 
