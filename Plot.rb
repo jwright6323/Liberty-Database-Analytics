@@ -96,7 +96,15 @@ class Plot
         end
 
         if (@plottype == :scatter)
-            
+            y = Array.new
+            x = Array.new
+            @x_data.keys.each { |key|
+                x.push(x_data[key].to_f)
+            }
+            @y_data.keys.each { |key|
+                y.push(y_data[key].to_f)
+            }
+
             if(@x_data.length == @y_data.length)
 
             # generate a datafile to use in gnuplot
@@ -139,11 +147,10 @@ class Plot
                     # plot with a regression line
                     if (linreg)
                         plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
-                    end
-
+                    else
                     # otherwise dont add it
                         plot.arbitrary_lines << "plot '#{datfile}'"
-           
+                    end
                 end
             end    
     
@@ -155,7 +162,7 @@ class Plot
     end # plotToFile
 
     # Generate a plot and display it on the screen
-    def plotToScreen()
+    def plotToScreen( options = {}  )
         defaults = { :filename => "out",
                      :numBins => 1,
                      :x_label => "X",
@@ -226,7 +233,18 @@ class Plot
         end
 
         if (@plottype == :scatter)
-            
+   
+            y = Array.new
+            x = Array.new
+            @x_data.keys.each { |key|
+                x.push(x_data[key].to_f)
+            }
+            @y_data.keys.each { |key|
+                y.push(y_data[key].to_f)
+            }
+
+
+
             if(@x_data.length == @y_data.length)
 
             # generate a datafile to use in gnuplot
@@ -269,11 +287,11 @@ class Plot
                     # plot with a regression line
                     if (linreg)
                         plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
-                    end
-
+                    else
                     # otherwise dont add it
                         plot.arbitrary_lines << "plot '#{datfile}'"
-           
+                    end
+
                 end
             end    
     
