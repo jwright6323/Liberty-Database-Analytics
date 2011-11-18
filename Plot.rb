@@ -12,6 +12,12 @@ require 'mysql'
 class Plot
     attr_reader :x_data, :y_data
 
+    # Constructor
+    #
+    # ==== Parameters
+    # [+x+] The data to be used on the x-axis. Passed as hash.
+    # [+y+] The data to be used on the y-axis. Passed as hash.
+    #
     def initialize( x, y=nil )
         @x_data = x.clone
         @y_data = y.clone
@@ -23,7 +29,22 @@ class Plot
         end
     end # initialize
 
-    # Generate a plot and save it as a file
+    # Generate a plot and save it as a file.
+    #
+    # ==== Options
+    #
+    # [+:filename+] A string representing the filename for data and plot files. Default is "out".
+    # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
+    # [+:x_label+] A string label for the x axis. Default is "X". 
+    # [+:y_label+] A string label for the y axis. Default is "Y".
+    # [+:title+] A string title for the plot. Default is "Title".
+    # [+:min+] Sets the minimum range value for histograms. Default is the smallest value in the hash passed in.
+    # [+:max+] Sets the maximum range value for histograms. Default is the largest value in the hash passed in.
+    # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
+    # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
+    # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
+    #
+
     def plotToFile( options={} )
         defaults = { :filename => "out",
                      :numBins => 1,
@@ -161,7 +182,22 @@ class Plot
 
     end # plotToFile
 
-    # Generate a plot and display it on the screen
+    # Generate a plot and display it on the screen.
+    #
+    # ==== Options
+    #
+    # [+:filename+] A string representing the filename for data files. Default is "out".
+    # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
+    # [+:x_label+] A string label for the x axis. Default is "X". 
+    # [+:y_label+] A string label for the y axis. Default is "Y".
+    # [+:title+] A string title for the plot. Default is "Title".
+    # [+:min+] Sets the minimum range value for histograms. Default is the smallest value in the hash passed in.
+    # [+:max+] Sets the maximum range value for histograms. Default is the largest value in the hash passed in.
+    # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
+    # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
+    # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
+    #
+
     def plotToScreen( options = {}  )
         defaults = { :filename => "out",
                      :numBins => 1,
