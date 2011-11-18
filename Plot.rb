@@ -55,8 +55,8 @@ class Plot
                      :max => @x_data.max,
                      :logx => false,
                      :logy => false,
-                     :linreg => false }                  
-        
+                     :linreg => false }
+
         options = defaults.merge(options)
 
         filename = options[:filename]
@@ -68,7 +68,7 @@ class Plot
         max = options[:max]
         logx = options[:logx]
         logy = options[:logy]
-        linreg = options[:linreg]    
+        linreg = options[:linreg]
 
 
         if (@plottype == :histogram)
@@ -86,7 +86,7 @@ class Plot
             (1..numBins).each {|n|
                 count = 0
                 x.each {|v|
-            
+
                 if(((min.to_f + (n.to_f-1) * bw.to_f) < (v.to_f)) and ((v.to_f) <= (min.to_f + n.to_f * bw.to_f)))
                     count = count + 1
                 end
@@ -105,8 +105,8 @@ class Plot
                     plot.ylabel  "Frequency"
                     plot.xlabel  x_label
                     plot.terminal "gif"
-                    plot.output filename + ".gif" 
-                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"   
+                    plot.output filename + ".gif"
+                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
                         ds.with = "histeps"
@@ -145,7 +145,7 @@ class Plot
                     plot.terminal "gif"
                     plot.output filename + ".gif"
 
-                    #apply title/labels 
+                    #apply title/labels
                     plot.title   title
                     plot.ylabel  y_label
                     plot.xlabel  x_label
@@ -154,7 +154,7 @@ class Plot
                     if (logx)
                         plot.arbitrary_lines << "set logscale x"
                     end
-          
+
                     if (logy)
                         plot.arbitrary_lines << "set logscale y"
                     end
@@ -167,14 +167,14 @@ class Plot
 
                     # plot with a regression line
                     if (linreg)
-                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
+                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
                     else
                     # otherwise dont add it
                         plot.arbitrary_lines << "plot '#{datfile}'"
                     end
                 end
-            end    
-    
+            end
+
         else
             puts "X and Y are different sizes"
         end
@@ -208,8 +208,8 @@ class Plot
                      :max => @x_data.max,
                      :logx => false,
                      :logy => false,
-                     :linreg => false }                  
-        
+                     :linreg => false }
+
         options = defaults.merge(options)
 
         filename = options[:filename]
@@ -221,7 +221,7 @@ class Plot
         max = options[:max]
         logx = options[:logx]
         logy = options[:logy]
-        linreg = options[:linreg]    
+        linreg = options[:linreg]
 
 
         if (@plottype == :histogram)
@@ -238,7 +238,7 @@ class Plot
             (1..numBins).each {|n|
                 count = 0
                 x.each {|v|
-            
+
                 if(((min.to_f + (n.to_f-1) * bw.to_f) < (v.to_f)) and ((v.to_f) <= (min.to_f + n.to_f * bw.to_f)))
                     count = count + 1
                 end
@@ -257,8 +257,8 @@ class Plot
                     plot.ylabel  "Frequency"
                     plot.xlabel  x_label
                     # plot.terminal "gif"
-                    # plot.output filename + ".gif" 
-                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"   
+                    # plot.output filename + ".gif"
+                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
                         ds.with = "histeps"
@@ -269,7 +269,7 @@ class Plot
         end
 
         if (@plottype == :scatter)
-   
+
             y = Array.new
             x = Array.new
             @x_data.keys.each { |key|
@@ -300,7 +300,7 @@ class Plot
                     # plot.terminal "gif"
                     # plot.output filename + ".gif"
 
-                    #apply title/labels 
+                    #apply title/labels
                     plot.title   title
                     plot.ylabel  y_label
                     plot.xlabel  x_label
@@ -309,7 +309,7 @@ class Plot
                     if (logx)
                         plot.arbitrary_lines << "set logscale x"
                     end
-          
+
                     if (logy)
                         plot.arbitrary_lines << "set logscale y"
                     end
@@ -322,15 +322,15 @@ class Plot
 
                     # plot with a regression line
                     if (linreg)
-                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
+                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
                     else
                     # otherwise dont add it
                         plot.arbitrary_lines << "plot '#{datfile}'"
                     end
 
                 end
-            end    
-    
+            end
+
         else
             puts "X and Y are different sizes"
         end

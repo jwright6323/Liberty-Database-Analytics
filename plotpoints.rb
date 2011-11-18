@@ -6,7 +6,7 @@ require 'rubygems'
 require 'gnuplot'
 
 
-# plotpoints is a function to scatter plot two arrays of equal size. 
+# plotpoints is a function to scatter plot two arrays of equal size.
 #
 # ==== Options
 #
@@ -16,7 +16,7 @@ require 'gnuplot'
 # [+:linreg+] Bool. True adds a linear regression line. Default is false.
 #
 
-def plotpoints(x, y, x_label, y_label, title, options={} )  
+def plotpoints(x, y, x_label, y_label, title, options={} )
     defaults = { :logx => false,
                  :logy => false,
                  :filename => "out",
@@ -26,7 +26,7 @@ def plotpoints(x, y, x_label, y_label, title, options={} )
     logx = options[:logx]
     logy = options[:logy]
     filename = options[:filename]
-    linreg = options[:linreg]    
+    linreg = options[:linreg]
 
     if(x.length == y.length)
 
@@ -49,7 +49,7 @@ def plotpoints(x, y, x_label, y_label, title, options={} )
               plot.terminal "gif"
               plot.output filename + ".gif"
 
-              #apply title/labels 
+              #apply title/labels
               plot.title   title
               plot.ylabel  y_label
               plot.xlabel  x_label
@@ -58,7 +58,7 @@ def plotpoints(x, y, x_label, y_label, title, options={} )
               if (logx)
                     plot.arbitrary_lines << "set logscale x"
               end
-          
+
               if (logy)
                     plot.arbitrary_lines << "set logscale y"
               end
@@ -71,17 +71,17 @@ def plotpoints(x, y, x_label, y_label, title, options={} )
 
         # plot with a regression line
              if
-             plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'" 
+             plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
              end
-        
+
 
 
         # otherwise dont add it
              plot.arbitrary_lines << "plot '#{datfile}'"
-           
+
            end
-        end    
-    
+        end
+
     else
         puts "X and Y are different sizes"
     end
