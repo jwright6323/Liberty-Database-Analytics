@@ -166,7 +166,6 @@ class Plot
                         plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
                     end
 
-                    # will not work until fivenumsum is complete    
                     # perform outlier analysis
                     if (outlierAnalysis)
                         
@@ -185,8 +184,8 @@ class Plot
                         minline = summData[2] - (summData[3] - summData[1])
                         
                         # Define the minline and maxline in gnuplot
-                        plot.arbitrary_lines << "a(x) = #{minline}x"
-                        plot.arbitrary_lines << "b(x) = #{maxline}x"
+                        plot.arbitrary_lines << "a(x) = #{minline}*x"
+                        plot.arbitrary_lines << "b(x) = #{maxline}*x"
 
                     end #outlier analysis 
 
@@ -209,11 +208,9 @@ class Plot
                     plot.arbitrary_lines << plotString 
                 end
                 end
-            end
-
         else
             puts "X and Y are different sizes"
-        end
+        end # x y size check
         end # scatter
 
     end # plotToFile
@@ -357,7 +354,6 @@ class Plot
                             plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
                         end
                             
-                        # will not work until fivenumsum is complete    
                         # perform outlier analysis
                         if (outlierAnalysis)
                         
@@ -376,8 +372,8 @@ class Plot
                             minline = summData[2] - (summData[3] - summData[1])
                         
                             # Define the minline and maxline in gnuplot
-                            plot.arbitrary_lines << "a(x) = #{minline}x"
-                            plot.arbitrary_lines << "b(x) = #{maxline}x"
+                            plot.arbitrary_lines << "a(x) = #{minline}*x"
+                            plot.arbitrary_lines << "b(x) = #{maxline}*x"
 
                         end #outlier analysis 
 
