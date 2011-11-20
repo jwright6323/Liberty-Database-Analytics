@@ -407,17 +407,8 @@ class Plot
         end # scatter
     end # plotToScreen
 
-    def fiveNumSum( opt=:x )
-        unless (opt == :x || (opt = :y && @y_data))
-          puts "Error: invalid fiveNumSum selection"
-          return nil
-        end
-        if (opt == :y) then
-          data = @y_data
-        else #default to :x
-          data = @x_data
-        end
-        data.sort!
+    def fiveNumSum( data_in )
+        data = data_in.sort
         min = data[0].to_f
         max = data[-1].to_f
         med = median( data )
@@ -435,9 +426,8 @@ class Plot
         Array.[](min,q1,med,q3,max)
     end # fiveNumSum
 
-    private
-
-    def median( data )
+    def median( data_in )
+      data = data_in.sort
       if (data.size % 2 == 0) then #even
         (data[data.size/2-1].to_f + data[data.size/2].to_f)/2
       else #odd
