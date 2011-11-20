@@ -43,6 +43,7 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
+    # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
     #
 
     def plotToFile( options={} )
@@ -229,6 +230,7 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
+    # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
     #
 
     def plotToScreen( options = {}  )
