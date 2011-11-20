@@ -24,7 +24,7 @@ class Plot
         @plottype = :scatter
 
         # Check for 1D vs 2D plotting
-        if (y_data == nil)
+        if (y == nil)
             @plottype = :histogram
         end
     end # initialize
@@ -55,7 +55,8 @@ class Plot
                      :max => @x_data.max,
                      :logx => false,
                      :logy => false,
-                     :linreg => false }
+                     :linreg => false,
+                     :outlierAnalysis => false}
 
         options = defaults.merge(options)
 
@@ -69,7 +70,7 @@ class Plot
         logx = options[:logx]
         logy = options[:logy]
         linreg = options[:linreg]
-
+        outlierAnalysis = options[:outlierAnalysis]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -165,13 +166,48 @@ class Plot
                         plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
                     end
 
-                    # plot with a regression line
+                    # will not work until fivenumsum is complete    
+                    # perform outlier analysis
+                    if (outlierAnalysis)
+                        
+                        # generate array of slopes of data
+                        yDivX = Array.new
+                        @x_data.keys.each { |key|
+                            yDivX.push(@y_data[key].to_f / @x_data[key].to_f)
+                        }
+
+                        # apply the 5 number summary function
+                        summData = Array.new
+                        summData = fiveNumSum( yDivX ) # match to new function
+           
+                        # Calculate slopes of minimum and maximum lines to show outliers
+                        maxline = summData[2] + (summData[3] - summData[1])
+                        minline = summData[2] - (summData[3] - summData[1])
+                        
+                        # Define the minline and maxline in gnuplot
+                        plot.arbitrary_lines << "a(x) = #{minline}x"
+                        plot.arbitrary_lines << "b(x) = #{maxline}x"
+
+                    end #outlier analysis 
+
+
+                    # Generate a plot string
+                    plotString = "plot '#{datfile}'"
+                    
+                    # add linear regression
                     if (linreg)
-                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
-                    else
-                    # otherwise dont add it
-                        plot.arbitrary_lines << "plot '#{datfile}'"
+                        plotString = plotString + " notitle, f(x) title 'Linear Fit'"
+                        # Old Method
+                        #plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
                     end
+                   
+                    # plot with outlier analysis   
+                    if (outlierAnalysis)
+                        plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
+                    end
+
+                    plot.arbitrary_lines << plotString 
+                end
                 end
             end
 
@@ -208,7 +244,8 @@ class Plot
                      :max => @x_data.max,
                      :logx => false,
                      :logy => false,
-                     :linreg => false }
+                     :linreg => false,
+                     :outlierAnalysis => false }
 
         options = defaults.merge(options)
 
@@ -222,7 +259,7 @@ class Plot
         logx = options[:logx]
         logy = options[:logy]
         linreg = options[:linreg]
-
+        outlierAnalysis = options[:outlierAnalysis]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -283,57 +320,90 @@ class Plot
 
             if(@x_data.length == @y_data.length)
 
-            # generate a datafile to use in gnuplot
-            datfile = filename + ".dat"
+                # generate a datafile to use in gnuplot
+                datfile = filename + ".dat"
 
-            newfile = File.new(datfile, "w")
-                (0..x.size).collect do |i|
-                newfile.puts "#{x[i]}\t#{y[i]}"
-            end
-
-            newfile.close
-
-            # plot data
-            Gnuplot.open do |gp|
-                Gnuplot::Plot.new( gp ) do |plot|
-                    # plot to a file
-                    # plot.terminal "gif"
-                    # plot.output filename + ".gif"
-
-                    #apply title/labels
-                    plot.title   title
-                    plot.ylabel  y_label
-                    plot.xlabel  x_label
-
-                    # check if graphs need to be logscaled
-                    if (logx)
-                        plot.arbitrary_lines << "set logscale x"
-                    end
-
-                    if (logy)
-                        plot.arbitrary_lines << "set logscale y"
-                    end
-
-                    # check if a linear regression is desired
-                    if (linreg)
-                        plot.arbitrary_lines << "f(x) = m*x + b"
-                        plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
-                    end
-
-                    # plot with a regression line
-                    if (linreg)
-                        plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
-                    else
-                    # otherwise dont add it
-                        plot.arbitrary_lines << "plot '#{datfile}'"
-                    end
-
+                newfile = File.new(datfile, "w")
+                    (0..x.size).collect do |i|
+                    newfile.puts "#{x[i]}\t#{y[i]}"
                 end
-            end
 
-        else
-            puts "X and Y are different sizes"
-        end
+                newfile.close
+
+                # plot data
+                Gnuplot.open do |gp|
+                    Gnuplot::Plot.new( gp ) do |plot|
+                        # plot to a file
+                        # plot.terminal "gif"
+                        # plot.output filename + ".gif"
+
+                        #apply title/labels
+                        plot.title   title
+                        plot.ylabel  y_label
+                        plot.xlabel  x_label
+
+                        # check if graphs need to be logscaled
+                        if (logx)
+                            plot.arbitrary_lines << "set logscale x"
+                        end
+
+                        if (logy)
+                            plot.arbitrary_lines << "set logscale y"
+                        end
+
+                        # check if a linear regression is desired
+                        if (linreg)
+                            plot.arbitrary_lines << "f(x) = m*x + b"
+                            plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
+                        end
+                            
+                        # will not work until fivenumsum is complete    
+                        # perform outlier analysis
+                        if (outlierAnalysis)
+                        
+                            # generate array of slopes of data
+                            yDivX = Array.new
+                            @x_data.keys.each { |key|
+                                yDivX.push(@y_data[key].to_f / @x_data[key].to_f)
+                            }
+
+                            # apply the 5 number summary function
+                            summData = Array.new
+                            summData = fiveNumSum( yDivX ) # match to new function
+           
+                            # Calculate slopes of minimum and maximum lines to show outliers
+                            maxline = summData[2] + (summData[3] - summData[1])
+                            minline = summData[2] - (summData[3] - summData[1])
+                        
+                            # Define the minline and maxline in gnuplot
+                            plot.arbitrary_lines << "a(x) = #{minline}x"
+                            plot.arbitrary_lines << "b(x) = #{maxline}x"
+
+                        end #outlier analysis 
+
+                        # Construct plot string
+                        plotString = "plot '#{datfile}'"
+
+                        # plot with a regression line
+                        if (linreg)
+                            plotString = plotString + " notitle, f(x) title 'Linear Fit'"
+                            # old method
+                            #plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
+                        end
+                       
+                        # plot with outlier analysis   
+                        if (outlierAnalysis)
+                            plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
+                        end
+
+                        plot.arbitrary_lines << plotString 
+
+                    end
+                end
+
+            else
+                puts "X and Y are different sizes"
+            end
         end # scatter
     end # plotToScreen
 
