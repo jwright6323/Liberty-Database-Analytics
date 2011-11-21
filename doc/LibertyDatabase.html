@@ -378,7 +378,7 @@ change.</p>
 
           
           <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 270</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 279</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@db</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Database closed&quot;</span>
@@ -422,7 +422,7 @@ change.</p>
 
           
           <div class="method-source-code" id="getCellFootprint-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 219</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 228</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getCellFootprint</span>( <span class="ruby-identifier">cell</span> )
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n&quot;</span>
@@ -469,7 +469,7 @@ change.</p>
 
           
           <div class="method-source-code" id="getCells-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 239</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 248</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getCells</span>
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{CELL_TABLE_NAME};&quot;</span>
@@ -605,7 +605,7 @@ Default is <code>nil</code>.</p>
 
           
           <div class="method-source-code" id="getFootprints-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 200</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 209</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getFootprints</span>
   <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n&quot;</span>
   <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{FOOTPRINT_TABLE_NAME}\n;&quot;</span>
@@ -675,17 +675,26 @@ by “when” condition, containing leakage data.</p>
     <span class="ruby-identifier">results</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">key</span>)
     <span class="ruby-identifier">results</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">key</span>,<span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>)
     <span class="ruby-identifier">results</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">store</span>(<span class="ruby-value">:wc</span>,<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_f</span>)
-    <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},&quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN}\n&quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{LEAKAGE_WHEN_TABLE_NAME}\n&quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;LEFT OUTER JOIN #{CELL_TABLE_NAME}\n&quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = &quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}\n&quot;</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} = '#{key}';&quot;</span>
-    <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">results</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">store</span>(<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_NAME_COLUMN</span>],<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_VALUE_COLUMN</span>].<span class="ruby-identifier">to_f</span>)
-    }
   <span class="ruby-keyword">end</span> <span class="ruby-comment">#results.each</span>
+  <span class="ruby-identifier">query_string</span> =  <span class="ruby-node">&quot;SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN},&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;FROM #{LEAKAGE_WHEN_TABLE_NAME}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;LEFT OUTER JOIN #{CELL_TABLE_NAME}\n&quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = &quot;</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\nWHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN (&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{cell}',&quot;</span>
+    }
+    <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">','</span>)
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;;&quot;</span>
+  <span class="ruby-identifier">query</span>(<span class="ruby-identifier">query_string</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">results</span>[<span class="ruby-identifier">row</span>[<span class="ruby-constant">CELL_NAME_COLUMN</span>]].<span class="ruby-identifier">store</span>(<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_NAME_COLUMN</span>],<span class="ruby-identifier">row</span>[<span class="ruby-constant">LEAKAGE_WHEN_VALUE_COLUMN</span>].<span class="ruby-identifier">to_f</span>)
+  }
 
   <span class="ruby-identifier">results</span>
 <span class="ruby-keyword">end</span></pre>
@@ -720,7 +729,7 @@ by “when” condition, containing leakage data.</p>
 
           
           <div class="method-source-code" id="getPVT-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 190</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getPVT</span>
   <span class="ruby-comment">#TODO</span>
   <span class="ruby-keyword">nil</span>
@@ -760,7 +769,7 @@ by “when” condition, containing leakage data.</p>
 
           
           <div class="method-source-code" id="query-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 256</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 265</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">query</span>( <span class="ruby-identifier">string</span>, &amp;<span class="ruby-identifier">block</span> )
   <span class="ruby-keyword">begin</span> <span class="ruby-comment">#catching Mysql::Error</span>
     <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">query</span>(<span class="ruby-identifier">string</span>).<span class="ruby-identifier">each_hash</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
