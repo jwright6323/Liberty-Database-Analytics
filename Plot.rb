@@ -29,6 +29,38 @@ class Plot
         end
     end # initialize
 
+    # Find outliers for a given set of data and print them to a file
+
+    def findOutliers()
+        # Create a hash of slopes with their keys and an array of slopes
+        slopeHash = Hash.new
+        slopeArray = Array.new
+        
+        @x_data.keys.each { |key|
+            slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
+            slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
+        }
+
+        # Perform a 5 Number Analysis on the array
+        
+        summary = Array.new
+        summary = fiveNumSum( slopeArray )
+     
+        # Determine the maximum and minimum non-outlier slopes
+        minSlope = summary[2] - (summary[3] - summary[1])
+        maxSlope = summary[2] + (summary[3] - summary[1])
+
+        # Select any outliers and print their cell names to a datafile
+
+        newfile = File.new("outliers.dat", "w")
+        slopeHash.keys.each { |key|
+                if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
+                    newfile.puts "#{key}"
+                end
+        }        
+        newfile.close
+    end #findOutliers
+
     # Generate a plot and save it as a file.
     #
     # ==== Options
@@ -405,6 +437,15 @@ class Plot
         end # scatter
     end # plotToScreen
 
+    private
+
+    # Generate an array containing 5 Number Summary Data
+    #
+    # ==== Parameters
+    #
+    # [+:data_in+] An array of data to be analyzed
+    #
+
     def fiveNumSum( data_in )
         data = data_in.sort
         min = data[0].to_f
@@ -423,6 +464,13 @@ class Plot
         q3  = median( hi_half )
         Array.[](min,q1,med,q3,max)
     end # fiveNumSum
+
+    # Return the median of a set of data
+    #
+    # ==== Parameters
+    #
+    # [+:data_in+] An array of data to be analyzed
+    #
 
     def median( data_in )
       data = data_in.sort
