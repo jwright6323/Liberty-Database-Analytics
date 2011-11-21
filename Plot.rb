@@ -30,8 +30,11 @@ class Plot
     end # initialize
 
     # Find outliers for a given set of data and print them to a file
+    #
+    # ====Parameters
+    # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
 
-    def findOutliers()
+    def findOutliers( filename = "outliers.dat" )
         # Create a hash of slopes with their keys and an array of slopes
         slopeHash = Hash.new
         slopeArray = Array.new
@@ -52,7 +55,7 @@ class Plot
 
         # Select any outliers and print their cell names to a datafile
 
-        newfile = File.new("outliers.dat", "w")
+        newfile = File.new(filename, "w")
         slopeHash.keys.each { |key|
                 if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                     newfile.puts "#{key}"
