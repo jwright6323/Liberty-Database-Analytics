@@ -459,48 +459,5 @@ class Plot
         end # scatter
     end # plotToScreen
 
-    private
-
-    # Generate an array containing 5 Number Summary Data
-    #
-    # ==== Parameters
-    #
-    # [+:data_in+] An array of data to be analyzed
-    #
-
-    def fiveNumSum( data_in )
-        data = data_in.sort
-        min = data[0].to_f
-        max = data[-1].to_f
-        med = median( data )
-        low_half = nil
-        hi_half = nil
-        if (data.size % 2 == 0) then #even
-          low_half = data[0..(data.size/2-1)]
-          hi_half =  data[(data.size/2)..(data.size-1)]
-        else #odd
-          low_half = data[0..(data.size/2-1)]
-          hi_half =  data[(data.size/2+1)..(data.size-1)]
-        end
-        q1  = median( low_half )
-        q3  = median( hi_half )
-        Array.[](min,q1,med,q3,max)
-    end # fiveNumSum
-
-    # Return the median of a set of data
-    #
-    # ==== Parameters
-    #
-    # [+:data_in+] An array of data to be analyzed
-    #
-
-    def median( data_in )
-      data = data_in.sort
-      if (data.size % 2 == 0) then #even
-        (data[data.size/2-1].to_f + data[data.size/2].to_f)/2
-      else #odd
-        data[(data.size-1)/2].to_f
-      end
-    end # median
 end # Plot class
 
