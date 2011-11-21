@@ -76,6 +76,7 @@ class Plot
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
     # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
+    # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     #
 
     def plotToFile( options={} )
@@ -89,7 +90,8 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => false}
+                     :outlierAnalysis => false,
+                     :dataLabels => false }
 
         options = defaults.merge(options)
 
@@ -104,6 +106,7 @@ class Plot
         logy = options[:logy]
         linreg = options[:linreg]
         outlierAnalysis = options[:outlierAnalysis]
+        dataLabels = options[:dataLabels]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -237,10 +240,16 @@ class Plot
                     if (outlierAnalysis)
                         plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                     end
-
+                    # add data point names if desired        
+                    if (dataLabels)
+                        @x_data.keys.each { |key|
+                            plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
+                        }
+                    end
+                    
                     plot.arbitrary_lines << plotString 
                 end
-                end
+            end
         else
             puts "X and Y are different sizes"
         end # x y size check
@@ -263,6 +272,7 @@ class Plot
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
     # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
+    # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     #
 
     def plotToScreen( options = {}  )
@@ -276,7 +286,8 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => false }
+                     :outlierAnalysis => false,
+                     :dataLabels => false }
 
         options = defaults.merge(options)
 
@@ -291,6 +302,7 @@ class Plot
         logy = options[:logy]
         linreg = options[:linreg]
         outlierAnalysis = options[:outlierAnalysis]
+        dataLabels = options[:dataLabels]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -425,7 +437,14 @@ class Plot
                         if (outlierAnalysis)
                             plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                         end
-
+    
+                        # add data point names if desired        
+                        if (dataLabels)
+                            @x_data.keys.each { |key|
+                            plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
+                            }
+                        end
+                        
                         plot.arbitrary_lines << plotString 
 
                     end
