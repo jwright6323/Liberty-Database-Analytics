@@ -31,41 +31,69 @@ class Plot
         end
     end # initialize
 
-    # Find outliers for a given set of data and print them to a file
+    # Find outliers for a given set of data and print them to a file. Outliers are defined as any numbers that lie outside median +- k(q3-q1)
+    # 
     #
     # ====Parameters
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
+    # [+k+] Number of IQRs to check outliers against. Default is 1.
 
-    def findOutliers( filename = "outliers.dat" )
-        if (@y_data) # Only works with 2D data. Needs to be fixed.
-        # Create a hash of slopes with their keys and an array of slopes
-        slopeHash = Hash.new
-        slopeArray = Array.new
+    def findOutliers( filename = "outliers.dat", k = 1 )
+        if ( @y_data ) # 2D Plotting
+            # Create a hash of slopes with their keys and an array of slopes
+            slopeHash = Hash.new
+            slopeArray = Array.new
 
-        @x_data.keys.each { |key|
-            slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
-            slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
-        }
+            @x_data.keys.each { |key|
+                slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
+                slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
+            }
 
-        # Perform a 5 Number Analysis on the array
+            # Perform a 5 Number Analysis on the array
 
-        summary = Array.new
-        summary = fiveNumSum( slopeArray )
+            summary = Array.new
+            summary = fiveNumSum( slopeArray )
 
-        # Determine the maximum and minimum non-outlier slopes
-        minSlope = summary[2] - (summary[3] - summary[1])
-        maxSlope = summary[2] + (summary[3] - summary[1])
+            # Determine the maximum and minimum non-outlier slopes
+            minSlope = summary[2] - k * (summary[3] - summary[1])
+            maxSlope = summary[2] + k * (summary[3] - summary[1])
 
-        # Select any outliers and print their cell names to a datafile
+            # Select any outliers and print their cell names to a datafile
 
-        newfile = File.new(filename, "w")
-        slopeHash.keys.each { |key|
-                if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
-                    newfile.puts "#{key}"
-                end
-        }
-        newfile.close
-        end
+            newfile = File.new(filename, "w")
+            slopeHash.keys.each { |key|
+                    if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
+                        newfile.puts "#{key}"
+                    end
+            }
+            newfile.close
+        end # 2D Plotting
+
+        if ( @y_data == nil) # For 1D Plotting
+            x_array = Array.new
+            @x_data.keys.each { |key|
+                x_array.push( @x_data[key])
+            }
+            
+            # 5 Number Analysis on Data
+            summary = Array.new
+            summary = fiveNumSum( x_array )
+
+            # Determine the max and min non-outliers
+            minOut = summary[2] - k * (summary[3] - summary[1])
+            maxOut = summary[2] + k * (summary[3] - summary[1])
+            
+            # Select any outliers and print their cell names to a datafile
+
+            newfile = File.new(filename, "w")
+            @x_data.keys.each { |key|
+                    if (@x_data[key] > maxSlope || @x_data[key] < minSlope)
+                        newfile.puts "#{key}"
+                    end
+            }
+            newfile.close
+        end # 1D Plotting
+
     end #findOutliers
 
     # Generate a plot and save it as a file.
@@ -82,7 +110,7 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
-    # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
+    # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     #
 
@@ -102,7 +130,7 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => false,
+                     :outlierAnalysis => [false, 1],
                      :dataLabels => false }
 
         options = defaults.merge(options)
@@ -217,7 +245,7 @@ class Plot
                     end
 
                     # perform outlier analysis
-                    if (outlierAnalysis)
+                    if (outlierAnalysis[0])
 
                         # generate array of slopes of data
                         yDivX = Array.new
@@ -230,8 +258,8 @@ class Plot
                         summData = fiveNumSum( yDivX ) # match to new function
 
                         # Calculate slopes of minimum and maximum lines to show outliers
-                        maxline = summData[2] + (summData[3] - summData[1])
-                        minline = summData[2] - (summData[3] - summData[1])
+                        maxline = summData[2] + outlierAnalysis[1] * (summData[3] - summData[1])
+                        minline = summData[2] - outlierAnalysis[1] * (summData[3] - summData[1])
 
                         # Define the minline and maxline in gnuplot
                         plot.arbitrary_lines << "a(x) = #{minline}*x"
@@ -251,7 +279,7 @@ class Plot
                     end
 
                     # plot with outlier analysis
-                    if (outlierAnalysis)
+                    if (outlierAnalysis[0])
                         plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                     end
                     # add data point names if desired
@@ -285,7 +313,7 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
-    # [+:outlierAnalysis+] Bool to add outlier analysis lines. Default is false (off).
+    # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     #
 
@@ -305,7 +333,7 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => false,
+                     :outlierAnalysis => [false, 1],
                      :dataLabels => false }
 
         options = defaults.merge(options)
@@ -422,7 +450,7 @@ class Plot
                         end
 
                         # perform outlier analysis
-                        if (outlierAnalysis)
+                        if (outlierAnalysis[0])
 
                             # generate array of slopes of data
                             yDivX = Array.new
@@ -435,8 +463,8 @@ class Plot
                             summData = yDivX.fiveNumSum # match to new function
 
                             # Calculate slopes of minimum and maximum lines to show outliers
-                            maxline = summData[2] + (summData[3] - summData[1])
-                            minline = summData[2] - (summData[3] - summData[1])
+                            maxline = summData[2] + outlierAnalysis[1] * (summData[3] - summData[1])
+                            minline = summData[2] - outlierAnalysis[1] * (summData[3] - summData[1])
 
                             # Define the minline and maxline in gnuplot
                             plot.arbitrary_lines << "a(x) = #{minline}*x"
@@ -455,7 +483,7 @@ class Plot
                         end
 
                         # plot with outlier analysis
-                        if (outlierAnalysis)
+                        if (outlierAnalysis[0])
                             plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                         end
 
