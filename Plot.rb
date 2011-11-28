@@ -35,33 +35,35 @@ class Plot
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
 
     def findOutliers( filename = "outliers.dat" )
-        # Create a hash of slopes with their keys and an array of slopes
-        slopeHash = Hash.new
-        slopeArray = Array.new
+        if (@y_data)
+            # Create a hash of slopes with their keys and an array of slopes
+            slopeHash = Hash.new
+            slopeArray = Array.new
         
-        @x_data.keys.each { |key|
-            slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
-            slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
-        }
+            @x_data.keys.each { |key|
+                slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
+                slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
+            }
 
-        # Perform a 5 Number Analysis on the array
+            # Perform a 5 Number Analysis on the array
         
-        summary = Array.new
-        summary = fiveNumSum( slopeArray )
+            summary = Array.new
+            summary = fiveNumSum( slopeArray )
      
-        # Determine the maximum and minimum non-outlier slopes
-        minSlope = summary[2] - (summary[3] - summary[1])
-        maxSlope = summary[2] + (summary[3] - summary[1])
+            # Determine the maximum and minimum non-outlier slopes
+            minSlope = summary[2] - (summary[3] - summary[1])
+            maxSlope = summary[2] + (summary[3] - summary[1])
 
-        # Select any outliers and print their cell names to a datafile
+            # Select any outliers and print their cell names to a datafile
 
-        newfile = File.new(filename, "w")
-        slopeHash.keys.each { |key|
+            newfile = File.new(filename, "w")
+            slopeHash.keys.each { |key|
                 if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                     newfile.puts "#{key}"
                 end
-        }        
-        newfile.close
+            }        
+            newfile.close
+        end
     end #findOutliers
 
     # Generate a plot and save it as a file.
