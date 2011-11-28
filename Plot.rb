@@ -160,7 +160,7 @@ class Plot
                     plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
-                        ds.with = "histeps"
+                        ds.with = "boxes"
                         ds.notitle
                     end
                 end
@@ -362,7 +362,7 @@ class Plot
                     plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
-                        ds.with = "histeps"
+                        ds.with = "boxes"
                         ds.notitle
                     end
                 end
