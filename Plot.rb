@@ -37,6 +37,7 @@ class Plot
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
 
     def findOutliers( filename = "outliers.dat" )
+        if (@y_data) # Only works with 2D data. Needs to be fixed.
         # Create a hash of slopes with their keys and an array of slopes
         slopeHash = Hash.new
         slopeArray = Array.new
@@ -64,6 +65,7 @@ class Plot
                 end
         }
         newfile.close
+        end
     end #findOutliers
 
     # Generate a plot and save it as a file.

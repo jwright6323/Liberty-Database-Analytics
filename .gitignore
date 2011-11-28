@@ -2,3 +2,4 @@ log
 *.gif
 *.log
 mysql-ruby*
+edtest.rb
