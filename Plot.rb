@@ -7,6 +7,8 @@
 
 require 'rubygems'
 require 'mysql'
+require 'gnuplot'
+require 'Analytics.rb'
 
 # Plot is a class to generate various plots from given data.
 class Plot
@@ -35,35 +37,33 @@ class Plot
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
 
     def findOutliers( filename = "outliers.dat" )
-        if (@y_data) # Only works with 2D plotting atm. Needs to be updated to work with any set of data.
-            # Create a hash of slopes with their keys and an array of slopes
-            slopeHash = Hash.new
-            slopeArray = Array.new
-        
-            @x_data.keys.each { |key|
-                slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
-                slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
-            }
+        # Create a hash of slopes with their keys and an array of slopes
+        slopeHash = Hash.new
+        slopeArray = Array.new
 
-            # Perform a 5 Number Analysis on the array
-        
-            summary = Array.new
-            summary = fiveNumSum( slopeArray )
-     
-            # Determine the maximum and minimum non-outlier slopes
-            minSlope = summary[2] - (summary[3] - summary[1])
-            maxSlope = summary[2] + (summary[3] - summary[1])
+        @x_data.keys.each { |key|
+            slopeHash[key] = @y_data[key].to_f / @x_data[key].to_f
+            slopeArray.push(@y_data[key].to_f / @x_data[key].to_f)
+        }
 
-            # Select any outliers and print their cell names to a datafile
+        # Perform a 5 Number Analysis on the array
 
-            newfile = File.new(filename, "w")
-            slopeHash.keys.each { |key|
+        summary = Array.new
+        summary = fiveNumSum( slopeArray )
+
+        # Determine the maximum and minimum non-outlier slopes
+        minSlope = summary[2] - (summary[3] - summary[1])
+        maxSlope = summary[2] + (summary[3] - summary[1])
+
+        # Select any outliers and print their cell names to a datafile
+
+        newfile = File.new(filename, "w")
+        slopeHash.keys.each { |key|
                 if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                     newfile.puts "#{key}"
                 end
-            }        
-            newfile.close
-        end
+        }
+        newfile.close
     end #findOutliers
 
     # Generate a plot and save it as a file.
@@ -72,7 +72,7 @@ class Plot
     #
     # [+:filename+] A string representing the filename for data and plot files. Default is "out".
     # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
-    # [+:x_label+] A string label for the x axis. Default is "X". 
+    # [+:x_label+] A string label for the x axis. Default is "X".
     # [+:y_label+] A string label for the y axis. Default is "Y".
     # [+:title+] A string title for the plot. Default is "Title".
     # [+:min+] Sets the minimum range value for histograms. Default is the smallest value in the hash passed in.
@@ -209,7 +209,7 @@ class Plot
 
                     # perform outlier analysis
                     if (outlierAnalysis)
-                        
+
                         # generate array of slopes of data
                         yDivX = Array.new
                         @x_data.keys.each { |key|
@@ -219,40 +219,40 @@ class Plot
                         # apply the 5 number summary function
                         summData = Array.new
                         summData = fiveNumSum( yDivX ) # match to new function
-           
+
                         # Calculate slopes of minimum and maximum lines to show outliers
                         maxline = summData[2] + (summData[3] - summData[1])
                         minline = summData[2] - (summData[3] - summData[1])
-                        
+
                         # Define the minline and maxline in gnuplot
                         plot.arbitrary_lines << "a(x) = #{minline}*x"
                         plot.arbitrary_lines << "b(x) = #{maxline}*x"
 
-                    end #outlier analysis 
+                    end #outlier analysis
 
 
                     # Generate a plot string
                     plotString = "plot '#{datfile}'"
-                    
+
                     # add linear regression
                     if (linreg)
                         plotString = plotString + " notitle, f(x) title 'Linear Fit'"
                         # Old Method
                         #plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
                     end
-                   
-                    # plot with outlier analysis   
+
+                    # plot with outlier analysis
                     if (outlierAnalysis)
                         plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                     end
-                    # add data point names if desired        
+                    # add data point names if desired
                     if (dataLabels)
                         @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
                         }
                     end
-                    
-                    plot.arbitrary_lines << plotString 
+
+                    plot.arbitrary_lines << plotString
                 end
             end
         else
@@ -268,7 +268,7 @@ class Plot
     #
     # [+:filename+] A string representing the filename for data files. Default is "out".
     # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
-    # [+:x_label+] A string label for the x axis. Default is "X". 
+    # [+:x_label+] A string label for the x axis. Default is "X".
     # [+:y_label+] A string label for the y axis. Default is "Y".
     # [+:title+] A string title for the plot. Default is "Title".
     # [+:min+] Sets the minimum range value for histograms. Default is the smallest value in the hash passed in.
@@ -404,10 +404,10 @@ class Plot
                             plot.arbitrary_lines << "f(x) = m*x + b"
                             plot.arbitrary_lines << "fit f(x) '" + datfile + "' using 1:2 via m,b"
                         end
-                            
+
                         # perform outlier analysis
                         if (outlierAnalysis)
-                        
+
                             # generate array of slopes of data
                             yDivX = Array.new
                             @x_data.keys.each { |key|
@@ -416,17 +416,17 @@ class Plot
 
                             # apply the 5 number summary function
                             summData = Array.new
-                            summData = fiveNumSum( yDivX ) # match to new function
-           
+                            summData = yDivX.fiveNumSum # match to new function
+
                             # Calculate slopes of minimum and maximum lines to show outliers
                             maxline = summData[2] + (summData[3] - summData[1])
                             minline = summData[2] - (summData[3] - summData[1])
-                        
+
                             # Define the minline and maxline in gnuplot
                             plot.arbitrary_lines << "a(x) = #{minline}*x"
                             plot.arbitrary_lines << "b(x) = #{maxline}*x"
 
-                        end #outlier analysis 
+                        end #outlier analysis
 
                         # Construct plot string
                         plotString = "plot '#{datfile}'"
@@ -437,20 +437,20 @@ class Plot
                             # old method
                             #plot.arbitrary_lines << "plot '#{datfile}' notitle, f(x) title 'Linear Fit'"
                         end
-                       
-                        # plot with outlier analysis   
+
+                        # plot with outlier analysis
                         if (outlierAnalysis)
                             plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                         end
-    
-                        # add data point names if desired        
+
+                        # add data point names if desired
                         if (dataLabels)
                             @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
                             }
                         end
-                        
-                        plot.arbitrary_lines << plotString 
+
+                        plot.arbitrary_lines << plotString
 
                     end
                 end
@@ -461,48 +461,5 @@ class Plot
         end # scatter
     end # plotToScreen
 
-    private
-
-    # Generate an array containing 5 Number Summary Data
-    #
-    # ==== Parameters
-    #
-    # [+:data_in+] An array of data to be analyzed
-    #
-
-    def fiveNumSum( data_in )
-        data = data_in.sort
-        min = data[0].to_f
-        max = data[-1].to_f
-        med = median( data )
-        low_half = nil
-        hi_half = nil
-        if (data.size % 2 == 0) then #even
-          low_half = data[0..(data.size/2-1)]
-          hi_half =  data[(data.size/2)..(data.size-1)]
-        else #odd
-          low_half = data[0..(data.size/2-1)]
-          hi_half =  data[(data.size/2+1)..(data.size-1)]
-        end
-        q1  = median( low_half )
-        q3  = median( hi_half )
-        Array.[](min,q1,med,q3,max)
-    end # fiveNumSum
-
-    # Return the median of a set of data
-    #
-    # ==== Parameters
-    #
-    # [+:data_in+] An array of data to be analyzed
-    #
-
-    def median( data_in )
-      data = data_in.sort
-      if (data.size % 2 == 0) then #even
-        (data[data.size/2-1].to_f + data[data.size/2].to_f)/2
-      else #odd
-        data[(data.size-1)/2].to_f
-      end
-    end # median
 end # Plot class
 

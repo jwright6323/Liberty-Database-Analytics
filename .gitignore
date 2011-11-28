@@ -1,3 +1,4 @@
 log
 *.gif
 *.log
+mysql-ruby*
