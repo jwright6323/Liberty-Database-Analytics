@@ -8,7 +8,7 @@
 require 'rubygems'
 require 'mysql'
 require 'gnuplot'
-require 'Analytics.rb'
+require 'analytics.rb'
 
 # Plot is a class to generate various plots from given data.
 class Plot
@@ -73,7 +73,7 @@ class Plot
     # ==== Options
     #
     # [+:filename+] A string representing the filename for data and plot files. Default is "out".
-    # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
+    # [+:numBins+] The number of bins to sort histogram data into. Default is 2.
     # [+:x_label+] A string label for the x axis. Default is "X".
     # [+:y_label+] A string label for the y axis. Default is "Y".
     # [+:title+] A string title for the plot. Default is "Title".
@@ -87,13 +87,18 @@ class Plot
     #
 
     def plotToFile( options={} )
+        x_array = Array.new
+        @x_data.keys.each { |key|
+            x_array.push( @x_data[key])
+        }
+        
         defaults = { :filename => "out",
-                     :numBins => 1,
+                     :numBins => 2,
                      :x_label => "X",
                      :y_label => "Y",
                      :title => "Title",
-                     :min => @x_data.min,
-                     :max => @x_data.max,
+                     :min => x_array.min,
+                     :max => x_array.max,
                      :logx => false,
                      :logy => false,
                      :linreg => false,
@@ -118,7 +123,7 @@ class Plot
         if (@plottype == :histogram)
             x = Array.new
             @x_data.keys.each { |key|
-                x.push(x_data[key].to_f)
+                x.push(@x_data[key].to_f)
             }
 
 
@@ -137,6 +142,8 @@ class Plot
                 }
             x_count.push(count)
             }
+  
+            x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
 
             # generates the x axis
             (1..numBins).each {|n|
@@ -269,7 +276,7 @@ class Plot
     # ==== Options
     #
     # [+:filename+] A string representing the filename for data files. Default is "out".
-    # [+:numBins+] The number of bins to sort histogram data into. Default is 1.
+    # [+:numBins+] The number of bins to sort histogram data into. Default is 2.
     # [+:x_label+] A string label for the x axis. Default is "X".
     # [+:y_label+] A string label for the y axis. Default is "Y".
     # [+:title+] A string title for the plot. Default is "Title".
@@ -283,13 +290,18 @@ class Plot
     #
 
     def plotToScreen( options = {}  )
+        x_array = Array.new
+        @x_data.keys.each { |key|
+            x_array.push( @x_data[key] )
+        }
+                
         defaults = { :filename => "out",
-                     :numBins => 1,
+                     :numBins => 2,
                      :x_label => "X",
                      :y_label => "Y",
                      :title => "Title",
-                     :min => @x_data.min,
-                     :max => @x_data.max,
+                     :min => x_array.min,
+                     :max => x_array.max,
                      :logx => false,
                      :logy => false,
                      :linreg => false,
@@ -314,7 +326,7 @@ class Plot
         if (@plottype == :histogram)
             x = Array.new
             @x_data.keys.each { |key|
-                x.push(x_data[key].to_f)
+                x.push(@x_data[key].to_f)
             }
 
             bw = (max.to_f - min.to_f) / numBins.to_f
@@ -332,6 +344,8 @@ class Plot
                 }
             x_count.push(count)
             }
+
+            x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
 
             # generates the x axis
             (1..numBins).each {|n|
