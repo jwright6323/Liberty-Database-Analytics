@@ -52,7 +52,7 @@ class Plot
             # Perform a 5 Number Analysis on the array
 
             summary = Array.new
-            summary = fiveNumSum( slopeArray )
+            summary = slopeArray.fiveNumSum
 
             # Determine the maximum and minimum non-outlier slopes
             minSlope = summary[2] - k * (summary[3] - summary[1])
@@ -77,7 +77,7 @@ class Plot
             
             # 5 Number Analysis on Data
             summary = Array.new
-            summary = fiveNumSum( x_array )
+            summary = x_array.fiveNumSum
 
             # Determine the max and min non-outliers
             minOut = summary[2] - k * (summary[3] - summary[1])
@@ -87,7 +87,7 @@ class Plot
 
             newfile = File.new(filename, "w")
             @x_data.keys.each { |key|
-                    if (@x_data[key] > maxSlope || @x_data[key] < minSlope)
+                    if (@x_data[key] > maxOut || @x_data[key] < minOut)
                         newfile.puts "#{key}"
                     end
             }
@@ -255,7 +255,7 @@ class Plot
 
                         # apply the 5 number summary function
                         summData = Array.new
-                        summData = fiveNumSum( yDivX ) # match to new function
+                        summData = yDivX.fiveNumSum # match to new function
 
                         # Calculate slopes of minimum and maximum lines to show outliers
                         maxline = summData[2] + outlierAnalysis[1] * (summData[3] - summData[1])
