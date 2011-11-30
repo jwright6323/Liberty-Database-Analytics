@@ -37,9 +37,10 @@ class Plot
     # ====Parameters
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
     # [+k+] Number of IQRs to check outliers against. Default is 1.
+    #
 
     def findOutliers( filename = "outliers.dat", k = 1 )
-        if ( @y_data ) # 2D Plotting
+        if ( @y_data != nil ) # 2D Plotting
             # Create a hash of slopes with their keys and an array of slopes
             slopeHash = Hash.new
             slopeArray = Array.new
@@ -61,6 +62,7 @@ class Plot
             # Select any outliers and print their cell names to a datafile
 
             newfile = File.new(filename, "w")
+            newfile.puts ("Outlier bounds are " + minSlope.to_s + " and " + maxSlope.to_s + ".")
             slopeHash.keys.each { |key|
                     if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                         newfile.puts "#{key}"
@@ -86,10 +88,11 @@ class Plot
             # Select any outliers and print their cell names to a datafile
 
             newfile = File.new(filename, "w")
+            newfile.puts ("Outlier bounds are " + minOut.to_s + " and " + maxOut.to_s + ".")
             @x_data.keys.each { |key|
-                    if (@x_data[key] > maxOut || @x_data[key] < minOut)
-                        newfile.puts "#{key}"
-                    end
+                if (@x_data[key] > maxOut || @x_data[key] < minOut)
+                    newfile.puts "#{key}"
+                end
             }
             newfile.close
         end # 1D Plotting
@@ -159,7 +162,7 @@ class Plot
             x_count = Array.new
             x_axis = Array.new
 
-            # checks which values belong in each bin. Edgecases go to the higher bin.
+            # checks which values belong in each bin. Edgecases go to the lower bin.
             (1..numBins).each {|n|
                 count = 0
                 x.each {|v|
