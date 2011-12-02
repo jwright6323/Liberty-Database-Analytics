@@ -5,9 +5,10 @@
 # danmanstx@gmail.com, edward.poore@gmail.com, jcwr@cypress.com
 #
 
+require 'gnuplot.rb' # Includes the gnuplot gem from the local directory if it is not installed in rubygems
 require 'rubygems'
 require 'mysql'
-require 'gnuplot'
+# require 'gnuplot' # Include the ruby gem gnuplot if it is installed in gnuplot. Definition above (should) take care of both calls though.
 require 'analytics.rb'
 
 # Plot is a class to generate various plots from given data.
