@@ -275,6 +275,28 @@ class LibertyDatabase
     end #catching Mysql::Error
   end #query
 
+
+  # 
+  # Query Max Capacitance values for output pins of all cells. If a cell has more than one output, add the max capacitance values.
+  # Returns a hash with cell name associated with its total max capacitance value.
+  # 
+  #
+
+  def getOutputMaxCap
+    querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
+    querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
+    querystr << "WHERE pins.direction = 'output';"
+    results = Hash.new
+    query( querystr ) { |row|
+        if results.has_key?(row["cellname"]) then
+            results[row["cellname"]] += row["max_capacitance"].to_f
+        else
+            results.store(row["cellname"],row["max_capacitance"].to_f)
+        end
+    }
+    results
+  end #getOutputMaxCap
+
   # Close the database and logfile
   def close
     @db.close if @db
