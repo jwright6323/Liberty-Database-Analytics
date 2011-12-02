@@ -38,11 +38,16 @@ output_maxcaps.keys.each { |key|
 
 
 scatterplot = Plot.new( area, output_maxcaps )
-scatterplot.plotToScreen( :linreg => true, :title => "Max Capacitance Driven vs. Area", :x_label => "Area", :y_label => "Max Capacitance Driven", :filename => "maxcapVsArea", :outlierAnalysis => [true,1] )
+scatterplot.plotToScreen( :linreg => true, :title => "Max Capacitance Driven vs. Area", :x_label => "Area", :y_label => "Max Capacitance Driven", :filename => "maxcapVsArea", :outlierAnalysis => [true,2] )
 scatterplot.findOutliers( filename = "maxcapVsAreaOutliers.dat", k = 2)
 
-histplot = Plot.new( maxcapPerArea )
-histplot.plotToScreen( :title => "Max Capacitance Driven per Unit Area", :filename => "maxcapPerUnitArea", :numBins => 50)
+unitAreaVsArea = Plot.new( area, maxcapPerArea )
+unitAreaVsArea.plotToScreen( :linreg => true, :title => "Max Capacitance Driven per Unit Area vs. Area", :x_label => "Area", :y_label => "Max Cap per Unit Area", :filename => "maxcapPerAreaVsArea", :outlierAnalysis => [true,2] )
+
+
+
+#histplot = Plot.new( maxcapPerArea )
+#histplot.plotToScreen( :title => "Max Capacitance Driven per Unit Area", :filename => "maxcapPerUnitArea", :numBins => 50)
 
 # Information on cleaning up the data selection.
 puts "There were #{output_maxcaps.size} samples sent to the plot"
