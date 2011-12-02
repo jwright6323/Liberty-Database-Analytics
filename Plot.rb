@@ -178,6 +178,13 @@ class Plot
             }
   
             x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+            
+            # To check bin counts
+            binSum = 0;
+            (0..(numBins-1)).each { |index|
+                binSum = x_count[index] + binSum
+                }
+            puts "There were #{binSum} samples in the plot."
 
             # generates the x axis
             (1..numBins).each {|n|
@@ -380,6 +387,15 @@ class Plot
             }
 
             x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+
+
+            # To check bin counts
+            binSum = 0;
+            (0..(numBins - 1)).each { |index|
+                binSum = x_count[index].to_i + binSum.to_i
+                }
+            puts "There were #{binSum} samples in the plot."
+
 
             # generates the x axis
             (1..numBins).each {|n|
