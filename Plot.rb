@@ -62,7 +62,8 @@ class Plot
             # Select any outliers and print their cell names to a datafile
 
             newfile = File.new(filename, "w")
-            newfile.puts ("Outlier bounds are " + minSlope.to_s + " and " + maxSlope.to_s + ".")
+            newfile.puts "Outlier bounds are " + minSlope.to_s + " and " + maxSlope.to_s + "."
+            newfile.puts "k = #{k}"
             slopeHash.keys.each { |key|
                     if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                         newfile.puts "#{key}"
@@ -88,7 +89,8 @@ class Plot
             # Select any outliers and print their cell names to a datafile
 
             newfile = File.new(filename, "w")
-            newfile.puts ("Outlier bounds are " + minOut.to_s + " and " + maxOut.to_s + ".")
+            newfile.puts "Outlier bounds are " + minOut.to_s + " and " + maxOut.to_s + "."
+            newfile.puts "k = #{k}"
             @x_data.keys.each { |key|
                 if (@x_data[key] > maxOut || @x_data[key] < minOut)
                     newfile.puts "#{key}"
