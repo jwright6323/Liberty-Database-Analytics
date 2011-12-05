@@ -18,3 +18,5 @@ timingdata.each { |cell,whens|
 
 plot = Plot.new pctdiff
 plot.plotToScreen :title => "Percent Difference Between Best and Worst Case Timing per Pin by When Cond", :filename => "timing", :numBins => 10, :x_label => "% diff"
+plot.plotToFile :title => "Percent Difference Between Best and Worst Case Timing per Pin by When Cond", :filename => "timing", :numBins => 10, :x_label => "% diff"
+
