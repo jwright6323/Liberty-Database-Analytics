@@ -84,6 +84,8 @@
     
     <li><a href="#method-i-getLeakage">#getLeakage</a>
     
+    <li><a href="#method-i-getOutputMaxCap">#getOutputMaxCap</a>
+    
     <li><a href="#method-i-getPVT">#getPVT</a>
     
     <li><a href="#method-i-query">#query</a>
@@ -101,6 +103,8 @@
   <ul class="link-list">
   
     <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="./Plot.html">Plot</a>
   
   </ul>
 </nav>
@@ -378,7 +382,7 @@ change.</p>
 
           
           <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 279</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 301</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@db</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Database closed&quot;</span>
@@ -706,6 +710,49 @@ by “when” condition, containing leakage data.</p>
 
         
       </div><!-- getLeakage-method -->
+
+    
+      <div id="method-i-getOutputMaxCap" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getOutputMaxCap</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Query Max Capacitance values for output pins of all cells. If a cell has
+more than one output, add the max capacitance values. Returns a hash with
+cell name associated with its total max capacitance value.</p>
+          
+
+          
+          <div class="method-source-code" id="getOutputMaxCap-source">
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 285</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getOutputMaxCap</span>
+  <span class="ruby-identifier">querystr</span> =  <span class="ruby-string">&quot;SELECT cells.name AS cellname ,pins.max_capacitance\n&quot;</span>
+  <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n&quot;</span>
+  <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE pins.direction = 'output';&quot;</span> <span class="ruby-comment">#AND cells.cell_footprint = 105;&quot;</span>
+  <span class="ruby-identifier">results</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">query</span>( <span class="ruby-identifier">querystr</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">results</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;cellname&quot;</span>]) <span class="ruby-keyword">then</span>
+          <span class="ruby-identifier">results</span>[<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;cellname&quot;</span>]] <span class="ruby-operator">+=</span> <span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;max_capacitance&quot;</span>].<span class="ruby-identifier">to_f</span>
+      <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">results</span>.<span class="ruby-identifier">store</span>(<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;cellname&quot;</span>],<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;max_capacitance&quot;</span>].<span class="ruby-identifier">to_f</span>)
+      <span class="ruby-keyword">end</span>
+  }
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- getOutputMaxCap-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- getOutputMaxCap-method -->
 
     
       <div id="method-i-getPVT" class="method-detail ">
