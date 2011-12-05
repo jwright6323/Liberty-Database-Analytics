@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: TC_MysqlRes</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>mysql-ruby-2.8.2/test.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Test::Unit::TestCase
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-setup">#setup</a>
+    
+    <li><a href="#method-i-teardown">#teardown</a>
+    
+    <li><a href="#method-i-test_data_seek">#test_data_seek</a>
+    
+    <li><a href="#method-i-test_each">#test_each</a>
+    
+    <li><a href="#method-i-test_each_hash">#test_each_hash</a>
+    
+    <li><a href="#method-i-test_fetch_field">#test_fetch_field</a>
+    
+    <li><a href="#method-i-test_fetch_field_direct">#test_fetch_field_direct</a>
+    
+    <li><a href="#method-i-test_fetch_fields">#test_fetch_fields</a>
+    
+    <li><a href="#method-i-test_fetch_hash">#test_fetch_hash</a>
+    
+    <li><a href="#method-i-test_fetch_hash2">#test_fetch_hash2</a>
+    
+    <li><a href="#method-i-test_fetch_lengths">#test_fetch_lengths</a>
+    
+    <li><a href="#method-i-test_fetch_row">#test_fetch_row</a>
+    
+    <li><a href="#method-i-test_field_hash">#test_field_hash</a>
+    
+    <li><a href="#method-i-test_field_inspect">#test_field_inspect</a>
+    
+    <li><a href="#method-i-test_field_seek">#test_field_seek</a>
+    
+    <li><a href="#method-i-test_is_not_null">#test_is_not_null</a>
+    
+    <li><a href="#method-i-test_is_num">#test_is_num</a>
+    
+    <li><a href="#method-i-test_is_pri_key">#test_is_pri_key</a>
+    
+    <li><a href="#method-i-test_num_fields">#test_num_fields</a>
+    
+    <li><a href="#method-i-test_num_rows">#test_num_rows</a>
+    
+    <li><a href="#method-i-test_row_seek">#test_row_seek</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
+  
+    <li class="file"><a href="./inv_txt.html">inv</a>
+  
+    <li class="file"><a href="./log.html">log</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="./testout.html">testout</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mysql.html">Mysql</a>
+  
+    <li><a href="./Mysql/Error.html">Mysql::Error</a>
+  
+    <li><a href="./Mysql/Field.html">Mysql::Field</a>
+  
+    <li><a href="./Mysql/Result.html">Mysql::Result</a>
+  
+    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
+  
+    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
+  
+    <li><a href="./Mysql/Time.html">Mysql::Time</a>
+  
+    <li><a href="./Gnuplot.html">Gnuplot</a>
+  
+    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
+  
+    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
+  
+    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="./Matrix.html">Matrix</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Plot.html">Plot</a>
+  
+    <li><a href="./TC_Mysql.html">TC_Mysql</a>
+  
+    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
+  
+    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
+  
+    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
+  
+    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
+  
+    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class TC_MysqlRes</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="setup-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 213</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>()
+  <span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@pass</span>, <span class="ruby-identifier">db</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">sock</span>, <span class="ruby-identifier">flag</span> = <span class="ruby-constant">ARGV</span>
+  <span class="ruby-ivar">@db</span> = <span class="ruby-identifier">db</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot;test&quot;</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@sock</span> = <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">sock</span>
+  <span class="ruby-ivar">@flag</span> = <span class="ruby-identifier">flag</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@m</span> = <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@pass</span>, <span class="ruby-ivar">@db</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-ivar">@sock</span>, <span class="ruby-ivar">@flag</span>)
+  <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (id int, str char(10), primary key (id))&quot;</span>)
+  <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (1, 'abc'), (2, 'defg'), (3, 'hi'), (4, null)&quot;</span>)
+  <span class="ruby-ivar">@res</span> = <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- setup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- setup-method -->
+
+    
+      <div id="method-i-teardown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">teardown</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="teardown-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 224</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">teardown</span>()
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">free</span>
+  <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">close</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- teardown-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- teardown-method -->
+
+    
+      <div id="method-i-test_data_seek" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_data_seek</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_data_seek-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 275</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_data_seek</span>()
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;hi&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">data_seek</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_data_seek-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_data_seek-method -->
+
+    
+      <div id="method-i-test_each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_each</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_each-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 261</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_each</span>()
+  <span class="ruby-identifier">ary</span> = [[<span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;abc&quot;</span>], [<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], [<span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;hi&quot;</span>], [<span class="ruby-string">&quot;4&quot;</span>,<span class="ruby-keyword">nil</span>]]
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">ary</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">a</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_each-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_each-method -->
+
+    
+      <div id="method-i-test_each_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_each_hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_each_hash-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_each_hash</span>()
+  <span class="ruby-identifier">hash</span> = [{<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;abc&quot;</span>}, {<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;defg&quot;</span>}, {<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;hi&quot;</span>}, {<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>,<span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>}]
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">each_hash</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">hash</span>.<span class="ruby-identifier">shift</span>, <span class="ruby-identifier">h</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_each_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_each_hash-method -->
+
+    
+      <div id="method-i-test_fetch_field" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_field</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_field-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 302</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_field</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;t&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">table</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">def</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_LONG</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">11</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">length</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">max_length</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">NUM_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">PRI_KEY_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">PART_KEY_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">NOT_NULL_FLAG</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">flags</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">decimals</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;str&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;t&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">table</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">def</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_STRING</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">type</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">10</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">length</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">4</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">max_length</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">flags</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">decimals</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">f</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_field-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_field-method -->
+
+    
+      <div id="method-i-test_fetch_field_direct" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_field_direct</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_field_direct-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_field_direct</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field_direct</span>(<span class="ruby-value">0</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field_direct</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;str&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field_direct</span>(<span class="ruby-value">-1</span>)}
+  <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field_direct</span>(<span class="ruby-value">2</span>)}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_field_direct-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_field_direct-method -->
+
+    
+      <div id="method-i-test_fetch_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_fields</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_fields-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 325</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_fields</span>()
+  <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_fields</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-identifier">a</span>.<span class="ruby-identifier">size</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;id&quot;</span>, <span class="ruby-identifier">a</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;str&quot;</span>, <span class="ruby-identifier">a</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_fields-method -->
+
+    
+      <div id="method-i-test_fetch_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_hash-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 245</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_hash</span>()
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;abc&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>, <span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;defg&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;3&quot;</span>, <span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;hi&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>, <span class="ruby-string">&quot;str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_hash-method -->
+
+    
+      <div id="method-i-test_fetch_hash2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_hash2</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_hash2-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 253</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_hash2</span>()
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;t.id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;1&quot;</span>, <span class="ruby-string">&quot;t.str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;abc&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>(<span class="ruby-keyword">true</span>))
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;t.id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;2&quot;</span>, <span class="ruby-string">&quot;t.str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;defg&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>(<span class="ruby-keyword">true</span>))
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;t.id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;3&quot;</span>, <span class="ruby-string">&quot;t.str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;hi&quot;</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>(<span class="ruby-keyword">true</span>))
+  <span class="ruby-identifier">assert_equal</span>({<span class="ruby-string">&quot;t.id&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">&quot;4&quot;</span>, <span class="ruby-string">&quot;t.str&quot;</span>=<span class="ruby-operator">&gt;</span><span class="ruby-keyword">nil</span>}, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>(<span class="ruby-keyword">true</span>))
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_hash2-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_hash2-method -->
+
+    
+      <div id="method-i-test_fetch_lengths" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_lengths</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_lengths-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 341</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_lengths</span>()
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>,  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>, <span class="ruby-value">3</span>],  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>, <span class="ruby-value">4</span>],  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>, <span class="ruby-value">2</span>],  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>, <span class="ruby-value">0</span>],  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>,  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_lengths</span>())
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_lengths-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_lengths-method -->
+
+    
+      <div id="method-i-test_fetch_row" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_row</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_row-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_row</span>()
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;hi&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;4&quot;</span>,<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_row-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_row-method -->
+
+    
+      <div id="method-i-test_field_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_field_hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_field_hash-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 355</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_field_hash</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">h</span> = {
+    <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;id&quot;</span>,
+    <span class="ruby-string">&quot;table&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;t&quot;</span>,
+    <span class="ruby-string">&quot;def&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&quot;type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_LONG</span>,
+    <span class="ruby-string">&quot;length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">11</span>,
+    <span class="ruby-string">&quot;max_length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>,
+    <span class="ruby-string">&quot;flags&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">NUM_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">PRI_KEY_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">PART_KEY_FLAG</span><span class="ruby-operator">|</span><span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">NOT_NULL_FLAG</span>,
+    <span class="ruby-string">&quot;decimals&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+  }
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">h</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">hash</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">h</span> = {
+    <span class="ruby-string">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;str&quot;</span>,
+    <span class="ruby-string">&quot;table&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;t&quot;</span>,
+    <span class="ruby-string">&quot;def&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+    <span class="ruby-string">&quot;type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Field</span><span class="ruby-operator">::</span><span class="ruby-constant">TYPE_STRING</span>,
+    <span class="ruby-string">&quot;length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span>,
+    <span class="ruby-string">&quot;max_length&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">4</span>,
+    <span class="ruby-string">&quot;flags&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+    <span class="ruby-string">&quot;decimals&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+  }
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-identifier">h</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">hash</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_field_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_field_hash-method -->
+
+    
+      <div id="method-i-test_field_inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_field_inspect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_field_inspect-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 382</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_field_inspect</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-node">&quot;#&lt;Mysql::Field:id&gt;&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">inspect</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-node">&quot;#&lt;Mysql::Field:str&gt;&quot;</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">inspect</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_field_inspect-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_field_inspect-method -->
+
+    
+      <div id="method-i-test_field_seek" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_field_seek</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_field_seek-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 292</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_field_seek</span>()
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">field_tell</span>)
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">field_tell</span>)
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">field_tell</span>)
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">field_seek</span>(<span class="ruby-value">1</span>)
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">field_tell</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_field_seek-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_field_seek-method -->
+
+    
+      <div id="method-i-test_is_not_null" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_is_not_null</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_is_not_null-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 396</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_is_not_null</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_not_null?</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_not_null?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_is_not_null-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_is_not_null-method -->
+
+    
+      <div id="method-i-test_is_num" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_is_num</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_is_num-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 389</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_is_num</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_num?</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_num?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_is_num-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_is_num-method -->
+
+    
+      <div id="method-i-test_is_pri_key" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_is_pri_key</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_is_pri_key-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 403</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_is_pri_key</span>()
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">true</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_pri_key?</span>)
+  <span class="ruby-identifier">f</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_field</span>
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">false</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">is_pri_key?</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_is_pri_key-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_is_pri_key-method -->
+
+    
+      <div id="method-i-test_num_fields" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_num_fields</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_num_fields-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 229</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_num_fields</span>()
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">num_fields</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_num_fields-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_num_fields-method -->
+
+    
+      <div id="method-i-test_num_rows" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_num_rows</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_num_rows-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 233</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_num_rows</span>()
+  <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">4</span>, <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">num_rows</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_num_rows-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_num_rows-method -->
+
+    
+      <div id="method-i-test_row_seek" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_row_seek</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_row_seek-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 283</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_row_seek</span>()
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;1&quot;</span>,<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">pos</span> = <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">row_tell</span>
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;3&quot;</span>,<span class="ruby-string">&quot;hi&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+  <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">row_seek</span>(<span class="ruby-identifier">pos</span>)
+  <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;2&quot;</span>,<span class="ruby-string">&quot;defg&quot;</span>], <span class="ruby-ivar">@res</span>.<span class="ruby-identifier">fetch_row</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_row_seek-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_row_seek-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

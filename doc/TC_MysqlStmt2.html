@@ -1,0 +1,2976 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: TC_MysqlStmt2</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>mysql-ruby-2.8.2/test.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">Test::Unit::TestCase
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-setup">#setup</a>
+    
+    <li><a href="#method-i-teardown">#teardown</a>
+    
+    <li><a href="#method-i-test_affected_rows">#test_affected_rows</a>
+    
+    <li><a href="#method-i-test_bind_result_fixnum">#test_bind_result_fixnum</a>
+    
+    <li><a href="#method-i-test_bind_result_float">#test_bind_result_float</a>
+    
+    <li><a href="#method-i-test_bind_result_integer">#test_bind_result_integer</a>
+    
+    <li><a href="#method-i-test_bind_result_mysqltime">#test_bind_result_mysqltime</a>
+    
+    <li><a href="#method-i-test_bind_result_nil">#test_bind_result_nil</a>
+    
+    <li><a href="#method-i-test_bind_result_numeric">#test_bind_result_numeric</a>
+    
+    <li><a href="#method-i-test_bind_result_string">#test_bind_result_string</a>
+    
+    <li><a href="#method-i-test_bind_result_unknown">#test_bind_result_unknown</a>
+    
+    <li><a href="#method-i-test_bind_result_unmatch_count">#test_bind_result_unmatch_count</a>
+    
+    <li><a href="#method-i-test_data_seek">#test_data_seek</a>
+    
+    <li><a href="#method-i-test_each">#test_each</a>
+    
+    <li><a href="#method-i-test_execute">#test_execute</a>
+    
+    <li><a href="#method-i-test_execute2">#test_execute2</a>
+    
+    <li><a href="#method-i-test_execute3">#test_execute3</a>
+    
+    <li><a href="#method-i-test_execute4">#test_execute4</a>
+    
+    <li><a href="#method-i-test_execute5">#test_execute5</a>
+    
+    <li><a href="#method-i-test_fetch">#test_fetch</a>
+    
+    <li><a href="#method-i-test_fetch_bigint">#test_fetch_bigint</a>
+    
+    <li><a href="#method-i-test_fetch_bigint_unsigned">#test_fetch_bigint_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_binary">#test_fetch_binary</a>
+    
+    <li><a href="#method-i-test_fetch_bit">#test_fetch_bit</a>
+    
+    <li><a href="#method-i-test_fetch_blob">#test_fetch_blob</a>
+    
+    <li><a href="#method-i-test_fetch_char">#test_fetch_char</a>
+    
+    <li><a href="#method-i-test_fetch_date">#test_fetch_date</a>
+    
+    <li><a href="#method-i-test_fetch_datetime">#test_fetch_datetime</a>
+    
+    <li><a href="#method-i-test_fetch_decimal">#test_fetch_decimal</a>
+    
+    <li><a href="#method-i-test_fetch_decimal_unsigned">#test_fetch_decimal_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_double">#test_fetch_double</a>
+    
+    <li><a href="#method-i-test_fetch_double_unsigned">#test_fetch_double_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_enum">#test_fetch_enum</a>
+    
+    <li><a href="#method-i-test_fetch_float">#test_fetch_float</a>
+    
+    <li><a href="#method-i-test_fetch_float_unsigned">#test_fetch_float_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_int">#test_fetch_int</a>
+    
+    <li><a href="#method-i-test_fetch_int_unsigned">#test_fetch_int_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_longblob">#test_fetch_longblob</a>
+    
+    <li><a href="#method-i-test_fetch_longtext">#test_fetch_longtext</a>
+    
+    <li><a href="#method-i-test_fetch_mediumblob">#test_fetch_mediumblob</a>
+    
+    <li><a href="#method-i-test_fetch_mediumint">#test_fetch_mediumint</a>
+    
+    <li><a href="#method-i-test_fetch_mediumint_unsigned">#test_fetch_mediumint_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_mediumtext">#test_fetch_mediumtext</a>
+    
+    <li><a href="#method-i-test_fetch_set">#test_fetch_set</a>
+    
+    <li><a href="#method-i-test_fetch_smallint">#test_fetch_smallint</a>
+    
+    <li><a href="#method-i-test_fetch_smallint_unsigned">#test_fetch_smallint_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_text">#test_fetch_text</a>
+    
+    <li><a href="#method-i-test_fetch_time">#test_fetch_time</a>
+    
+    <li><a href="#method-i-test_fetch_timestamp">#test_fetch_timestamp</a>
+    
+    <li><a href="#method-i-test_fetch_tinyblob">#test_fetch_tinyblob</a>
+    
+    <li><a href="#method-i-test_fetch_tinyint">#test_fetch_tinyint</a>
+    
+    <li><a href="#method-i-test_fetch_tinyint_unsigned">#test_fetch_tinyint_unsigned</a>
+    
+    <li><a href="#method-i-test_fetch_tinytext">#test_fetch_tinytext</a>
+    
+    <li><a href="#method-i-test_fetch_varbinary">#test_fetch_varbinary</a>
+    
+    <li><a href="#method-i-test_fetch_varchar">#test_fetch_varchar</a>
+    
+    <li><a href="#method-i-test_fetch_year">#test_fetch_year</a>
+    
+    <li><a href="#method-i-test_field_count">#test_field_count</a>
+    
+    <li><a href="#method-i-test_free_result">#test_free_result</a>
+    
+    <li><a href="#method-i-test_insert_id">#test_insert_id</a>
+    
+    <li><a href="#method-i-test_num_rows">#test_num_rows</a>
+    
+    <li><a href="#method-i-test_param_count">#test_param_count</a>
+    
+    <li><a href="#method-i-test_prepare">#test_prepare</a>
+    
+    <li><a href="#method-i-test_result_metadata">#test_result_metadata</a>
+    
+    <li><a href="#method-i-test_result_metadata_nodata">#test_result_metadata_nodata</a>
+    
+    <li><a href="#method-i-test_row_seek_tell">#test_row_seek_tell</a>
+    
+    <li><a href="#method-i-test_sqlstate">#test_sqlstate</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
+  
+    <li class="file"><a href="./inv_txt.html">inv</a>
+  
+    <li class="file"><a href="./log.html">log</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="./testout.html">testout</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mysql.html">Mysql</a>
+  
+    <li><a href="./Mysql/Error.html">Mysql::Error</a>
+  
+    <li><a href="./Mysql/Field.html">Mysql::Field</a>
+  
+    <li><a href="./Mysql/Result.html">Mysql::Result</a>
+  
+    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
+  
+    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
+  
+    <li><a href="./Mysql/Time.html">Mysql::Time</a>
+  
+    <li><a href="./Gnuplot.html">Gnuplot</a>
+  
+    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
+  
+    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
+  
+    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="./Matrix.html">Matrix</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Plot.html">Plot</a>
+  
+    <li><a href="./TC_Mysql.html">TC_Mysql</a>
+  
+    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
+  
+    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
+  
+    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
+  
+    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
+  
+    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class TC_MysqlStmt2</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-setup" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">setup</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="setup-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 443</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">setup</span>()
+  <span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@pass</span>, <span class="ruby-identifier">db</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">sock</span>, <span class="ruby-identifier">flag</span> = <span class="ruby-constant">ARGV</span>
+  <span class="ruby-ivar">@db</span> = <span class="ruby-identifier">db</span> <span class="ruby-operator">||</span> <span class="ruby-string">&quot;test&quot;</span>
+  <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">port</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@sock</span> = <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">sock</span>
+  <span class="ruby-ivar">@flag</span> = <span class="ruby-identifier">flag</span>.<span class="ruby-identifier">to_i</span>
+  <span class="ruby-ivar">@m</span> = <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@host</span>, <span class="ruby-ivar">@user</span>, <span class="ruby-ivar">@pass</span>, <span class="ruby-ivar">@db</span>, <span class="ruby-ivar">@port</span>, <span class="ruby-ivar">@sock</span>, <span class="ruby-ivar">@flag</span>)
+  <span class="ruby-ivar">@s</span> = <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">stmt_init</span>()
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- setup-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- setup-method -->
+
+    
+      <div id="method-i-teardown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">teardown</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="teardown-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 452</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">teardown</span>()
+  <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">close</span>
+  <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">close</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- teardown-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- teardown-method -->
+
+    
+      <div id="method-i-test_affected_rows" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_affected_rows</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_affected_rows-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 457</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_affected_rows</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10))&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?,?)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">1</span>, <span class="ruby-string">&quot;hoge&quot;</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">affected_rows</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">2</span>, <span class="ruby-string">&quot;hoge&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">3</span>, <span class="ruby-string">&quot;hoge&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;update t set c=?&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&quot;fuga&quot;</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">3</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">affected_rows</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_affected_rows-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_affected_rows-method -->
+
+    
+      <div id="method-i-test_bind_result_fixnum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_fixnum</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_fixnum-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 539</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_fixnum</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Fixnum</span>, <span class="ruby-constant">Fixnum</span>, <span class="ruby-constant">Fixnum</span>, <span class="ruby-constant">Fixnum</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2005</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">20050802235011.0</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_fixnum-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_fixnum-method -->
+
+    
+      <div id="method-i-test_bind_result_float" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_float</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_float-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 567</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_float</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Float</span>, <span class="ruby-constant">Float</span>, <span class="ruby-constant">Float</span>, <span class="ruby-constant">Float</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123.0</span>, <span class="ruby-value">9.0</span>, <span class="ruby-value">1.2345</span>, <span class="ruby-value">2005.0</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123.0</span>, <span class="ruby-value">9.0</span>, <span class="ruby-value">1.2345</span>, <span class="ruby-value">20050802235011.0</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_float-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_float-method -->
+
+    
+      <div id="method-i-test_bind_result_integer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_integer</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_integer-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 523</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_integer</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Integer</span>, <span class="ruby-constant">Integer</span>, <span class="ruby-constant">Integer</span>, <span class="ruby-constant">Integer</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2005</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">20050802235011</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_integer-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_integer-method -->
+
+    
+      <div id="method-i-test_bind_result_mysqltime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_mysqltime</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_mysqltime-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 583</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_mysqltime</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">8</span>,<span class="ruby-value">2</span>,<span class="ruby-value">23</span>,<span class="ruby-value">50</span>,<span class="ruby-value">11</span>)], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2000</span>,<span class="ruby-value">1</span>,<span class="ruby-value">23</span>), <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">8</span>,<span class="ruby-value">2</span>,<span class="ruby-value">23</span>,<span class="ruby-value">50</span>,<span class="ruby-value">11</span>)], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_mysqltime-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_mysqltime-method -->
+
+    
+      <div id="method-i-test_bind_result_nil" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_nil</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def test_attr_get()</p>
+
+<pre>assert_equal(false, @s.attr_get(Mysql::Stmt::ATTR_UPDATE_MAX_LENGTH))
+assert_raises(Mysql::Error){@s.attr_get(999)}</pre>
+
+<p>end</p>
+
+<p>def test_attr_set()</p>
+
+<pre>@s.attr_set(Mysql::Stmt::ATTR_UPDATE_MAX_LENGTH, true)
+assert_equal(true, @s.attr_get(Mysql::Stmt::ATTR_UPDATE_MAX_LENGTH))
+@s.attr_set(Mysql::Stmt::ATTR_UPDATE_MAX_LENGTH, false)
+assert_equal(false, @s.attr_get(Mysql::Stmt::ATTR_UPDATE_MAX_LENGTH))
+assert_raises(Mysql::Error){@s.attr_set(999, true)}</pre>
+
+<p>end</p>
+
+<p>def test_bind_param()</p>
+
+<pre>@s.prepare(&quot;insert into t values (?,?)&quot;)
+@s.bind_param(123, &quot;abc&quot;)
+@s.bind_param(Time.now, nil)
+assert_raises(Mysql::Error){@s.bind_param(1, 2, 3)}
+b = @s.bind_param(Bind.new(Mysql::TYPE_TINY, 99, false))
+@s.bind_param(98.765, b)</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_nil-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 495</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_nil</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-keyword">nil</span>,<span class="ruby-keyword">nil</span>,<span class="ruby-keyword">nil</span>,<span class="ruby-keyword">nil</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-string">&quot;9abcdefg&quot;</span>, <span class="ruby-value">1.2345</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">8</span>,<span class="ruby-value">2</span>,<span class="ruby-value">23</span>,<span class="ruby-value">50</span>,<span class="ruby-value">11</span>)], <span class="ruby-identifier">a</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_nil-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_nil-method -->
+
+    
+      <div id="method-i-test_bind_result_numeric" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_numeric</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_numeric-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 507</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_numeric</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Numeric</span>, <span class="ruby-constant">Numeric</span>, <span class="ruby-constant">Numeric</span>, <span class="ruby-constant">Numeric</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">2005</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-value">9</span>, <span class="ruby-value">1</span>, <span class="ruby-value">20050802235011</span>], <span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_numeric-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_numeric-method -->
+
+    
+      <div id="method-i-test_bind_result_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_string</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_string-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 555</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_string</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">String</span>, <span class="ruby-constant">String</span>, <span class="ruby-constant">String</span>, <span class="ruby-constant">String</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">a</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;123&quot;</span>, <span class="ruby-string">&quot;9abcdefg&quot;</span>, <span class="ruby-string">&quot;1.2345&quot;</span>, <span class="ruby-string">&quot;2005-08-02 23:50:11&quot;</span>], <span class="ruby-identifier">a</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_string-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_string-method -->
+
+    
+      <div id="method-i-test_bind_result_unknown" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_unknown</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_unknown-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 599</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_unknown</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">TypeError</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-constant">Time</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_unknown-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_unknown-method -->
+
+    
+      <div id="method-i-test_bind_result_unmatch_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_bind_result_unmatch_count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_bind_result_unmatch_count-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 608</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_bind_result_unmatch_count</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(10), d double, t datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (123, '9abcdefg', 1.2345, 20050802235011)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">bind_result</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-keyword">nil</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_bind_result_unmatch_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_bind_result_unmatch_count-method -->
+
+    
+      <div id="method-i-test_data_seek" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_data_seek</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_data_seek-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 617</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_data_seek</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(1),(2),(3),(4),(5)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">data_seek</span>(<span class="ruby-value">5</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">5</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">data_seek</span>(<span class="ruby-value">1</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_data_seek-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_data_seek-method -->
+
+    
+      <div id="method-i-test_each" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_each</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_each-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_each</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(255), d datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (1,'abc','19701224235905'),(2,'def','21120903123456'),(3,'123',null)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">c</span> = <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">c</span>
+      <span class="ruby-keyword">when</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>,<span class="ruby-string">&quot;abc&quot;</span>,<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1970</span>,<span class="ruby-value">12</span>,<span class="ruby-value">24</span>,<span class="ruby-value">23</span>,<span class="ruby-value">59</span>,<span class="ruby-value">05</span>)], <span class="ruby-identifier">a</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-value">1</span>
+        <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2</span>,<span class="ruby-string">&quot;def&quot;</span>,<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2112</span>,<span class="ruby-value">9</span>,<span class="ruby-value">3</span>,<span class="ruby-value">12</span>,<span class="ruby-value">34</span>,<span class="ruby-value">56</span>)], <span class="ruby-identifier">a</span>)
+      <span class="ruby-keyword">when</span> <span class="ruby-value">2</span>
+        <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">3</span>,<span class="ruby-string">&quot;123&quot;</span>,<span class="ruby-keyword">nil</span>], <span class="ruby-identifier">a</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">raise</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">c</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_each-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_each-method -->
+
+    
+      <div id="method-i-test_execute" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_execute</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def test_errno()</p>
+
+<pre>@s.errno()</pre>
+
+<p>end</p>
+
+<p>def test_error()</p>
+
+<pre>@s.error()</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code" id="test_execute-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 643</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_execute</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (123)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">affected_rows</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">affected_rows</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;select count(*) from t&quot;</span>).<span class="ruby-identifier">fetch_row</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_execute-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_execute-method -->
+
+    
+      <div id="method-i-test_execute2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_execute2</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_execute2-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 655</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_execute2</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">123</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-string">&quot;456&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">456</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_execute2-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_execute2-method -->
+
+    
+      <div id="method-i-test_execute3" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_execute3</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_execute3-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 668</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_execute3</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(255), t timestamp)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?,?,?)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">123</span>, <span class="ruby-string">&quot;hoge&quot;</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">local</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">7</span>,<span class="ruby-value">19</span>,<span class="ruby-value">23</span>,<span class="ruby-value">53</span>,<span class="ruby-value">0</span>));
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">123</span>, <span class="ruby-string">&quot;hoge&quot;</span>)}
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">123</span>, <span class="ruby-string">&quot;hoge&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-string">&quot;fuga&quot;</span>)}
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-string">&quot;hoge&quot;</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">7</span>,<span class="ruby-value">19</span>,<span class="ruby-value">23</span>,<span class="ruby-value">53</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_execute3-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_execute3-method -->
+
+    
+      <div id="method-i-test_execute4" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_execute4</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_execute4-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 681</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_execute4</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int, c char(255), t timestamp)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?,?,?)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-string">&quot;hoge&quot;</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">7</span>,<span class="ruby-value">19</span>,<span class="ruby-value">23</span>,<span class="ruby-value">53</span>,<span class="ruby-value">0</span>));
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>, <span class="ruby-string">&quot;hoge&quot;</span>, <span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2005</span>,<span class="ruby-value">7</span>,<span class="ruby-value">19</span>,<span class="ruby-value">23</span>,<span class="ruby-value">53</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_execute4-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_execute4-method -->
+
+    
+      <div id="method-i-test_execute5" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_execute5</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_execute5-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 692</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_execute5</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    [<span class="ruby-value">30</span>, <span class="ruby-value">31</span>, <span class="ruby-value">32</span>, <span class="ruby-value">62</span>, <span class="ruby-value">63</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">v</span>, = <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select cast(? as signed)&quot;</span>).<span class="ruby-identifier">execute</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>).<span class="ruby-identifier">fetch</span>
+      <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>, <span class="ruby-identifier">v</span>)
+      <span class="ruby-identifier">v</span>, = <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select cast(? as signed)&quot;</span>).<span class="ruby-identifier">execute</span>(<span class="ruby-operator">-</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-identifier">i</span>)).<span class="ruby-identifier">fetch</span>
+      <span class="ruby-identifier">assert_equal</span>(<span class="ruby-operator">-</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-identifier">i</span>), <span class="ruby-identifier">v</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_execute5-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_execute5-method -->
+
+    
+      <div id="method-i-test_fetch" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 703</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 123, 'abc', null&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">123</span>, <span class="ruby-string">&quot;abc&quot;</span>, <span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch-method -->
+
+    
+      <div id="method-i-test_fetch_bigint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_bigint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_bigint-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 860</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_bigint</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i bigint)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(9223372036854775807),(-9223372036854775808),(18446744073709551615),(-18446744073709551615),(18446744073709551616)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">9223372036854775807</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-9223372036854775808</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">9223372036854775807</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)                       <span class="ruby-comment"># MySQL problem</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-9223372036854775808</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">9223372036854775807</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_bigint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_bigint-method -->
+
+    
+      <div id="method-i-test_fetch_bigint_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_bigint_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_bigint_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 880</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_bigint_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i bigint unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(9223372036854775807),(-9223372036854775808),(18446744073709551615),(-18446744073709551615),(18446744073709551616)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">18446744073709551615</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>) <span class="ruby-comment"># MySQL problem</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">9223372036854775807</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">9223372036854775808</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>) <span class="ruby-comment"># MySQL problem</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">18446744073709551615</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">18446744073709551615</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_bigint_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_bigint_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_binary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_binary</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_binary-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1077</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_binary</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i binary(10))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc\00\\00\\00\\00\\00\\00\\00&quot;&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_binary-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_binary-method -->
+
+    
+      <div id="method-i-test_fetch_bit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_bit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_bit-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 711</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_bit</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50003</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50003</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i bit(8))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(127),(-128),(255),(-255),(256)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\x00&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\x7f&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t2 (i bit(64))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t2 values (0),(-1),(4294967296),(18446744073709551615),(18446744073709551616)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t2&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\x00\x00\x00\x00\x00\x00\x00\x00&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff\xff\xff\xff\xff\xff\xff\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\x00\x00\x00\x01\x00\x00\x00\x00&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff\xff\xff\xff\xff\xff\xff\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;\xff\xff\xff\xff\xff\xff\xff\xff&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_bit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_bit-method -->
+
+    
+      <div id="method-i-test_fetch_blob" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_blob</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_blob-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_blob</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i blob)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_blob-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_blob-method -->
+
+    
+      <div id="method-i-test_fetch_char" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_char</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_char-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1055</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_char</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i char(10))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_char-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_char-method -->
+
+    
+      <div id="method-i-test_fetch_date" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_date</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_date-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 994</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_date</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i date)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values ('0000-00-00'),('1000-01-01'),('9999-12-31')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1000</span>,<span class="ruby-value">1</span>,<span class="ruby-value">1</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">9999</span>,<span class="ruby-value">12</span>,<span class="ruby-value">31</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_date-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_date-method -->
+
+    
+      <div id="method-i-test_fetch_datetime" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_datetime</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_datetime-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1006</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_datetime</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i datetime)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values ('0000-00-00 00:00:00'),('1000-01-01 00:00:00'),('9999-12-31 23:59:59')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1000</span>,<span class="ruby-value">1</span>,<span class="ruby-value">1</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">9999</span>,<span class="ruby-value">12</span>,<span class="ruby-value">31</span>,<span class="ruby-value">23</span>,<span class="ruby-value">59</span>,<span class="ruby-value">59</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_datetime-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_datetime-method -->
+
+    
+      <div id="method-i-test_fetch_decimal" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_decimal</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_decimal-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 960</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_decimal</span>()
+  <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span>) <span class="ruby-keyword">or</span> (<span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i decimal)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(9999999999),(-9999999999),(10000000000),(-10000000000)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;0&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;-9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;10000000000&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)    <span class="ruby-comment"># MySQL problem</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;-9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_decimal-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_decimal-method -->
+
+    
+      <div id="method-i-test_fetch_decimal_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_decimal_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_decimal_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 978</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_decimal_unsigned</span>()
+  <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">Mysql</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span>) <span class="ruby-keyword">or</span> (<span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">50000</span>) <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i decimal unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(9999999998),(9999999999),(-9999999998),(-9999999999),(10000000000),(-10000000000)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;0&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;9999999998&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;0&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;0&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;9999999999&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;0&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_decimal_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_decimal_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_double" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_double</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_double-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 932</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_double</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i double)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1.7976931348623157E+308),(-2.2250738585072014E-308),(2.2250738585072014E-308),(1.7976931348623157E+308)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-operator">-</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-operator">-</span><span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_double-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_double-method -->
+
+    
+      <div id="method-i-test_fetch_double_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_double_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_double_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 946</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_double_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i double unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1.7976931348623157E+308),(-2.2250738585072014E-308),(2.2250738585072014E-308),(1.7976931348623157E+308)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MIN</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-constant">Float</span><span class="ruby-operator">::</span><span class="ruby-constant">EPSILON</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_double_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_double_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_enum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_enum</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_enum-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1191</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_enum</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i enum('abc','def'))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),(0),(1),(2),('abc'),('def'),('ghi')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_enum-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_enum-method -->
+
+    
+      <div id="method-i-test_fetch_float" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_float</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_float-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 904</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_float</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i float)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-3.402823466E+38),(-1.175494351E-38),(1.175494351E-38),(3.402823466E+38)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">-3.402823466E+38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E+38</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">-1.175494351E-38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E-38</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">1.175494351E-38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E-38</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">3.402823466E+38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E+38</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_float-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_float-method -->
+
+    
+      <div id="method-i-test_fetch_float_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_float_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_float_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 918</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_float_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i float unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-3.402823466E+38),(-1.175494351E-38),(1.175494351E-38),(3.402823466E+38)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">1.175494351E-38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E-38</span>)
+    <span class="ruby-identifier">assert_in_delta</span>(<span class="ruby-value">3.402823466E+38</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>[<span class="ruby-value">0</span>], <span class="ruby-value">0.000000001E+38</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_float_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_float_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_int" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_int</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_int-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 829</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_int</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(2147483647),(-2147483648),(4294967295),(-4294967295),(4294967296)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2147483647</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-2147483648</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2147483647</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-2147483648</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_int-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_int-method -->
+
+    
+      <div id="method-i-test_fetch_int_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_int_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_int_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 844</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_int_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(2147483647),(-2147483648),(4294967295),(-4294967295),(4294967296)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2147483647</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">4294967295</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">4294967295</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_int_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_int_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_longblob" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_longblob</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_longblob-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_longblob</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i longblob)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_longblob-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_longblob-method -->
+
+    
+      <div id="method-i-test_fetch_longtext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_longtext</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_longtext-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1180</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_longtext</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i longtext)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_longtext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_longtext-method -->
+
+    
+      <div id="method-i-test_fetch_mediumblob" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_mediumblob</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_mediumblob-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1147</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_mediumblob</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i mediumblob)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_mediumblob-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_mediumblob-method -->
+
+    
+      <div id="method-i-test_fetch_mediumint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_mediumint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_mediumint-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 798</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_mediumint</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i mediumint)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(8388607),(-8388608),(16777215),(-16777215),(16777216)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">8388607</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-8388608</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">8388607</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-8388608</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_mediumint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_mediumint-method -->
+
+    
+      <div id="method-i-test_fetch_mediumint_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_mediumint_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_mediumint_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 813</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_mediumint_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i mediumint unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(8388607),(-8388608),(16777215),(-16777215),(16777216)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">8388607</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">16777215</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">16777215</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_mediumint_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_mediumint_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_mediumtext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_mediumtext</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_mediumtext-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1158</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_mediumtext</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i mediumtext)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_mediumtext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_mediumtext-method -->
+
+    
+      <div id="method-i-test_fetch_set" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_set</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_set-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1207</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_set</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i set('abc','def'))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),(0),(1),(2),(3),('abc'),('def'),('abc,def'),('ghi')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc,def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc,def&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_set-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_set-method -->
+
+    
+      <div id="method-i-test_fetch_smallint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_smallint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_smallint-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 767</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_smallint</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i smallint)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(32767),(-32768),(65535),(-65535),(65536)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">32767</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-32768</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">32767</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-32768</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_smallint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_smallint-method -->
+
+    
+      <div id="method-i-test_fetch_smallint_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_smallint_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_smallint_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 782</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_smallint_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i smallint unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(32767),(-32768),(65535),(-65535),(65536)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">32767</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">65535</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">65535</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_smallint_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_smallint_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_text</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_text-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1136</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_text</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i text)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_text-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_text-method -->
+
+    
+      <div id="method-i-test_fetch_time" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_time</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_time-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1029</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_time</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i time)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values ('-838:59:59'),(0),('838:59:59')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">838</span>,<span class="ruby-value">59</span>,<span class="ruby-value">59</span>,<span class="ruby-keyword">true</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-keyword">false</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">838</span>,<span class="ruby-value">59</span>,<span class="ruby-value">59</span>,<span class="ruby-keyword">false</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_time-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_time-method -->
+
+    
+      <div id="method-i-test_fetch_timestamp" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_timestamp</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_timestamp-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1018</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_timestamp</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i timestamp)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values ('1970-01-02 00:00:00'),('2037-12-30 23:59:59')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1970</span>,<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">2037</span>,<span class="ruby-value">12</span>,<span class="ruby-value">30</span>,<span class="ruby-value">23</span>,<span class="ruby-value">59</span>,<span class="ruby-value">59</span>)], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_timestamp-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_timestamp-method -->
+
+    
+      <div id="method-i-test_fetch_tinyblob" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_tinyblob</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_tinyblob-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_tinyblob</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i tinyblob)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_tinyblob-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_tinyblob-method -->
+
+    
+      <div id="method-i-test_fetch_tinyint" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_tinyint</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_tinyint-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 736</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_tinyint</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i tinyint)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(127),(-128),(255),(-255)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">127</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-128</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">127</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">-128</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_tinyint-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_tinyint-method -->
+
+    
+      <div id="method-i-test_fetch_tinyint_unsigned" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_tinyint_unsigned</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_tinyint_unsigned-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 751</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_tinyint_unsigned</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i tinyint unsigned)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(-1),(127),(-128),(255),(-255),(256)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">127</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">255</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">255</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_tinyint_unsigned-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_tinyint_unsigned-method -->
+
+    
+      <div id="method-i-test_fetch_tinytext" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_tinytext</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_tinytext-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_tinytext</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i tinytext)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_tinytext-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_tinytext-method -->
+
+    
+      <div id="method-i-test_fetch_varbinary" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_varbinary</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_varbinary-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1092</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_varbinary</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i varbinary(10))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_varbinary-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_varbinary-method -->
+
+    
+      <div id="method-i-test_fetch_varchar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_varchar</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_varchar-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1066</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_varchar</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i varchar(10))&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (null),('abc')&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-keyword">nil</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-string">&quot;abc&quot;</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_varchar-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_varchar-method -->
+
+    
+      <div id="method-i-test_fetch_year" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_fetch_year</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_fetch_year-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1041</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_fetch_year</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i year)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(70),(69),(1901),(2155)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select i from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1970</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2069</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1901</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2155</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_fetch_year-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_fetch_year-method -->
+
+    
+      <div id="method-i-test_field_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_field_count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_field_count-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1248</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_field_count</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 1,2,3&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">3</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">field_count</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;set @a=1&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">field_count</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_field_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_field_count-method -->
+
+    
+      <div id="method-i-test_free_result" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_free_result</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_free_result-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1259</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_free_result</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">free_result</span>()
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 1,2,3&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>()
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">free_result</span>()
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_free_result-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_free_result-method -->
+
+    
+      <div id="method-i-test_insert_id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_insert_id</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_insert_id-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1268</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_insert_id</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i bigint auto_increment, unique(i))&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">1</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">insert_id</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">insert_id</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-value">32</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-value">32</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">insert_id</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-value">32</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">insert_id</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_insert_id-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_insert_id-method -->
+
+    
+      <div id="method-i-test_num_rows" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_num_rows</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_num_rows-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1283</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_num_rows</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (1),(2),(3),(4)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">4</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">num_rows</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_num_rows-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_num_rows-method -->
+
+    
+      <div id="method-i-test_param_count" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_param_count</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_param_count-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_param_count</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (a int, b int, c int)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">0</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">param_count</span>())
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (?,?,?)&quot;</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-value">3</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">param_count</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_param_count-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_param_count-method -->
+
+    
+      <div id="method-i-test_prepare" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_prepare</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def test_param_metadata()</p>
+
+<pre>@s.param_metadata()</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code" id="test_prepare-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1309</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_prepare</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 1&quot;</span>)
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;invalid syntax&quot;</span>)}
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_prepare-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_prepare-method -->
+
+    
+      <div id="method-i-test_result_metadata" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_result_metadata</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def test_reset()</p>
+
+<pre>@s.reset()</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code" id="test_result_metadata-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1322</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_result_metadata</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 1 foo, 2 bar&quot;</span>)
+    <span class="ruby-identifier">res</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">result_metadata</span>()
+    <span class="ruby-identifier">f</span> = <span class="ruby-identifier">res</span>.<span class="ruby-identifier">fetch_fields</span>
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;foo&quot;</span>, <span class="ruby-identifier">f</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">name</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;bar&quot;</span>, <span class="ruby-identifier">f</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">name</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_result_metadata-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_result_metadata-method -->
+
+    
+      <div id="method-i-test_result_metadata_nodata" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_result_metadata_nodata</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_result_metadata_nodata-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1332</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_result_metadata_nodata</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;insert into t values (1)&quot;</span>)
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-keyword">nil</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">result_metadata</span>())
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_result_metadata_nodata-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_result_metadata_nodata-method -->
+
+    
+      <div id="method-i-test_row_seek_tell" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_row_seek_tell</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="test_row_seek_tell-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1340</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_row_seek_tell</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;create temporary table t (i int)&quot;</span>)
+    <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">query</span>(<span class="ruby-string">&quot;insert into t values (0),(1),(2),(3),(4)&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select * from t&quot;</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">row0</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">row_tell</span>
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">1</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-identifier">row2</span> = <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">row_seek</span>(<span class="ruby-identifier">row0</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">0</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">row_seek</span>(<span class="ruby-identifier">row2</span>)
+    <span class="ruby-identifier">assert_equal</span>([<span class="ruby-value">2</span>], <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">fetch</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_row_seek_tell-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_row_seek_tell-method -->
+
+    
+      <div id="method-i-test_sqlstate" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">test_sqlstate</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>def test_send_long_data()</p>
+
+<pre>@m.query(&quot;create temporary table t (i int, t text)&quot;)
+@s.prepare(&quot;insert into t values (?,?)&quot;)
+@s.send_long_data(1, &quot;long long data &quot;)
+@s.send_long_data(1, &quot;long long data2&quot;)
+assert_raises(Mysql::Error){@s.send_long_data(9, &quot;invalid param number&quot;)}
+@s.execute(99, &quot;hoge&quot;)
+assert_equal(&quot;long long data long long data2&quot;, @m.query(&quot;select t from t&quot;).fetch_row[0])</pre>
+
+<p>end</p>
+          
+
+          
+          <div class="method-source-code" id="test_sqlstate-source">
+            <pre><span class="ruby-comment"># File mysql-ruby-2.8.2/test.rb, line 1368</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">test_sqlstate</span>()
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">server_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">40100</span> <span class="ruby-keyword">then</span>
+    <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;select 1&quot;</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@m</span>.<span class="ruby-identifier">client_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">50000</span> <span class="ruby-keyword">then</span>
+      <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;00000&quot;</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">sqlstate</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;&quot;</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">sqlstate</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">assert_raises</span>(<span class="ruby-constant">Mysql</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>){<span class="ruby-ivar">@s</span>.<span class="ruby-identifier">prepare</span>(<span class="ruby-string">&quot;hogehoge&quot;</span>)}
+    <span class="ruby-identifier">assert_equal</span>(<span class="ruby-string">&quot;42000&quot;</span>, <span class="ruby-ivar">@s</span>.<span class="ruby-identifier">sqlstate</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- test_sqlstate-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- test_sqlstate-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

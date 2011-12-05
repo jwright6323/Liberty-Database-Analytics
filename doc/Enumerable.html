@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Module: Enumerable</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>analytics.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-fiveNumSum">#fiveNumSum</a>
+    
+    <li><a href="#method-i-mean">#mean</a>
+    
+    <li><a href="#method-i-median">#median</a>
+    
+    <li><a href="#method-i-stdDev">#stdDev</a>
+    
+    <li><a href="#method-i-sum">#sum</a>
+    
+    <li><a href="#method-i-variance">#variance</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
+  
+    <li class="file"><a href="./inv_txt.html">inv</a>
+  
+    <li class="file"><a href="./log.html">log</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="./testout.html">testout</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mysql.html">Mysql</a>
+  
+    <li><a href="./Mysql/Error.html">Mysql::Error</a>
+  
+    <li><a href="./Mysql/Field.html">Mysql::Field</a>
+  
+    <li><a href="./Mysql/Result.html">Mysql::Result</a>
+  
+    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
+  
+    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
+  
+    <li><a href="./Mysql/Time.html">Mysql::Time</a>
+  
+    <li><a href="./Gnuplot.html">Gnuplot</a>
+  
+    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
+  
+    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
+  
+    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="./Matrix.html">Matrix</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Plot.html">Plot</a>
+  
+    <li><a href="./TC_Mysql.html">TC_Mysql</a>
+  
+    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
+  
+    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
+  
+    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
+  
+    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
+  
+    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Enumerable</h1>
+
+  <div id="description" class="description">
+    
+<p>Add methods to <a href="Enumerable.html">Enumerable</a>, which makes them
+available to <a href="Array.html">Array</a></p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-fiveNumSum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">fiveNumSum</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="fiveNumSum-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">fiveNumSum</span>
+    <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
+    <span class="ruby-identifier">min</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">max</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">med</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">median</span>
+    <span class="ruby-identifier">low_half</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">hi_half</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span> <span class="ruby-comment">#even</span>
+      <span class="ruby-identifier">low_half</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+      <span class="ruby-identifier">hi_half</span> =  <span class="ruby-identifier">data</span>[(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+    <span class="ruby-keyword">else</span> <span class="ruby-comment">#odd</span>
+      <span class="ruby-identifier">low_half</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+      <span class="ruby-identifier">hi_half</span> =  <span class="ruby-identifier">data</span>[(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>)<span class="ruby-operator">..</span>(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">q1</span>  = <span class="ruby-identifier">low_half</span>.<span class="ruby-identifier">median</span>
+    <span class="ruby-identifier">q3</span>  = <span class="ruby-identifier">hi_half</span>.<span class="ruby-identifier">median</span>
+    <span class="ruby-constant">Array</span>.[](<span class="ruby-identifier">min</span>,<span class="ruby-identifier">q1</span>,<span class="ruby-identifier">med</span>,<span class="ruby-identifier">q3</span>,<span class="ruby-identifier">max</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- fiveNumSum-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- fiveNumSum-method -->
+
+    
+      <div id="method-i-mean" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mean</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>average of an array of numbers</p>
+          
+
+          
+          <div class="method-source-code" id="mean-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mean</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sum</span><span class="ruby-operator">/</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- mean-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- mean-method -->
+
+    
+      <div id="method-i-median" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">median</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the median of a set of data</p>
+
+<h4 id="method-i-median-label-Parameters">Parameters</h4>
+<dl class="rdoc-list label-list"><dt><code>:data_in</code>
+<dd>
+<p>An array of data to be analyzed</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="median-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">median</span>
+  <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span> <span class="ruby-comment">#even</span>
+    (<span class="ruby-identifier">data</span>[<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">data</span>[<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>].<span class="ruby-identifier">to_f</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span>
+  <span class="ruby-keyword">else</span> <span class="ruby-comment">#odd</span>
+    <span class="ruby-identifier">data</span>[(<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span>].<span class="ruby-identifier">to_f</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- median-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- median-method -->
+
+    
+      <div id="method-i-stdDev" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">stdDev</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>standard deviation of an array of numbers</p>
+          
+
+          
+          <div class="method-source-code" id="stdDev-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">stdDev</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">variance</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- stdDev-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- stdDev-method -->
+
+    
+      <div id="method-i-sum" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sum</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>sum of an array of numbers</p>
+          
+
+          
+          <div class="method-source-code" id="sum-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sum</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- sum-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- sum-method -->
+
+    
+      <div id="method-i-variance" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">variance</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>variance of an array of numbers</p>
+          
+
+          
+          <div class="method-source-code" id="variance-source">
+            <pre><span class="ruby-comment"># File analytics.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">variance</span>
+  <span class="ruby-identifier">avg</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">mean</span>
+  <span class="ruby-identifier">sum</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-identifier">avg</span>)<span class="ruby-operator">**</span><span class="ruby-value">2</span> }
+  <span class="ruby-identifier">sum</span> <span class="ruby-operator">/</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- variance-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- variance-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

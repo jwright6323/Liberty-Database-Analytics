@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: Object</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>liberty2db.rb
+    <li>old_code/plothist.rb
+    <li>old_code/plotpoints.rb
+    <li>mysql-ruby-2.8.2/mysql.c
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-insert_db">#insert_db</a>
+    
+    <li><a href="#method-i-plothist">#plothist</a>
+    
+    <li><a href="#method-i-plotpoints">#plotpoints</a>
+    
+    <li><a href="#method-i-update_db">#update_db</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
+  
+    <li class="file"><a href="./inv_txt.html">inv</a>
+  
+    <li class="file"><a href="./log.html">log</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="./testout.html">testout</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Mysql.html">Mysql</a>
+  
+    <li><a href="./Mysql/Error.html">Mysql::Error</a>
+  
+    <li><a href="./Mysql/Field.html">Mysql::Field</a>
+  
+    <li><a href="./Mysql/Result.html">Mysql::Result</a>
+  
+    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
+  
+    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
+  
+    <li><a href="./Mysql/Time.html">Mysql::Time</a>
+  
+    <li><a href="./Gnuplot.html">Gnuplot</a>
+  
+    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
+  
+    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
+  
+    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Enumerable.html">Enumerable</a>
+  
+    <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="./Matrix.html">Matrix</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Plot.html">Plot</a>
+  
+    <li><a href="./TC_Mysql.html">TC_Mysql</a>
+  
+    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
+  
+    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
+  
+    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
+  
+    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
+  
+    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Object</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="MysqlError">MysqlError
+        
+        <dd class="description">
+        
+      
+        <dt id="MysqlField">MysqlField
+        
+        <dd class="description">
+        
+      
+        <dt id="MysqlRes">MysqlRes
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-insert_db" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">insert_db</span><span
+            class="method-args">(table, name,value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="insert_db-source">
+            <pre><span class="ruby-comment"># File liberty2db.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">insert_db</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">name</span>,<span class="ruby-identifier">value</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Insert row in TABLE: #{table} FIELD: #{name} VALUE: #{value}&quot;</span>
+        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">$dbh</span>.<span class="ruby-identifier">query</span>(<span class="ruby-node">&quot;SHOW COLUMNS FROM `#{table}` LIKE '#{name}'&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">num_rows</span>  <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Column #{name} doesn't exist&quot;</span>
+        <span class="ruby-keyword">else</span> 
+                <span class="ruby-identifier">$dbh</span>.<span class="ruby-identifier">query</span>(<span class="ruby-node">&quot;INSERT INTO #{table} (#{name}) VALUES ('#{value}')&quot;</span>)
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- insert_db-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- insert_db-method -->
+
+    
+      <div id="method-i-plothist" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plothist</span><span
+            class="method-args">( numBins, x, x_label, title, options={} )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="plothist-source">
+            <pre><span class="ruby-comment"># File old_code/plothist.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plothist</span>( <span class="ruby-identifier">numBins</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">x_label</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">options</span>={} )
+    <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">min</span>,
+                 <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">max</span>,
+                 <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span> }
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+    <span class="ruby-identifier">min</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:min</span>]
+    <span class="ruby-identifier">max</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:max</span>]
+    <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
+
+    <span class="ruby-comment"># if numBins is zero...</span>
+    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">numBins</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>)
+        <span class="ruby-identifier">numBins</span> = <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">bw</span> = (<span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">numBins</span>.<span class="ruby-identifier">to_f</span>
+    <span class="ruby-identifier">x_count</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">x_axis</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+
+
+<span class="ruby-comment"># checks which values belong in each bin. Edgecases go to the higher bin.</span>
+    (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+       <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+       <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword">if</span>(((<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>)) <span class="ruby-keyword">and</span> ((<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;=</span> (<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>)))
+                <span class="ruby-identifier">count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">end</span>
+            }
+       <span class="ruby-identifier">x_count</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">count</span>)
+       }
+
+<span class="ruby-comment"># generates the x axis</span>
+     (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">x_axis</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-value">0.5</span>*<span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)))
+        }
+
+        <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-string">&quot;Frequency&quot;</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span> 
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set xrange [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;]&quot;</span>   
+
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">DataSet</span>.<span class="ruby-identifier">new</span>( [<span class="ruby-identifier">x_axis</span>, <span class="ruby-identifier">x_count</span>] ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ds</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">with</span> = <span class="ruby-string">&quot;histeps&quot;</span>
+                <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">notitle</span>
+                <span class="ruby-keyword">end</span>
+              <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- plothist-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- plothist-method -->
+
+    
+      <div id="method-i-plotpoints" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">plotpoints</span><span
+            class="method-args">(x, y, x_label, y_label, title, options={} )</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>plotpoints is a function to scatter plot two arrays of equal size.</p>
+
+<h4 id="method-i-plotpoints-label-Options">Options</h4>
+<dl class="rdoc-list label-list"><dt><code>:logx</code>
+<dd>
+<p>Bool. True displays the x axis on a log scale. Default is false.</p>
+</dd><dt><code>:logy</code>
+<dd>
+<p>Bool. True displays the y axis on a log scale. Default is false.</p>
+</dd><dt><code>:filename</code>
+<dd>
+<p>String. Define a filename to write data/gif to. Default is out.</p>
+</dd><dt><code>:linreg</code>
+<dd>
+<p>Bool. True adds a linear regression line. Default is false.</p>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="plotpoints-source">
+            <pre><span class="ruby-comment"># File old_code/plotpoints.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plotpoints</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">x_label</span>, <span class="ruby-identifier">y_label</span>, <span class="ruby-identifier">title</span>, <span class="ruby-identifier">options</span>={} )
+    <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:logx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:logy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span>,
+                 <span class="ruby-value">:linreg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span> }
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+    <span class="ruby-identifier">logx</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logx</span>]
+    <span class="ruby-identifier">logy</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logy</span>]
+    <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
+    <span class="ruby-identifier">linreg</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:linreg</span>]
+
+    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">x</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">y</span>.<span class="ruby-identifier">length</span>)
+
+        <span class="ruby-comment"># generate a datafile to use in gnuplot</span>
+        <span class="ruby-identifier">datfile</span> = <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.dat&quot;</span>
+
+        <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
+            (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{x[i]}\t#{y[i]}&quot;</span>
+            <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
+
+
+
+        <span class="ruby-comment"># plot data</span>
+        <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+              <span class="ruby-comment"># plot to a file</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span>
+
+              <span class="ruby-comment">#apply title/labels</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-identifier">y_label</span>
+              <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
+
+        <span class="ruby-comment"># check if graphs need to be logscaled</span>
+              <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logx</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale x&quot;</span>
+              <span class="ruby-keyword">end</span>
+
+              <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logy</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale y&quot;</span>
+              <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># check if a linear regression is desired</span>
+              <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;f(x) = m*x + b&quot;</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;fit f(x) '&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">datfile</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;' using 1:2 via m,b&quot;</span>
+             <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># plot with a regression line</span>
+             <span class="ruby-keyword">if</span>
+             <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;plot '#{datfile}' notitle, f(x) title 'Linear Fit'&quot;</span>
+             <span class="ruby-keyword">end</span>
+
+
+
+        <span class="ruby-comment"># otherwise dont add it</span>
+             <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;plot '#{datfile}'&quot;</span>
+
+           <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X and Y are different sizes&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- plotpoints-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- plotpoints-method -->
+
+    
+      <div id="method-i-update_db" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">update_db</span><span
+            class="method-args">(table,name,value,where_name,where_value)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="update_db-source">
+            <pre><span class="ruby-comment"># File liberty2db.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">update_db</span>(<span class="ruby-identifier">table</span>,<span class="ruby-identifier">name</span>,<span class="ruby-identifier">value</span>,<span class="ruby-identifier">where_name</span>,<span class="ruby-identifier">where_value</span>)
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Update TABLE: #{table} FIELD: #{name} VALUE: #{value}&quot;</span>
+        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">$dbh</span>.<span class="ruby-identifier">query</span>(<span class="ruby-node">&quot;SHOW COLUMNS FROM `#{table}` LIKE '#{name}'&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">num_rows</span>  <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Column #{name} doesn't exist&quot;</span>
+        <span class="ruby-keyword">else</span> 
+                <span class="ruby-identifier">$dbh</span>.<span class="ruby-identifier">query</span>(<span class="ruby-node">&quot;UPDATE #{table} SET #{name}='#{value}' WHERE #{where_name}='#{where_value}'&quot;</span>)
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- update_db-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- update_db-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

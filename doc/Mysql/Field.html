@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>Class: Mysql::Field</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>mysql-ruby-2.8.2/mysql.c
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="../Object.html">Object</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-hash">#hash</a>
+    
+    <li><a href="#method-i-inspect">#inspect</a>
+    
+    <li><a href="#method-i-is_not_null-3F">#is_not_null?</a>
+    
+    <li><a href="#method-i-is_num-3F">#is_num?</a>
+    
+    <li><a href="#method-i-is_pri_key-3F">#is_pri_key?</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../comparison_notes_txt~.html">comparison_notes</a>
+  
+    <li class="file"><a href="../inv_txt.html">inv</a>
+  
+    <li class="file"><a href="../log.html">log</a>
+  
+    <li class="file"><a href="../mysql-ruby-2_8_2/COPYING.html">COPYING</a>
+  
+    <li class="file"><a href="../mysql-ruby-2_8_2/Makefile.html">Makefile</a>
+  
+    <li class="file"><a href="../testout.html">testout</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Mysql.html">Mysql</a>
+  
+    <li><a href="../Mysql/Error.html">Mysql::Error</a>
+  
+    <li><a href="../Mysql/Field.html">Mysql::Field</a>
+  
+    <li><a href="../Mysql/Result.html">Mysql::Result</a>
+  
+    <li><a href="../Mysql/RowOffset.html">Mysql::RowOffset</a>
+  
+    <li><a href="../Mysql/Stmt.html">Mysql::Stmt</a>
+  
+    <li><a href="../Mysql/Time.html">Mysql::Time</a>
+  
+    <li><a href="../Gnuplot.html">Gnuplot</a>
+  
+    <li><a href="../Gnuplot/DataSet.html">Gnuplot::DataSet</a>
+  
+    <li><a href="../Gnuplot/Plot.html">Gnuplot::Plot</a>
+  
+    <li><a href="../Gnuplot/SPlot.html">Gnuplot::SPlot</a>
+  
+    <li><a href="../Array.html">Array</a>
+  
+    <li><a href="../Enumerable.html">Enumerable</a>
+  
+    <li><a href="../LibertyDatabase.html">LibertyDatabase</a>
+  
+    <li><a href="../Matrix.html">Matrix</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../Plot.html">Plot</a>
+  
+    <li><a href="../TC_Mysql.html">TC_Mysql</a>
+  
+    <li><a href="../TC_Mysql2.html">TC_Mysql2</a>
+  
+    <li><a href="../TC_MysqlRes.html">TC_MysqlRes</a>
+  
+    <li><a href="../TC_MysqlStmt.html">TC_MysqlStmt</a>
+  
+    <li><a href="../TC_MysqlStmt2.html">TC_MysqlStmt2</a>
+  
+    <li><a href="../TC_MysqlTime.html">TC_MysqlTime</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class Mysql::Field</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="AUTO_INCREMENT_FLAG">AUTO_INCREMENT_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="BINARY_FLAG">BINARY_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="BLOB_FLAG">BLOB_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="ENUM_FLAG">ENUM_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="MULTIPLE_KEY_FLAG">MULTIPLE_KEY_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="NOT_NULL_FLAG">NOT_NULL_FLAG
+        
+        <dd class="description"><p>FLAG</p>
+        
+      
+        <dt id="NUM_FLAG">NUM_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="PART_KEY_FLAG">PART_KEY_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="PRI_KEY_FLAG">PRI_KEY_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="SET_FLAG">SET_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="TIMESTAMP_FLAG">TIMESTAMP_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_BIT">TYPE_BIT
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_BLOB">TYPE_BLOB
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_CHAR">TYPE_CHAR
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_DATE">TYPE_DATE
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_DATETIME">TYPE_DATETIME
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_DECIMAL">TYPE_DECIMAL
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_DOUBLE">TYPE_DOUBLE
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_ENUM">TYPE_ENUM
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_FLOAT">TYPE_FLOAT
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_INT24">TYPE_INT24
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_LONG">TYPE_LONG
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_LONGLONG">TYPE_LONGLONG
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_NEWDECIMAL">TYPE_NEWDECIMAL
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_NULL">TYPE_NULL
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_SET">TYPE_SET
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_SHORT">TYPE_SHORT
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_STRING">TYPE_STRING
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_TIME">TYPE_TIME
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_TIMESTAMP">TYPE_TIMESTAMP
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_TINY">TYPE_TINY
+        
+        <dd class="description"><p>TYPE</p>
+        
+      
+        <dt id="TYPE_VAR_STRING">TYPE_VAR_STRING
+        
+        <dd class="description">
+        
+      
+        <dt id="TYPE_YEAR">TYPE_YEAR
+        
+        <dd class="description">
+        
+      
+        <dt id="UNIQUE_KEY_FLAG">UNIQUE_KEY_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="UNSIGNED_FLAG">UNSIGNED_FLAG
+        
+        <dd class="description">
+        
+      
+        <dt id="ZEROFILL_FLAG">ZEROFILL_FLAG
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>hash</p>
+          
+
+          
+          <div class="method-source-code" id="hash-source">
+            <pre>static VALUE field_hash(VALUE obj)
+{
+    VALUE h = rb_hash_new();
+    rb_hash_aset(h, rb_str_new2(&quot;name&quot;), rb_iv_get(obj, &quot;name&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;table&quot;), rb_iv_get(obj, &quot;table&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;def&quot;), rb_iv_get(obj, &quot;def&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;type&quot;), rb_iv_get(obj, &quot;type&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;length&quot;), rb_iv_get(obj, &quot;length&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;max_length&quot;), rb_iv_get(obj, &quot;max_length&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;flags&quot;), rb_iv_get(obj, &quot;flags&quot;));
+    rb_hash_aset(h, rb_str_new2(&quot;decimals&quot;), rb_iv_get(obj, &quot;decimals&quot;));
+    return h;
+}</pre>
+          </div><!-- hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- hash-method -->
+
+    
+      <div id="method-i-inspect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inspect</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>inspect</p>
+          
+
+          
+          <div class="method-source-code" id="inspect-source">
+            <pre>static VALUE field_inspect(VALUE obj)
+{
+    VALUE n = rb_iv_get(obj, &quot;name&quot;);
+    VALUE s = rb_str_new(0, RSTRING_LEN(n) + 16);
+    sprintf(RSTRING_PTR(s), &quot;#&lt;Mysql::Field:%s&gt;&quot;, RSTRING_PTR(n));
+    return s;
+}</pre>
+          </div><!-- inspect-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- inspect-method -->
+
+    
+      <div id="method-i-is_not_null-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_not_null?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>is_not_null?</p>
+          
+
+          
+          <div class="method-source-code" id="is_not_null-3F-source">
+            <pre>static VALUE field_is_not_null(VALUE obj)
+{
+    return IS_NOT_NULL(NUM2INT(rb_iv_get(obj, &quot;flags&quot;))) ? Qtrue : Qfalse;
+}</pre>
+          </div><!-- is_not_null-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_not_null-3F-method -->
+
+    
+      <div id="method-i-is_num-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_num?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>is_num?</p>
+          
+
+          
+          <div class="method-source-code" id="is_num-3F-source">
+            <pre>static VALUE field_is_num(VALUE obj)
+{
+    return IS_NUM(NUM2INT(rb_iv_get(obj, &quot;type&quot;))) ? Qtrue : Qfalse;
+}</pre>
+          </div><!-- is_num-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_num-3F-method -->
+
+    
+      <div id="method-i-is_pri_key-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_pri_key?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>is_pri_key?</p>
+          
+
+          
+          <div class="method-source-code" id="is_pri_key-3F-source">
+            <pre>static VALUE field_is_pri_key(VALUE obj)
+{
+    return IS_PRI_KEY(NUM2INT(rb_iv_get(obj, &quot;flags&quot;))) ? Qtrue : Qfalse;
+}</pre>
+          </div><!-- is_pri_key-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_pri_key-3F-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.11.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
