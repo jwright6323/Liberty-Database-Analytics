@@ -222,6 +222,7 @@ class Plot
 
             # generate a datafile to use in gnuplot
             datfile = filename + ".dat"
+            
 
             newfile = File.new(datfile, "w")
                 (0..x.size).collect do |i|

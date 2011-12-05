@@ -1,3 +1,0 @@
-" Show whitespace: tabs and trailing spaces
-set listchars=tab:→\ ,trail:·
-set list
