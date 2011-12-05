@@ -287,7 +287,7 @@ class LibertyDatabase
   def getOutputMaxCap
     querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
     querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
-    querystr << "WHERE pins.direction = 'output' AND cells.cell_footprint = 105 OR pins.direction = 'output' AND cells.cell_footprint = 54;"
+    querystr << "WHERE pins.direction = 'output';" # AND cells.cell_footprint = 105 OR pins.direction = 'output' AND cells.cell_footprint = 54;"
     results = Hash.new
     query( querystr ) { |row|
         if results.has_key?(row["cellname"]) then

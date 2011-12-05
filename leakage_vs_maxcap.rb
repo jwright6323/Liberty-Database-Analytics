@@ -9,7 +9,7 @@ require 'Plot.rb'
 #
 $verbose = true
 
-filename = "leakage_vs_maxcap"
+filename = "leakageVsMaxcap/leakage_vs_maxcap"
 
 
 # Declare a database
@@ -30,8 +30,19 @@ leakage.keys.each { |key|
     end
 }
 
+leakagePerMaxcap = Hash.new
+
+output_maxcaps.keys.each { |key|
+    leakagePerMaxcap[key] = leakage[key].to_f / output_maxcaps[key].to_f
+}
+
+
+
 scatterplot = Plot.new(output_maxcaps,leakage)
-scatterplot.plotToScreen( :title => "Leakage Power vs. Max Capacitance Driven", :x_label => "Max Capacitance Driven", :y_label => "Leakage Power", :linreg => true, :filename => filename, :outlierAnalysis => [true,2] ) 
-scatterplot.findOutliers((filename + ".outlier"), k = 2)
+scatterplot.plotToFile( :title => "Leakage Power vs. Max Capacitance Driven for All Cells", :x_label => "Max Capacitance Driven in pF", :y_label => "Leakage Power in microwatts", :linreg => true, :filename => filename + "ALLCELLS", :outlierAnalysis => [true,1] ) 
+scatterplot.findOutliers((filename + "ALLCELLS" + ".outlier"), k = 1)
+
+#histogram = Plot.new( leakagePerMaxcap )
+#histogram.plotToScreen ( :title => "Leakage Power vs. Max Capacitance Driven for INV and BUF", :x_label => "Leakage (microwatts) per pF", :numBins => 10, :filename => filename + "INFBUF" + "HIST" )
 
 

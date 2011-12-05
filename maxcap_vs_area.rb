@@ -34,19 +34,16 @@ output_maxcaps.keys.each { |key|
     maxcapPerArea[key] = output_maxcaps[key].to_f / area[key].to_f
 }
 
-
-
-
 scatterplot = Plot.new( area, output_maxcaps )
-scatterplot.plotToScreen( :dataLabels => true, :linreg => true, :title => "Max Capacitance Driven vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Max Capacitance Driven in pF", :filename => "maxcapVsAreaINVBUF", :outlierAnalysis => [true,2] )
-scatterplot.findOutliers( filename = "maxcapVsAreaOutliersINVBUF.dat", k = 2)
+scatterplot.plotToFile(  :linreg => true, :title => "Max Capacitance Driven vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Max Capacitance Driven in pF", :filename => "maxcapVsArea/maxcapVsAreaINVBUF", :outlierAnalysis => [true,2] )
+scatterplot.findOutliers( filename = "maxcapVsArea/maxcapVsAreaOutliersINVBUF.dat", k = 2)
 
 unitAreaVsArea = Plot.new( area, maxcapPerArea )
-unitAreaVsArea.plotToScreen( :dataLabels => true, :linreg => true, :title => "Max Capacitance Driven per Unit Area vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Max Cap per Unit Area (pF/square micron)", :filename => "maxcapPerAreaVsAreaINVBUF", :outlierAnalysis => [true,3] )
+unitAreaVsArea.plotToFile( :linreg => true, :title => "Max Capacitance Driven per Unit Area vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Max Cap per Unit Area (pF/square micron)", :filename => "maxcapVsArea/maxcapPerAreaVsAreaINVBUF", :outlierAnalysis => [true,2] )
 
 
 histplot = Plot.new( maxcapPerArea )
-histplot.plotToScreen( :title => "Max Capacitance Driven per Unit Area for INV and BUF", :filename => "maxcapPerUnitAreaHistINVBUF", :numBins => 10, :x_label => "pF per square micron" )
+histplot.plotToFile( :title => "Max Capacitance Driven per Unit Area for INV and BUF", :filename => "maxcapVsArea/maxcapPerUnitAreaHistINVBUF", :numBins => 10, :x_label => "pF per square micron" )
 
 # Information on cleaning up the data selection.
 puts "There were #{output_maxcaps.size} samples sent to the plot"
