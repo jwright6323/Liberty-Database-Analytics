@@ -1,3 +1,4 @@
+#!/usr/bin/csh
 mysql \
 --host=wildcat.ee.engr.uky.edu \
 --pass=liberty \
