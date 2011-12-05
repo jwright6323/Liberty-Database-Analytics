@@ -305,22 +305,24 @@ class LibertyDatabase
   #
   # [+:cells+] An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
   # [+:footprint+] A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # [+:type+] Best Case (:bc), Worst Case (:wc), or Average (:avg), default is :wc
   # [+:pvt+] The PVT corner to use.  Default is +this.pvt+.
   #
   # ==== Returns
-  # [+results+] A Hash with keys of the format cell_name.pin_name.when.timing_type, values are Hashes with keys of min,max,avg
+  # [+results+] A Hash with keys of the format cell_name.pin_name.timing_type[when], values are Hashes with keys of min,max,avg
   #
   def getTimingData(options = {})
     defaults = { :cells => nil,
                  :footprint => nil,
+                 :type => :wc,
                  :pvt => @pvt }
     options = defaults.merge(options)
     if options[:footprint] then
       options[:cells] = getCellsInFootprint(options[:footprint])
     end
-    query_string =  "SELECT sum(timing_data.value)/count(timing_data.value) AS avg,\n"
-    query_string << "       min(timing_data.value) AS min,\n"
-    query_string << "       max(timing_data.value) AS max,\n"
+    query_string =  "SELECT max(timing_data.value) AS val,\n"
+    query_string =  "SELECT sum(timing_data.value)/count(timing_data.value) AS val,\n" if options[:type] == :avg
+    query_string =  "SELECT min(timing_data.value) AS val,\n" if options[:type] == :bc
     query_string << "       timing.timing_type,\n"
     query_string << "       timing.when AS when_cond,\n"
     query_string << "       pins.name AS pin_name,\n"
@@ -339,11 +341,12 @@ class LibertyDatabase
     query_string << "\nGROUP BY timing.id;"
     results = Hash.new
     query(query_string) { |row|
-      key = "#{row['cell_name']}.#{row['pin_name']}.#{row['when_cond'] || "null"}.#{row['timing_type']}"
-      results.store(key,Hash.new)
-      results[key].store('min',row['min'].to_f)
-      results[key].store('max',row['max'].to_f)
-      results[key].store('avg',row['avg'].to_f)
+      key = "#{row['cell_name']}.#{row['pin_name']}.#{row['timing_type']}"
+      whenval = row['when_cond'] || "null"
+      unless results[key]
+        results.store(key,Hash.new)
+      end
+      results[key].store(whenval,row["val"].to_f)
     }
 
     results

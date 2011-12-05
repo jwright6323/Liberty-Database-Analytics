@@ -11,7 +11,6 @@ test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => 
 lkg = test.getData "cell_leakage_power"
 area = test.getData "area"
 p = Plot.new area,lkg
-p.plotToScreen :outlierAnalysis => true
 
 #puts test.getLeakage(:cells => "INVM1S").inspect
 
