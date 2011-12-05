@@ -1,4 +1,4 @@
-Mon, 05 Dec 2011 01:59:33 -0500
+Mon, 05 Dec 2011 02:21:23 -0500
 ./leakage_vs_area.rb	Mon, 05 Dec 2011 01:56:59 -0500
 ./LibertyDatabase.rb	Mon, 05 Dec 2011 01:24:17 -0500
 ./mysql-ruby-2.8.2/Makefile	Wed, 09 Nov 2011 15:44:55 -0500
@@ -12,7 +12,6 @@ Mon, 05 Dec 2011 01:59:33 -0500
 ./comparison_notes.txt~	Sun, 04 Dec 2011 17:56:14 -0500
 ./mysql-ruby-2.8.2/mysql.c	Thu, 11 Feb 2010 05:42:54 -0500
 ./old_code/plothist.rb	Mon, 21 Nov 2011 16:16:20 -0500
-./comparison_notes.txt	Sun, 04 Dec 2011 21:05:01 -0500
 ./timing_histogram.rb	Mon, 05 Dec 2011 01:23:14 -0500
 ./mysql-ruby-2.8.2/extconf.rb	Sun, 01 Feb 2009 03:31:18 -0500
 ./liberty2db.rb	Wed, 09 Nov 2011 12:50:52 -0500
