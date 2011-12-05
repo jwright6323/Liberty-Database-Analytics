@@ -12,19 +12,6 @@ require 'mysql'
 class LibertyDatabase
   attr_reader :pvt, :db, :logfile
 
-  CELL_TABLE_NAME = "cells"
-  CELL_TABLE_ID = "id"
-  CELL_LEAKAGE_COLUMN = "cell_leakage_power"
-  CELL_FOOTPRINT_COLUMN = "cell_footprint"
-  CELL_NAME_COLUMN = "name"
-  FOOTPRINT_TABLE_NAME = "footprints"
-  FOOTPRINT_TABLE_ID = "id"
-  FOOTPRINT_NAME_COLUMN = "name"
-  LEAKAGE_WHEN_TABLE_NAME = "leakage_power"
-  LEAKAGE_WHEN_CELL_COLUMN = "cell_id"
-  LEAKAGE_WHEN_VALUE_COLUMN = "value"
-  LEAKAGE_WHEN_NAME_COLUMN = "when"
-
   # Constructor
   #
   # ==== Options
@@ -111,16 +98,17 @@ class LibertyDatabase
                  :footprint => nil,
                  :pvt => @pvt }
     options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
 
     #build the SQL query
-    query_string =  "SELECT #{CELL_TABLE_NAME}.#{parameter},"
-    query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
-    query_string << "FROM #{CELL_TABLE_NAME}"
+    query_string =  "SELECT cells.#{parameter},cells.name\n"
+    query_string << "FROM cells"
     if options[:footprint] then
-      query_string << "\nLEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
-      query_string << "ON #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID} "
-      query_string << "= #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN}\n"
-      query_string << "WHERE #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN} "
+      query_string << "\nLEFT OUTER JOIN footprints\n"
+      query_string << "ON footprints.id = cells.cell_footprint\n"
+      query_string << "WHERE footprints.name "
       query_string << "= '#{options[:footprint]}'"
       if options[:cells] then
         query_string << "\nAND "
@@ -129,7 +117,7 @@ class LibertyDatabase
       query_string << "\nWHERE "
     end
     if options[:cells] then
-      query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
+      query_string << "cells.name IN ("
       options[:cells].each { |cell|
         query_string << "'#{cell}',"
       }
@@ -139,7 +127,7 @@ class LibertyDatabase
     query_string << ";"
     results = Hash.new
     query(query_string) { |row|
-      results.store( row[CELL_NAME_COLUMN], row[parameter] )
+      results.store( row["name"], row[parameter] )
     }
 
     results
@@ -161,22 +149,21 @@ class LibertyDatabase
                  :footprint => nil,
                  :pvt => @pvt }
     options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
 
-    results = getData(CELL_LEAKAGE_COLUMN,options)
+    results = getData("cell_leakage_power",options)
     results.each do |key,val|
       results.delete(key)
       results.store(key,Hash.new)
       results[key].store(:wc,val.to_f)
     end #results.each
-    query_string =  "SELECT #{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_VALUE_COLUMN},"
-    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_NAME_COLUMN},"
-    query_string << "#{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
-    query_string << "FROM #{LEAKAGE_WHEN_TABLE_NAME}\n"
-    query_string << "LEFT OUTER JOIN #{CELL_TABLE_NAME}\n"
-    query_string << "ON #{CELL_TABLE_NAME}.#{CELL_TABLE_ID} = "
-    query_string << "#{LEAKAGE_WHEN_TABLE_NAME}.#{LEAKAGE_WHEN_CELL_COLUMN}"
+    query_string =  "SELECT leakage_power.when,leakage_power.value,cells.name\n"
+    query_string << "FROM leakage_power\n"
+    query_string << "LEFT OUTER JOIN cells ON cells.id = leakage_power.cell_id"
     if options[:cells] then
-      query_string << "\nWHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} IN ("
+      query_string << "\nWHERE cells.name IN ("
       options[:cells].each { |cell|
         query_string << "'#{cell}',"
       }
@@ -185,7 +172,7 @@ class LibertyDatabase
     end
     query_string << ";"
     query(query_string) { |row|
-      results[row[CELL_NAME_COLUMN]].store(row[LEAKAGE_WHEN_NAME_COLUMN],row[LEAKAGE_WHEN_VALUE_COLUMN].to_f)
+      results[row["name"]].store(row["when"],row["value"].to_f)
     }
 
     results
@@ -207,8 +194,8 @@ class LibertyDatabase
   # [+result+] An Array containing the names of all cell footprints as strings
   #
   def getFootprints
-    query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
-    query_string << "FROM #{FOOTPRINT_TABLE_NAME}\n;"
+    query_string =  "SELECT footprints.name\n"
+    query_string << "FROM footprints\n;"
     result = Array.new
     query(query_string) { |row|
       result.push(row["name"])
@@ -220,17 +207,16 @@ class LibertyDatabase
   # Get the footprint of a single cell
   #
   # ==== Parameters
-  # [+cell+] The cell to query.
+  # [+cell+] The cell to query
   #
   # ==== Returns
   # [+result+] The name of the given cell's footprint as a string
   #
   def getCellFootprint( cell )
-    query_string =  "SELECT #{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_NAME_COLUMN}\n"
-    query_string << "FROM #{CELL_TABLE_NAME} LEFT OUTER JOIN #{FOOTPRINT_TABLE_NAME}\n"
-    query_string << "ON #{CELL_TABLE_NAME}.#{CELL_FOOTPRINT_COLUMN} = "
-    query_string << "#{FOOTPRINT_TABLE_NAME}.#{FOOTPRINT_TABLE_ID}\n"
-    query_string << "WHERE #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN} "
+    query_string =  "SELECT footprints.name\n"
+    query_string << "FROM cells LEFT OUTER JOIN footprins\n"
+    query_string << "ON cells.cell_footprint = footprints.id\n"
+    query_string << "WHERE  "
     query_string << "= '#{cell}';"
     result = nil
     query(query_string) { |row|
@@ -246,16 +232,23 @@ class LibertyDatabase
   # [+result+] An Array containing the names of all cells as strings
   #
   def getCells
-    query_string =  "SELECT #{CELL_TABLE_NAME}.#{CELL_NAME_COLUMN}\n"
-    query_string << "FROM #{CELL_TABLE_NAME};"
+    query_string =  "SELECT cells.name\n"
+    query_string << "FROM cells;"
     results = Array.new
     query(query_string) { |row|
-      results.push( row[CELL_NAME_COLUMN] )
+      results.push( row["name"] )
     }
 
     results
   end #getCells
 
+  # Get all of the cells with a given footprint
+  #
+  # ==== Parameters
+  # [+footprint+] The footprint to query
+  #
+  # ==== Returns
+  # [+results+] An Array containing the cell names in the specified footprint
   def getCellsInFootprint( footprint )
     query_string =  "SELECT cells.name\n"
     query_string << "FROM cells LEFT OUTER JOIN footprints ON cells.cell_footprint = footprints.id\n"
@@ -286,11 +279,10 @@ class LibertyDatabase
     end #catching Mysql::Error
   end #query
 
-
+  # Query Max Capacitance values for output pins of all cells. If a cell has more than one output, add the max capacitance values
   #
-  # Query Max Capacitance values for output pins of all cells. If a cell has more than one output, add the max capacitance values.
-  # Returns a hash with cell name associated with its total max capacitance value.
-  #
+  # ==== Returns
+  # [+result+] A Hash with cell names as keys and sum of pin max capacitance as a value
   #
   def getOutputMaxCap
     querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
@@ -307,6 +299,17 @@ class LibertyDatabase
     results
   end #getOutputMaxCap
 
+  # Query timing data for cells or cell footprints
+  #
+  # ==== Options
+  #
+  # [+:cells+] An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # [+:footprint+] A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # [+:pvt+] The PVT corner to use.  Default is +this.pvt+.
+  #
+  # ==== Returns
+  # [+results+] A Hash with keys of the format cell_name.pin_name.when.timing_type, values are Hashes with keys of min,max,avg
+  #
   def getTimingData(options = {})
     defaults = { :cells => nil,
                  :footprint => nil,
@@ -315,7 +318,6 @@ class LibertyDatabase
     if options[:footprint] then
       options[:cells] = getCellsInFootprint(options[:footprint])
     end
-    #select sum(value)/count(value) from timing_data left outer join timing on timing.id = timing_data.timing_id left outer join pins on pins.id = timing.pin_id left outer join cells on pins.cell_id = cells.id where cells.name LIKE 'INVM1S' group by pin_id;
     query_string =  "SELECT sum(timing_data.value)/count(timing_data.value) AS avg,\n"
     query_string << "       min(timing_data.value) AS min,\n"
     query_string << "       max(timing_data.value) AS max,\n"
