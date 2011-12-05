@@ -256,6 +256,17 @@ class LibertyDatabase
     results
   end #getCells
 
+  def getCellsInFootprint( footprint )
+    query_string =  "SELECT cells.name\n"
+    query_string << "FROM cells LEFT OUTER JOIN footprints ON cells.cell_footprint = footprints.id\n"
+    query_string << "WHERE footprints.name LIKE '#{footprint}';"
+    results = Array.new
+    query(query_string) { |row|
+      results.push(row['name'])
+    }
+    results
+  end #getCellsInFootprint
+
   # Perform a custom database query with logging
   #
   # ==== Parameters
@@ -276,12 +287,11 @@ class LibertyDatabase
   end #query
 
 
-  # 
+  #
   # Query Max Capacitance values for output pins of all cells. If a cell has more than one output, add the max capacitance values.
   # Returns a hash with cell name associated with its total max capacitance value.
-  # 
   #
-
+  #
   def getOutputMaxCap
     querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
     querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
@@ -296,6 +306,46 @@ class LibertyDatabase
     }
     results
   end #getOutputMaxCap
+
+  def getTimingData(options = {})
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
+    #select sum(value)/count(value) from timing_data left outer join timing on timing.id = timing_data.timing_id left outer join pins on pins.id = timing.pin_id left outer join cells on pins.cell_id = cells.id where cells.name LIKE 'INVM1S' group by pin_id;
+    query_string =  "SELECT sum(timing_data.value)/count(timing_data.value) AS avg,\n"
+    query_string << "       min(timing_data.value) AS min,\n"
+    query_string << "       max(timing_data.value) AS max,\n"
+    query_string << "       timing.timing_type,\n"
+    query_string << "       timing.when AS when_cond,\n"
+    query_string << "       pins.name AS pin_name,\n"
+    query_string << "       cells.name AS cell_name\n"
+    query_string << "FROM timing_data LEFT OUTER JOIN timing ON timing.id = timing_data.timing_id\n"
+    query_string << "                 LEFT OUTER JOIN pins ON pins.id = timing.pin_id\n"
+    query_string << "                 LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
+    if options[:cells] then
+      query_string << "WHERE cells.name IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")"
+    end
+    query_string << "\nGROUP BY timing.id;"
+    results = Hash.new
+    query(query_string) { |row|
+      key = "#{row['cell_name']}.#{row['pin_name']}.#{row['when_cond'] || "null"}.#{row['timing_type']}"
+      results.store(key,Hash.new)
+      results[key].store('min',row['min'].to_f)
+      results[key].store('max',row['max'].to_f)
+      results[key].store('avg',row['avg'].to_f)
+    }
+
+    results
+  end #getTimingData
 
   # Close the database and logfile
   def close
