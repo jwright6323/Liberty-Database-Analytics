@@ -183,6 +183,7 @@ class Plot
             binSum = 0;
             (0..(numBins-1)).each { |index|
                 binSum = x_count[index] + binSum
+                puts x_count[index]
                 }
             puts "There were #{binSum} samples in the plot."
 
@@ -199,6 +200,7 @@ class Plot
                     plot.terminal "gif"
                     plot.output filename + ".gif"
                     plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
+                    plot.arbitrary_lines << "set yrange [0:#{x_count.max + 1}]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
                         ds.with = "boxes"
@@ -209,25 +211,28 @@ class Plot
         end
 
         if (@plottype == :scatter)
-            y = Array.new
-            x = Array.new
-            @x_data.keys.each { |key|
-                x.push(x_data[key].to_f)
-            }
-            @y_data.keys.each { |key|
-                y.push(y_data[key].to_f)
-            }
+#            y = Array.new
+ #           x = Array.new
+  #          @x_data.keys.each { |key|
+   #             x.push(x_data[key].to_f)
+    #        }
+     #       @y_data.keys.each { |key|
+      #          y.push(y_data[key].to_f)
+       #     }
 
             if(@x_data.length == @y_data.length)
 
             # generate a datafile to use in gnuplot
             datfile = filename + ".dat"
-            
 
             newfile = File.new(datfile, "w")
-                (0..x.size).collect do |i|
-                newfile.puts "#{x[i]}\t#{y[i]}"
-            end
+
+            pointCount = 0
+            @x_data.keys.each { |i|
+                newfile.puts "#{@x_data[i]}\t#{@y_data[i]}"
+                pointCount = pointCount + 1
+            }
+            puts pointCount
 
             newfile.close
 
@@ -299,7 +304,7 @@ class Plot
                     # add data point names if desired
                     if (dataLabels)
                         @x_data.keys.each { |key|
-                            plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
+                            plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
                         }
                     end
 
@@ -411,6 +416,7 @@ class Plot
                     # plot.terminal "gif"
                     # plot.output filename + ".gif"
                     plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
+                    plot.arbitrary_lines << "set yrange [0:#{x_count.max + 1}]"
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
                         ds.with = "boxes"
@@ -422,14 +428,14 @@ class Plot
 
         if (@plottype == :scatter)
 
-            y = Array.new
-            x = Array.new
-            @x_data.keys.each { |key|
-                x.push(x_data[key].to_f)
-            }
-            @y_data.keys.each { |key|
-                y.push(y_data[key].to_f)
-            }
+#            y = Array.new
+ #           x = Array.new
+  #          @x_data.keys.each { |key|
+   #             x.push(x_data[key].to_f)
+    #        }
+     #       @y_data.keys.each { |key|
+      #          y.push(y_data[key].to_f)
+       #     }
 
 
 
@@ -439,10 +445,12 @@ class Plot
                 datfile = filename + ".dat"
 
                 newfile = File.new(datfile, "w")
-                    (0..x.size).collect do |i|
-                    newfile.puts "#{x[i]}\t#{y[i]}"
-                end
-
+                pointCount = 0
+                @x_data.keys.each { |i|
+                    newfile.puts "#{@x_data[i]}\t#{@y_data[i]}"
+                    pointCount = pointCount + 1
+                }
+                puts pointCount
                 newfile.close
 
                 # plot data
