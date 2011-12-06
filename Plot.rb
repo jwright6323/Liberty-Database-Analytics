@@ -13,7 +13,7 @@ require 'analytics.rb'
 
 # Plot is a class to generate various plots from given data.
 class Plot
-    attr_reader :x_data, :y_data
+    attr_reader :x_data, :y_data, :outlier_data
 
     # Constructor
     #
@@ -25,16 +25,17 @@ class Plot
         @x_data = x.clone
         @y_data = y.clone if y
         @plottype = :scatter
+        @outlier_data = Hash.new
 
         # Check for 1D vs 2D plotting
         if (y == nil)
             @plottype = :histogram
         end
     end # initialize
-
+    
+    #
     # Find outliers for a given set of data and print them to a file. Outliers are defined as any numbers that lie outside median +- k(q3-q1)
     # 
-    #
     # ====Parameters
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
     # [+k+] Number of IQRs to check outliers against. Default is 1.
@@ -68,6 +69,7 @@ class Plot
             slopeHash.keys.each { |key|
                     if (slopeHash[key] > maxSlope || slopeHash[key] < minSlope)
                         newfile.puts "#{key}"
+                        @outlier_data[key] = 0 # Generate a hash with keys corresponding to outlier names
                     end
             }
             newfile.close
@@ -95,6 +97,7 @@ class Plot
             @x_data.keys.each { |key|
                 if (@x_data[key] > maxOut || @x_data[key] < minOut)
                     newfile.puts "#{key}"
+                    @outlier_data[key] = 0 # Generate a hash with keys corresponding to outlier names
                 end
             }
             newfile.close
@@ -118,6 +121,7 @@ class Plot
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
     # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
+    # [+:addOutlierLabels+] Int to enable outlier labeling. Value represents the number of IQRs to consider when generating the list. Default is 0 (off). Must be > 0 to enable.
     #
 
     def plotToFile( options={} )
@@ -137,7 +141,8 @@ class Plot
                      :logy => false,
                      :linreg => false,
                      :outlierAnalysis => [false, 1],
-                     :dataLabels => false }
+                     :dataLabels => false,
+                     :addOutlierLabels => 0 }
 
         options = defaults.merge(options)
 
@@ -153,6 +158,7 @@ class Plot
         linreg = options[:linreg]
         outlierAnalysis = options[:outlierAnalysis]
         dataLabels = options[:dataLabels]
+        addOutlierLabels = options[:addOutlierLabels]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -174,16 +180,18 @@ class Plot
                     count = count + 1
                 end
                 }
-            x_count.push(count)
+                
+                x_count.push(count)
             }
-  
-            x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
-            
+            if (min == x.min)
+                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+            end
+
             # To check bin counts
             binSum = 0;
             (0..(numBins-1)).each { |index|
                 binSum = x_count[index] + binSum
-                puts x_count[index]
+                puts "Bin #{index} contains #{x_count[index]}"
                 }
             puts "There were #{binSum} samples in the plot."
 
@@ -227,12 +235,13 @@ class Plot
 
             newfile = File.new(datfile, "w")
 
+            # pointCount tells how many points are on the graph
             pointCount = 0
             @x_data.keys.each { |i|
                 newfile.puts "#{@x_data[i]}\t#{@y_data[i]}"
                 pointCount = pointCount + 1
             }
-            puts pointCount
+            puts "There are #{pointCount} points on the plot."
 
             newfile.close
 
@@ -302,12 +311,21 @@ class Plot
                         plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                     end
                     # add data point names if desired
-                    if (dataLabels)
+                    if (dataLabels && addOutlierLabels = 0) # Won't label everything if outlier labeling is enabled
                         @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
                         }
                     end
 
+                    # add outlier data labels
+                    if ( addOutlierLabels > 0 )
+                        self.findOutliers( filename + ".outlierdata", addOutlierLabels )
+                        @outlier_data.keys.each { |key|
+                            # add labels to each point where an outlier exists
+                            plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
+                        }
+                        puts "Labeled #{@outlier_data.size} outliers."
+                    end    
                     plot.arbitrary_lines << plotString
                 end
             end
@@ -334,6 +352,7 @@ class Plot
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
     # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
+    # [+:addOutlierLabels+] Int to enable outlier labeling. Value represents the number of IQRs to consider when generating the list. Default is 0 (off). Must be > 0 to enable.
     #
 
     def plotToScreen( options = {}  )
@@ -353,7 +372,8 @@ class Plot
                      :logy => false,
                      :linreg => false,
                      :outlierAnalysis => [false, 1],
-                     :dataLabels => false }
+                     :dataLabels => false,
+                     :addOutlierLabels => 0 }
 
         options = defaults.merge(options)
 
@@ -369,6 +389,7 @@ class Plot
         linreg = options[:linreg]
         outlierAnalysis = options[:outlierAnalysis]
         dataLabels = options[:dataLabels]
+        addOutlierLabels = options[:addOutlierLabels]
 
         if (@plottype == :histogram)
             x = Array.new
@@ -391,9 +412,10 @@ class Plot
                 }
             x_count.push(count)
             }
-
-            x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
-
+            
+            if (min == x_array.min)
+                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+            end
 
             # To check bin counts
             binSum = 0;
@@ -450,7 +472,7 @@ class Plot
                     newfile.puts "#{@x_data[i]}\t#{@y_data[i]}"
                     pointCount = pointCount + 1
                 }
-                puts pointCount
+                puts "There are #{pointCount} points on the plot."
                 newfile.close
 
                 # plot data
@@ -519,12 +541,22 @@ class Plot
                         end
 
                         # add data point names if desired
-                        if (dataLabels)
+                        if (dataLabels && addOutlierLabels > 0) # Won't add labels to everything if we only want outliers labeled.
                             @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
                             }
                         end
 
+                        # add outlier data labels
+                        if ( addOutlierLabels > 0 )
+                            self.findOutliers( filename + ".outlierdata", addOutlierLabels )
+                            @outlier_data.keys.each { |key|
+                                # add labels to each point where an outlier exists
+                                plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
+                            }
+                        puts "Labeled #{@outlier_data.size} outliers."
+                        end 
+                        
                         plot.arbitrary_lines << plotString
 
                     end
