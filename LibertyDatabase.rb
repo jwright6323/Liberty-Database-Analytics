@@ -281,13 +281,35 @@ class LibertyDatabase
 
   # Query Max Capacitance values for output pins of all cells. If a cell has more than one output, add the max capacitance values
   #
+  # ==== Options
+  #
+  # [+:cells+] An array of cells to query.  +nil+ uses all cells.  Default is +nil+.
+  # [+:footprint+] A single footprint to query.  +nil+ uses all footprints.  Default is +nil+.
+  # [+:pvt+] The PVT corner to use.  Default is +this.pvt+.
+  #
   # ==== Returns
   # [+result+] A Hash with cell names as keys and sum of pin max capacitance as a value
   #
-  def getOutputMaxCap
+  def getOutputMaxCap(options={})
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
     querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
     querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
-    querystr << "WHERE pins.direction = 'output';" # AND cells.cell_footprint = 105 OR pins.direction = 'output' AND cells.cell_footprint = 54;"
+    querystr << "WHERE pins.direction = 'output'"
+    if options[:cells] then
+      query_string << "WHERE cells.name IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")"
+    end
+    querystr << ";"
     results = Hash.new
     query( querystr ) { |row|
         if results.has_key?(row["cellname"]) then
