@@ -33,12 +33,17 @@ area.keys.each { |key|
 
 
 testplot = Plot.new( area, lkg )
-testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "leakageVsArea/lkgVsAreaINVBUF", :linreg => true, :outlierAnalysis => [true,1] )
-testplot.findOutliers( "leakageVsArea/lkgVsAreaINVBUFOutliers.dat", k = 1 )
 
-lkgUnitArea = Plot.new( area, leakagePerArea )
-lkgUnitArea.plotToFile( :title => "Leakage per Unit Area vs Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage (microwatts) per square micron", :filename => "leakageVsArea/lkgUnitAreaINVBUF", :linreg => true, :outlierAnalysis => [true,1] )
+testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "dataLabelDemo/allLabels", :linreg => true, :dataLabels => true )
 
-hist = Plot.new( leakagePerArea )
-hist.plotToFile( :title => "Leakage per Unit Area for INV and BUF", :x_label => "Leakage in microwatts per square micron", :filename => "leakageVsArea/lkgUnitAreaINVBUFHist", :numBins => 10 )
+#testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "logScaleDemo/original", :linreg => true  )
+# testplot.findOutliers( "dataLabelDemo/lkgVsAreaINVBUFOutliers.dat", k = 1 )
+#testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "logScaleDemo/xLog", :logx => true, :linreg => true )
+#testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "logScaleDemo/yLog", :logy => true, :linreg => true )
+#testplot.plotToFile( :title => "Leakage Vs. Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage in microwatts", :filename => "logScaleDemo/xyLog", :logx => true, :logy => true, :linreg => true )
+#lkgUnitArea = Plot.new( area, leakagePerArea )
+#lkgUnitArea.plotToFile( :title => "Leakage per Unit Area vs Area for INV and BUF", :x_label => "Area in square microns", :y_label => "Leakage (microwatts) per square micron", :filename => "leakageVsArea/lkgUnitAreaINVBUF", :linreg => true, :outlierAnalysis => [true,1] )
+
+#hist = Plot.new( leakagePerArea )
+#hist.plotToFile( :title => "Leakage per Unit Area for INV and BUF", :x_label => "Leakage in microwatts per square micron", :filename => "leakageVsArea/lkgUnitAreaINVBUFHist", :numBins => 10 )
 
