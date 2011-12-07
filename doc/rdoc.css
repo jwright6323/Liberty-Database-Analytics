@@ -6,7 +6,7 @@
  *
  */
 
-/* Base Green is: #080567 */
+/* Base Green is: #6C8C22 */
 
 * { padding: 0; margin: 0; }
 
@@ -23,18 +23,18 @@ body.file-popup {
 h1 {
   font-size: 300%;
   text-shadow: rgba(135,145,135,0.65) 2px 2px 3px;
-  color: #080567;
+  color: #6C8C22;
 }
 h2,h3,h4 { margin-top: 1.5em; }
 
 :link,
 :visited {
-  color: #080567;
+  color: #6C8C22;
   text-decoration: none;
 }
 :link:hover,
 :visited:hover {
-  border-bottom: 1px dotted #080567;
+  border-bottom: 1px dotted #6C8C22;
 }
 
 pre {
@@ -319,7 +319,7 @@ ul.link-list .type {
   top: 6px;
   right: 12px;
   font-size: 10px;
-  color: #080567;
+  color: #9b9877;
   visibility: hidden;
   padding-right: 0.5px;
 }
@@ -371,7 +371,7 @@ ul.link-list .type {
   top: 8px;
   right: 10px;
   font-size: 12px;
-  color: #080567;
+  color: #9b9877;
   visibility: hidden;
 }
 
@@ -391,7 +391,7 @@ ul.link-list .type {
   cursor: pointer;
 }
 #documentation .method-detail:hover {
-  background-color: #efcfcf;
+  background-color: #f1edba;
 }
 #documentation .method-heading {
   position: relative;
@@ -410,7 +410,7 @@ ul.link-list .type {
   top: 2px;
   right: 5px;
   font-size: 10px;
-  color: #080567;
+  color: #9b9877;
   visibility: hidden;
   padding-right: 20px;
   line-height: 20px;
@@ -452,7 +452,7 @@ pre {
 }
 
 #documentation .attribute-method-heading {
-  background: url(images/page_white_text.png) no-repeat left bottom;
+  background: url(images/tag_green.png) no-repeat left bottom;
 }
 #documentation #attribute-method-details .method-detail:hover {
   background-color: transparent;
