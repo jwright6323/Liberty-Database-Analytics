@@ -73,6 +73,7 @@ class Plot
                     end
             }
             newfile.close
+            puts @outlier_data.keys if $verbose
         end # 2D Plotting
 
         if ( @y_data == nil) # For 1D Plotting
@@ -101,6 +102,7 @@ class Plot
                 end
             }
             newfile.close
+            puts @outlier_data.keys if $verbose
         end # 1D Plotting
 
     end #findOutliers
@@ -541,7 +543,7 @@ class Plot
                         end
 
                         # add data point names if desired
-                        if (dataLabels && addOutlierLabels > 0) # Won't add labels to everything if we only want outliers labeled.
+                        if (dataLabels && addOutlierLabels == 0) # Won't add labels to everything if we only want outliers labeled.
                             @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}"
                             }
