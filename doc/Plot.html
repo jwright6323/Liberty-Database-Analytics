@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link">Object
   
 </nav>
 
@@ -84,76 +84,17 @@
   </div>
 
   <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
-  
-    <li class="file"><a href="./inv_txt.html">inv</a>
-  
-    <li class="file"><a href="./log.html">log</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="./testout.html">testout</a>
-  
-  </ul>
-</nav>
-
+    
     <nav id="classindex-section" class="section project-section">
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
   
-    <li><a href="./Mysql.html">Mysql</a>
-  
-    <li><a href="./Mysql/Error.html">Mysql::Error</a>
-  
-    <li><a href="./Mysql/Field.html">Mysql::Field</a>
-  
-    <li><a href="./Mysql/Result.html">Mysql::Result</a>
-  
-    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
-  
-    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
-  
-    <li><a href="./Mysql/Time.html">Mysql::Time</a>
-  
-    <li><a href="./Gnuplot.html">Gnuplot</a>
-  
-    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
-  
-    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
-  
-    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
-  
-    <li><a href="./Array.html">Array</a>
-  
     <li><a href="./Enumerable.html">Enumerable</a>
   
     <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
   
-    <li><a href="./Matrix.html">Matrix</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
     <li><a href="./Plot.html">Plot</a>
-  
-    <li><a href="./TC_Mysql.html">TC_Mysql</a>
-  
-    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
-  
-    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
-  
-    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
-  
-    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
-  
-    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
   
   </ul>
 </nav>
@@ -186,6 +127,19 @@ given data.</p>
     <section id="attribute-method-details" class="method-section section">
       <h3 class="section-header">Attributes</h3>
 
+      
+      <div id="attribute-i-outlier_data" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">outlier_data</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
       
       <div id="attribute-i-x_data" class="method-detail">
         <div class="method-heading attribute-method-heading">
@@ -252,6 +206,7 @@ given data.</p>
     <span class="ruby-ivar">@x_data</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">clone</span>
     <span class="ruby-ivar">@y_data</span> = <span class="ruby-identifier">y</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">y</span>
     <span class="ruby-ivar">@plottype</span> = <span class="ruby-value">:scatter</span>
+    <span class="ruby-ivar">@outlier_data</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
 
     <span class="ruby-comment"># Check for 1D vs 2D plotting</span>
     <span class="ruby-keyword">if</span> (<span class="ruby-identifier">y</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>)
@@ -301,7 +256,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
 
           
           <div class="method-source-code" id="findOutliers-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 43</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">findOutliers</span>( <span class="ruby-identifier">filename</span> = <span class="ruby-string">&quot;outliers.dat&quot;</span>, <span class="ruby-identifier">k</span> = <span class="ruby-value">1</span> )
     <span class="ruby-keyword">if</span> ( <span class="ruby-ivar">@y_data</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> ) <span class="ruby-comment"># 2D Plotting</span>
         <span class="ruby-comment"># Create a hash of slopes with their keys and an array of slopes</span>
@@ -330,6 +285,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
         <span class="ruby-identifier">slopeHash</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
                 <span class="ruby-keyword">if</span> (<span class="ruby-identifier">slopeHash</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">maxSlope</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">slopeHash</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">minSlope</span>)
                     <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{key}&quot;</span>
+                    <span class="ruby-ivar">@outlier_data</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-value">0</span> <span class="ruby-comment"># Generate a hash with keys corresponding to outlier names</span>
                 <span class="ruby-keyword">end</span>
         }
         <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
@@ -340,7 +296,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
         <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
             <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">push</span>( <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>])
         }
-        
+
         <span class="ruby-comment"># 5 Number Analysis on Data</span>
         <span class="ruby-identifier">summary</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-identifier">summary</span> = <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">fiveNumSum</span>
@@ -348,7 +304,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
         <span class="ruby-comment"># Determine the max and min non-outliers</span>
         <span class="ruby-identifier">minOut</span> = <span class="ruby-identifier">summary</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">k</span> * (<span class="ruby-identifier">summary</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summary</span>[<span class="ruby-value">1</span>])
         <span class="ruby-identifier">maxOut</span> = <span class="ruby-identifier">summary</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">k</span> * (<span class="ruby-identifier">summary</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summary</span>[<span class="ruby-value">1</span>])
-        
+
         <span class="ruby-comment"># Select any outliers and print their cell names to a datafile</span>
 
         <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">filename</span>, <span class="ruby-string">&quot;w&quot;</span>)
@@ -357,6 +313,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
         <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
             <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">maxOut</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>] <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">minOut</span>)
                 <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{key}&quot;</span>
+                <span class="ruby-ivar">@outlier_data</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-value">0</span> <span class="ruby-comment"># Generate a hash with keys corresponding to outlier names</span>
             <span class="ruby-keyword">end</span>
         }
         <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
@@ -423,219 +380,232 @@ in the hash passed in.</p>
 <dd>
 <p>Bool to add a linear regression line to a scatter plot. Default is false
 (off).</p>
-</dd><dt><code>:outlierAnalysis</code>
+</dd><dt><code>:doOutliers</code>
 <dd>
-<p><a href="Array.html">Array</a> to add outlier analysis lines. This array is
-of the form [ bool, k]. Bool turns on the analysis and k is the number of
-IQRs to use. Default is [false, 1] (off with 1 IQR).</p>
+<p>Bool to enable calculation of outliers.  Default is false (off).</p>
+</dd><dt><code>:outlierK</code>
+<dd>
+<p>Outlier K value.  Default is 2.</p>
 </dd><dt><code>:dataLabels</code>
 <dd>
 <p>Bool to include the key of the @<a
 href="Plot.html#attribute-i-x_data">#x_data</a> hash at the appropriate
 point of the plot. Default is false (off).</p>
+</dd><dt><code>:addOutlierLabels</code>
+<dd>
+<p>Int to enable outlier labeling. Value represents the number of IQRs to
+consider when generating the list. Default is 0 (off). Must be &gt; 0 to
+enable.</p>
 </dd></dl>
           
 
           
           <div class="method-source-code" id="plotToFile-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 123</span>
-    <span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToFile</span>( <span class="ruby-identifier">options</span>={} )
-        <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToFile</span>( <span class="ruby-identifier">options</span>={} )
+    <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">push</span>( <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>])
+    }
+
+    <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span>,
+                 <span class="ruby-value">:numBins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,
+                 <span class="ruby-value">:x_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;X&quot;</span>,
+                 <span class="ruby-value">:y_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Y&quot;</span>,
+                 <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Title&quot;</span>,
+                 <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">min</span>,
+                 <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">max</span>,
+                 <span class="ruby-value">:logx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:logy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:linreg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:dataLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:doOutliers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:outlierK</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>,
+                 <span class="ruby-value">:addOutlierLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> }
+
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+    <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
+    <span class="ruby-identifier">numBins</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:numBins</span>]
+    <span class="ruby-identifier">x_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:x_label</span>]
+    <span class="ruby-identifier">y_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:y_label</span>]
+    <span class="ruby-identifier">title</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:title</span>]
+    <span class="ruby-identifier">min</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:min</span>]
+    <span class="ruby-identifier">max</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:max</span>]
+    <span class="ruby-identifier">logx</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logx</span>]
+    <span class="ruby-identifier">logy</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logy</span>]
+    <span class="ruby-identifier">linreg</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:linreg</span>]
+    <span class="ruby-identifier">outlierAnalysis</span> = <span class="ruby-constant">Array</span>.[](<span class="ruby-identifier">options</span>[<span class="ruby-value">:doOutliers</span>],<span class="ruby-identifier">options</span>[<span class="ruby-value">:outlierK</span>])
+    <span class="ruby-identifier">dataLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:dataLabels</span>]
+    <span class="ruby-identifier">addOutlierLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:addOutlierLabels</span>]
+
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:histogram</span>)
+        <span class="ruby-identifier">x</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">push</span>( <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>])
+            <span class="ruby-identifier">x</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
         }
-        
-        <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span>,
-                     <span class="ruby-value">:numBins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,
-                     <span class="ruby-value">:x_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;X&quot;</span>,
-                     <span class="ruby-value">:y_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Y&quot;</span>,
-                     <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Title&quot;</span>,
-                     <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">min</span>,
-                     <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">max</span>,
-                     <span class="ruby-value">:logx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:logy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:linreg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:outlierAnalysis</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-keyword">false</span>, <span class="ruby-value">1</span>],
-                     <span class="ruby-value">:dataLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span> }
 
-        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
 
-        <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
-        <span class="ruby-identifier">numBins</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:numBins</span>]
-        <span class="ruby-identifier">x_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:x_label</span>]
-        <span class="ruby-identifier">y_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:y_label</span>]
-        <span class="ruby-identifier">title</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:title</span>]
-        <span class="ruby-identifier">min</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:min</span>]
-        <span class="ruby-identifier">max</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:max</span>]
-        <span class="ruby-identifier">logx</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logx</span>]
-        <span class="ruby-identifier">logy</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logy</span>]
-        <span class="ruby-identifier">linreg</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:linreg</span>]
-        <span class="ruby-identifier">outlierAnalysis</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:outlierAnalysis</span>]
-        <span class="ruby-identifier">dataLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:dataLabels</span>]
+        <span class="ruby-identifier">bw</span> = (<span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">numBins</span>.<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">x_count</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">x_axis</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
 
-        <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:histogram</span>)
-            <span class="ruby-identifier">x</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">x</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
+        <span class="ruby-comment"># checks which values belong in each bin. Edgecases go to the lower bin.</span>
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+            <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-keyword">if</span>(((<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>)) <span class="ruby-keyword">and</span> ((<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;=</span> (<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>)))
+                <span class="ruby-identifier">count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">end</span>
             }
 
-
-            <span class="ruby-identifier">bw</span> = (<span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">numBins</span>.<span class="ruby-identifier">to_f</span>
-            <span class="ruby-identifier">x_count</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-            <span class="ruby-identifier">x_axis</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-
-            <span class="ruby-comment"># checks which values belong in each bin. Edgecases go to the lower bin.</span>
-            (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
-                <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-
-                <span class="ruby-keyword">if</span>(((<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>)) <span class="ruby-keyword">and</span> ((<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;=</span> (<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>)))
-                    <span class="ruby-identifier">count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-                <span class="ruby-keyword">end</span>
-                }
             <span class="ruby-identifier">x_count</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">count</span>)
+        }
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">min</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">min</span>)
+            <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Increments the first bin to account for the minimum value not being added in</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-comment"># To check bin counts</span>
+        <span class="ruby-identifier">binSum</span> = <span class="ruby-value">0</span>;
+        (<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">numBins</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">binSum</span> = <span class="ruby-identifier">x_count</span>[<span class="ruby-identifier">index</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">binSum</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Bin #{index} contains #{x_count[index]}&quot;</span>
             }
-  
-            <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Increments the first bin to account for the minimum value not being added in </span>
-            
-            <span class="ruby-comment"># To check bin counts</span>
-            <span class="ruby-identifier">binSum</span> = <span class="ruby-value">0</span>;
-            (<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">numBins</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">binSum</span> = <span class="ruby-identifier">x_count</span>[<span class="ruby-identifier">index</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">binSum</span>
-                <span class="ruby-identifier">puts</span> <span class="ruby-identifier">x_count</span>[<span class="ruby-identifier">index</span>]
-                }
-            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There were #{binSum} samples in the plot.&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There were #{binSum} samples in the plot.&quot;</span>
 
-            <span class="ruby-comment"># generates the x axis</span>
-            (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">x_axis</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-value">0.5</span>*<span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)))
-            }
+        <span class="ruby-comment"># generates the x axis</span>
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">x_axis</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-value">0.5</span>*<span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)))
+        }
 
-            <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
-                <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-string">&quot;Frequency&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set xrange [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;]&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set yrange [0:#{x_count.max + 1}]&quot;</span>
+        <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-string">&quot;Frequency&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set xrange [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;]&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set yrange [0:#{x_count.max + 1}]&quot;</span>
 
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">DataSet</span>.<span class="ruby-identifier">new</span>( [<span class="ruby-identifier">x_axis</span>, <span class="ruby-identifier">x_count</span>] ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ds</span><span class="ruby-operator">|</span>
-                        <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">with</span> = <span class="ruby-string">&quot;boxes&quot;</span>
-                        <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">notitle</span>
-                    <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">DataSet</span>.<span class="ruby-identifier">new</span>( [<span class="ruby-identifier">x_axis</span>, <span class="ruby-identifier">x_count</span>] ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ds</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">with</span> = <span class="ruby-string">&quot;boxes&quot;</span>
+                    <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">notitle</span>
                 <span class="ruby-keyword">end</span>
             <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
 
-        <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:scatter</span>)
-<span class="ruby-comment">#            y = Array.new</span>
- <span class="ruby-comment">#           x = Array.new</span>
-  <span class="ruby-comment">#          @x_data.keys.each { |key|</span>
-   <span class="ruby-comment">#             x.push(x_data[key].to_f)</span>
-    <span class="ruby-comment">#        }</span>
-     <span class="ruby-comment">#       @y_data.keys.each { |key|</span>
-      <span class="ruby-comment">#          y.push(y_data[key].to_f)</span>
-       <span class="ruby-comment">#     }</span>
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:scatter</span>)
 
-            <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@y_data</span>.<span class="ruby-identifier">length</span>)
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@y_data</span>.<span class="ruby-identifier">length</span>)
 
-            <span class="ruby-comment"># generate a datafile to use in gnuplot</span>
-            <span class="ruby-identifier">datfile</span> = <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.dat&quot;</span>
+        <span class="ruby-comment"># generate a datafile to use in gnuplot</span>
+        <span class="ruby-identifier">datfile</span> = <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.dat&quot;</span>
 
-            <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
+        <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
 
-            <span class="ruby-identifier">pointCount</span> = <span class="ruby-value">0</span>
-            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@x_data[i]}\t#{@y_data[i]}&quot;</span>
-                <span class="ruby-identifier">pointCount</span> = <span class="ruby-identifier">pointCount</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-            }
-            <span class="ruby-identifier">puts</span> <span class="ruby-identifier">pointCount</span>
+        <span class="ruby-comment"># pointCount tells how many points are on the graph</span>
+        <span class="ruby-identifier">pointCount</span> = <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@x_data[i]}\t#{@y_data[i]}&quot;</span>
+            <span class="ruby-identifier">pointCount</span> = <span class="ruby-identifier">pointCount</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+        }
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There are #{pointCount} points on the plot.&quot;</span>
 
-            <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
 
-            <span class="ruby-comment"># plot data</span>
-            <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
-                <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
-                    <span class="ruby-comment"># plot to a file</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span>
+        <span class="ruby-comment"># plot data</span>
+        <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+                <span class="ruby-comment"># plot to a file</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">terminal</span> <span class="ruby-string">&quot;gif&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">output</span> <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.gif&quot;</span>
 
-                    <span class="ruby-comment">#apply title/labels</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-identifier">y_label</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
+                <span class="ruby-comment">#apply title/labels</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-identifier">y_label</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
 
-                    <span class="ruby-comment"># check if graphs need to be logscaled</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logx</span>)
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale x&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logy</span>)
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale y&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
-                    <span class="ruby-comment"># check if a linear regression is desired</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;f(x) = m*x + b&quot;</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;fit f(x) '&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">datfile</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;' using 1:2 via m,b&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
-                    <span class="ruby-comment"># perform outlier analysis</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
-
-                        <span class="ruby-comment"># generate array of slopes of data</span>
-                        <span class="ruby-identifier">yDivX</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-                        <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                            <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@y_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
-                        }
-
-                        <span class="ruby-comment"># apply the 5 number summary function</span>
-                        <span class="ruby-identifier">summData</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-                        <span class="ruby-identifier">summData</span> = <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">fiveNumSum</span> <span class="ruby-comment"># match to new function</span>
-
-                        <span class="ruby-comment"># Calculate slopes of minimum and maximum lines to show outliers</span>
-                        <span class="ruby-identifier">maxline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
-                        <span class="ruby-identifier">minline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
-
-                        <span class="ruby-comment"># Define the minline and maxline in gnuplot</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;a(x) = #{minline}*x&quot;</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;b(x) = #{maxline}*x&quot;</span>
-
-                    <span class="ruby-keyword">end</span> <span class="ruby-comment">#outlier analysis</span>
-
-
-                    <span class="ruby-comment"># Generate a plot string</span>
-                    <span class="ruby-identifier">plotString</span> = <span class="ruby-node">&quot;plot '#{datfile}'&quot;</span>
-
-                    <span class="ruby-comment"># add linear regression</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
-                        <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; notitle, f(x) title 'Linear Fit'&quot;</span>
-                        <span class="ruby-comment"># Old Method</span>
-                        <span class="ruby-comment">#plot.arbitrary_lines &lt;&lt; &quot;plot '#{datfile}' notitle, f(x) title 'Linear Fit'&quot;</span>
-                    <span class="ruby-keyword">end</span>
-
-                    <span class="ruby-comment"># plot with outlier analysis</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
-                        <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;, a(x) title 'Minimum', b(x) title 'Maximum'&quot;</span>
-                    <span class="ruby-keyword">end</span>
-                    <span class="ruby-comment"># add data point names if desired</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span>)
-                        <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}&quot;</span>
-                        }
-                    <span class="ruby-keyword">end</span>
-
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plotString</span>
+                <span class="ruby-comment"># check if graphs need to be logscaled</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logx</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale x&quot;</span>
                 <span class="ruby-keyword">end</span>
-            <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">else</span>
-            <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X and Y are different sizes&quot;</span>
-        <span class="ruby-keyword">end</span> <span class="ruby-comment"># x y size check</span>
-        <span class="ruby-keyword">end</span> <span class="ruby-comment"># scatter</span>
 
-    <span class="ruby-keyword">end</span></pre>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logy</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale y&quot;</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># check if a linear regression is desired</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;f(x) = m*x + b&quot;</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;fit f(x) '&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">datfile</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;' using 1:2 via m,b&quot;</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># perform outlier analysis</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
+
+                    <span class="ruby-comment"># generate array of slopes of data</span>
+                    <span class="ruby-identifier">yDivX</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+                    <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@y_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
+                    }
+
+                    <span class="ruby-comment"># apply the 5 number summary function</span>
+                    <span class="ruby-identifier">summData</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+                    <span class="ruby-identifier">summData</span> = <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">fiveNumSum</span> <span class="ruby-comment"># match to new function</span>
+
+                    <span class="ruby-comment"># Calculate slopes of minimum and maximum lines to show outliers</span>
+                    <span class="ruby-identifier">maxline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
+                    <span class="ruby-identifier">minline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
+
+                    <span class="ruby-comment"># Define the minline and maxline in gnuplot</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;a(x) = #{minline}*x&quot;</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;b(x) = #{maxline}*x&quot;</span>
+
+                <span class="ruby-keyword">end</span> <span class="ruby-comment">#outlier analysis</span>
+
+
+                <span class="ruby-comment"># Generate a plot string</span>
+                <span class="ruby-identifier">plotString</span> = <span class="ruby-node">&quot;plot '#{datfile}'&quot;</span>
+
+                <span class="ruby-comment"># add linear regression</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
+                    <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; notitle, f(x) title 'Linear Fit'&quot;</span>
+                    <span class="ruby-comment"># Old Method</span>
+                    <span class="ruby-comment">#plot.arbitrary_lines &lt;&lt; &quot;plot '#{datfile}' notitle, f(x) title 'Linear Fit'&quot;</span>
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># plot with outlier analysis</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
+                    <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;, a(x) title 'Minimum', b(x) title 'Maximum'&quot;</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-comment"># add data point names if desired</span>
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-comment"># Won't label everything if outlier labeling is enabled</span>
+                    <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}&quot;</span>
+                    }
+                <span class="ruby-keyword">end</span>
+
+                <span class="ruby-comment"># add outlier data labels</span>
+                <span class="ruby-keyword">if</span> ( <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> )
+                    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">findOutliers</span>( <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.outlierdata&quot;</span>, <span class="ruby-identifier">addOutlierLabels</span> )
+                    <span class="ruby-ivar">@outlier_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                        <span class="ruby-comment"># add labels to each point where an outlier exists</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}&quot;</span>
+                    }
+                    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Labeled #{@outlier_data.size} outliers.&quot;</span>
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plotString</span>
+            <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X and Y are different sizes&quot;</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment"># x y size check</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment"># scatter</span>
+
+<span class="ruby-keyword">end</span></pre>
           </div><!-- plotToFile-source -->
           
         </div>
@@ -695,221 +665,230 @@ in the hash passed in.</p>
 <dd>
 <p>Bool to add a linear regression line to a scatter plot. Default is false
 (off).</p>
-</dd><dt><code>:outlierAnalysis</code>
+</dd><dt><code>:doOutliers</code>
 <dd>
-<p><a href="Array.html">Array</a> to add outlier analysis lines. This array is
-of the form [ bool, k]. Bool turns on the analysis and k is the number of
-IQRs to use. Default is [false, 1] (off with 1 IQR).</p>
+<p>Bool to enable calculation of outliers.  Default is false (off).</p>
+</dd><dt><code>:outlierK</code>
+<dd>
+<p>Outlier K value.  Default is 2.</p>
 </dd><dt><code>:dataLabels</code>
 <dd>
 <p>Bool to include the key of the @<a
 href="Plot.html#attribute-i-x_data">#x_data</a> hash at the appropriate
 point of the plot. Default is false (off).</p>
+</dd><dt><code>:addOutlierLabels</code>
+<dd>
+<p>Int to enable outlier labeling. Value represents the number of IQRs to
+consider when generating the list. Default is 0 (off). Must be &gt; 0 to
+enable.</p>
 </dd></dl>
           
 
           
           <div class="method-source-code" id="plotToScreen-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 339</span>
-    <span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToScreen</span>( <span class="ruby-identifier">options</span> = {}  )
-        <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 352</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToScreen</span>( <span class="ruby-identifier">options</span> = {}  )
+    <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">push</span>( <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>] )
+    }
+
+    <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span>,
+                 <span class="ruby-value">:numBins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,
+                 <span class="ruby-value">:x_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;X&quot;</span>,
+                 <span class="ruby-value">:y_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Y&quot;</span>,
+                 <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Title&quot;</span>,
+                 <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">min</span>,
+                 <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">max</span>,
+                 <span class="ruby-value">:logx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:logy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:linreg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:doOutliers</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:outlierK</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">3</span>,
+                 <span class="ruby-value">:dataLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
+                 <span class="ruby-value">:addOutlierLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> }
+
+    <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+
+    <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
+    <span class="ruby-identifier">numBins</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:numBins</span>]
+    <span class="ruby-identifier">x_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:x_label</span>]
+    <span class="ruby-identifier">y_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:y_label</span>]
+    <span class="ruby-identifier">title</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:title</span>]
+    <span class="ruby-identifier">min</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:min</span>]
+    <span class="ruby-identifier">max</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:max</span>]
+    <span class="ruby-identifier">logx</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logx</span>]
+    <span class="ruby-identifier">logy</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logy</span>]
+    <span class="ruby-identifier">linreg</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:linreg</span>]
+    <span class="ruby-identifier">outlierAnalysis</span> = <span class="ruby-constant">Array</span>.[](<span class="ruby-identifier">options</span>[<span class="ruby-value">:doOutliers</span>],<span class="ruby-identifier">options</span>[<span class="ruby-value">:outlierK</span>])
+    <span class="ruby-identifier">dataLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:dataLabels</span>]
+    <span class="ruby-identifier">addOutlierLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:addOutlierLabels</span>]
+
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:histogram</span>)
+        <span class="ruby-identifier">x</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
         <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-            <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">push</span>( <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>] )
+            <span class="ruby-identifier">x</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
         }
-                
-        <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;out&quot;</span>,
-                     <span class="ruby-value">:numBins</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>,
-                     <span class="ruby-value">:x_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;X&quot;</span>,
-                     <span class="ruby-value">:y_label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Y&quot;</span>,
-                     <span class="ruby-value">:title</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Title&quot;</span>,
-                     <span class="ruby-value">:min</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">min</span>,
-                     <span class="ruby-value">:max</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">max</span>,
-                     <span class="ruby-value">:logx</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:logy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:linreg</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-                     <span class="ruby-value">:outlierAnalysis</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-keyword">false</span>, <span class="ruby-value">1</span>],
-                     <span class="ruby-value">:dataLabels</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span> }
 
-        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">bw</span> = (<span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">numBins</span>.<span class="ruby-identifier">to_f</span>
+        <span class="ruby-identifier">x_count</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">x_axis</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
 
-        <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:filename</span>]
-        <span class="ruby-identifier">numBins</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:numBins</span>]
-        <span class="ruby-identifier">x_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:x_label</span>]
-        <span class="ruby-identifier">y_label</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:y_label</span>]
-        <span class="ruby-identifier">title</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:title</span>]
-        <span class="ruby-identifier">min</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:min</span>]
-        <span class="ruby-identifier">max</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:max</span>]
-        <span class="ruby-identifier">logx</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logx</span>]
-        <span class="ruby-identifier">logy</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:logy</span>]
-        <span class="ruby-identifier">linreg</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:linreg</span>]
-        <span class="ruby-identifier">outlierAnalysis</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:outlierAnalysis</span>]
-        <span class="ruby-identifier">dataLabels</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:dataLabels</span>]
+        <span class="ruby-comment"># checks which values belong in each bin. Edgecases go to the higher bin.</span>
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+            <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
 
-        <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:histogram</span>)
-            <span class="ruby-identifier">x</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">x</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
+            <span class="ruby-keyword">if</span>(((<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>)) <span class="ruby-keyword">and</span> ((<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;=</span> (<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>)))
+                <span class="ruby-identifier">count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword">end</span>
             }
+        <span class="ruby-identifier">x_count</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">count</span>)
+        }
 
-            <span class="ruby-identifier">bw</span> = (<span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">/</span> <span class="ruby-identifier">numBins</span>.<span class="ruby-identifier">to_f</span>
-            <span class="ruby-identifier">x_count</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-            <span class="ruby-identifier">x_axis</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">min</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">x_array</span>.<span class="ruby-identifier">min</span>)
+            <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Increments the first bin to account for the minimum value not being added in</span>
+        <span class="ruby-keyword">end</span>
 
-            <span class="ruby-comment"># checks which values belong in each bin. Edgecases go to the higher bin.</span>
-            (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
-                <span class="ruby-identifier">x</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
-
-                <span class="ruby-keyword">if</span>(((<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>) * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;</span> (<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>)) <span class="ruby-keyword">and</span> ((<span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_f</span>) <span class="ruby-operator">&lt;=</span> (<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_f</span> * <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span>)))
-                    <span class="ruby-identifier">count</span> = <span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-                <span class="ruby-keyword">end</span>
-                }
-            <span class="ruby-identifier">x_count</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">count</span>)
+        <span class="ruby-comment"># To check bin counts</span>
+        <span class="ruby-identifier">binSum</span> = <span class="ruby-value">0</span>;
+        (<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">numBins</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">binSum</span> = <span class="ruby-identifier">x_count</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">binSum</span>.<span class="ruby-identifier">to_i</span>
             }
-
-            <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] = <span class="ruby-identifier">x_count</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span> <span class="ruby-comment"># Increments the first bin to account for the minimum value not being added in </span>
-
-
-            <span class="ruby-comment"># To check bin counts</span>
-            <span class="ruby-identifier">binSum</span> = <span class="ruby-value">0</span>;
-            (<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">numBins</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">index</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">binSum</span> = <span class="ruby-identifier">x_count</span>[<span class="ruby-identifier">index</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">binSum</span>.<span class="ruby-identifier">to_i</span>
-                }
-            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There were #{binSum} samples in the plot.&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There were #{binSum} samples in the plot.&quot;</span>
 
 
-            <span class="ruby-comment"># generates the x axis</span>
-            (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
-                <span class="ruby-identifier">x_axis</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-value">0.5</span>*<span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)))
-            }
+        <span class="ruby-comment"># generates the x axis</span>
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">numBins</span>).<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">x_axis</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> (<span class="ruby-value">0.5</span>*<span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">bw</span>.<span class="ruby-identifier">to_f</span> * (<span class="ruby-identifier">n</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)))
+        }
 
-            <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
-                <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-string">&quot;Frequency&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
-                    <span class="ruby-comment"># plot.terminal &quot;gif&quot;</span>
-                    <span class="ruby-comment"># plot.output filename + &quot;.gif&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set xrange [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;]&quot;</span>
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set yrange [0:#{x_count.max + 1}]&quot;</span>
+        <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-string">&quot;Frequency&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
+                <span class="ruby-comment"># plot.terminal &quot;gif&quot;</span>
+                <span class="ruby-comment"># plot.output filename + &quot;.gif&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set xrange [&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">min</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;:&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;]&quot;</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set yrange [0:#{x_count.max + 1}]&quot;</span>
 
-                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">DataSet</span>.<span class="ruby-identifier">new</span>( [<span class="ruby-identifier">x_axis</span>, <span class="ruby-identifier">x_count</span>] ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ds</span><span class="ruby-operator">|</span>
-                        <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">with</span> = <span class="ruby-string">&quot;boxes&quot;</span>
-                        <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">notitle</span>
-                    <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">DataSet</span>.<span class="ruby-identifier">new</span>( [<span class="ruby-identifier">x_axis</span>, <span class="ruby-identifier">x_count</span>] ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ds</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">with</span> = <span class="ruby-string">&quot;boxes&quot;</span>
+                    <span class="ruby-identifier">ds</span>.<span class="ruby-identifier">notitle</span>
                 <span class="ruby-keyword">end</span>
             <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
 
-        <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:scatter</span>)
+    <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@plottype</span> <span class="ruby-operator">==</span> <span class="ruby-value">:scatter</span>)
 
-<span class="ruby-comment">#            y = Array.new</span>
- <span class="ruby-comment">#           x = Array.new</span>
-  <span class="ruby-comment">#          @x_data.keys.each { |key|</span>
-   <span class="ruby-comment">#             x.push(x_data[key].to_f)</span>
-    <span class="ruby-comment">#        }</span>
-     <span class="ruby-comment">#       @y_data.keys.each { |key|</span>
-      <span class="ruby-comment">#          y.push(y_data[key].to_f)</span>
-       <span class="ruby-comment">#     }</span>
+        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@y_data</span>.<span class="ruby-identifier">length</span>)
 
+            <span class="ruby-comment"># generate a datafile to use in gnuplot</span>
+            <span class="ruby-identifier">datfile</span> = <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.dat&quot;</span>
 
+            <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
+            <span class="ruby-identifier">pointCount</span> = <span class="ruby-value">0</span>
+            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@x_data[i]}\t#{@y_data[i]}&quot;</span>
+                <span class="ruby-identifier">pointCount</span> = <span class="ruby-identifier">pointCount</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            }
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;There are #{pointCount} points on the plot.&quot;</span>
+            <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
 
-            <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@y_data</span>.<span class="ruby-identifier">length</span>)
+            <span class="ruby-comment"># plot data</span>
+            <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
+                <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
+                    <span class="ruby-comment"># plot to a file</span>
+                    <span class="ruby-comment"># plot.terminal &quot;gif&quot;</span>
+                    <span class="ruby-comment"># plot.output filename + &quot;.gif&quot;</span>
 
-                <span class="ruby-comment"># generate a datafile to use in gnuplot</span>
-                <span class="ruby-identifier">datfile</span> = <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.dat&quot;</span>
+                    <span class="ruby-comment">#apply title/labels</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-identifier">y_label</span>
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
 
-                <span class="ruby-identifier">newfile</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">datfile</span>, <span class="ruby-string">&quot;w&quot;</span>)
-                <span class="ruby-identifier">pointCount</span> = <span class="ruby-value">0</span>
-                <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-                    <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@x_data[i]}\t#{@y_data[i]}&quot;</span>
-                    <span class="ruby-identifier">pointCount</span> = <span class="ruby-identifier">pointCount</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-                }
-                <span class="ruby-identifier">puts</span> <span class="ruby-identifier">pointCount</span>
-                <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
-
-                <span class="ruby-comment"># plot data</span>
-                <span class="ruby-constant">Gnuplot</span>.<span class="ruby-identifier">open</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gp</span><span class="ruby-operator">|</span>
-                    <span class="ruby-constant">Gnuplot</span><span class="ruby-operator">::</span><span class="ruby-constant">Plot</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">gp</span> ) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plot</span><span class="ruby-operator">|</span>
-                        <span class="ruby-comment"># plot to a file</span>
-                        <span class="ruby-comment"># plot.terminal &quot;gif&quot;</span>
-                        <span class="ruby-comment"># plot.output filename + &quot;.gif&quot;</span>
-
-                        <span class="ruby-comment">#apply title/labels</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">title</span>   <span class="ruby-identifier">title</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">ylabel</span>  <span class="ruby-identifier">y_label</span>
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">xlabel</span>  <span class="ruby-identifier">x_label</span>
-
-                        <span class="ruby-comment"># check if graphs need to be logscaled</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logx</span>)
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale x&quot;</span>
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logy</span>)
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale y&quot;</span>
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-comment"># check if a linear regression is desired</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;f(x) = m*x + b&quot;</span>
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;fit f(x) '&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">datfile</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;' using 1:2 via m,b&quot;</span>
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-comment"># perform outlier analysis</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
-
-                            <span class="ruby-comment"># generate array of slopes of data</span>
-                            <span class="ruby-identifier">yDivX</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-                            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                                <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@y_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
-                            }
-
-                            <span class="ruby-comment"># apply the 5 number summary function</span>
-                            <span class="ruby-identifier">summData</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
-                            <span class="ruby-identifier">summData</span> = <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">fiveNumSum</span> <span class="ruby-comment"># match to new function</span>
-
-                            <span class="ruby-comment"># Calculate slopes of minimum and maximum lines to show outliers</span>
-                            <span class="ruby-identifier">maxline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
-                            <span class="ruby-identifier">minline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
-
-                            <span class="ruby-comment"># Define the minline and maxline in gnuplot</span>
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;a(x) = #{minline}*x&quot;</span>
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;b(x) = #{maxline}*x&quot;</span>
-
-                        <span class="ruby-keyword">end</span> <span class="ruby-comment">#outlier analysis</span>
-
-                        <span class="ruby-comment"># Construct plot string</span>
-                        <span class="ruby-identifier">plotString</span> = <span class="ruby-node">&quot;plot '#{datfile}'&quot;</span>
-
-                        <span class="ruby-comment"># plot with a regression line</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
-                            <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; notitle, f(x) title 'Linear Fit'&quot;</span>
-                            <span class="ruby-comment"># old method</span>
-                            <span class="ruby-comment">#plot.arbitrary_lines &lt;&lt; &quot;plot '#{datfile}' notitle, f(x) title 'Linear Fit'&quot;</span>
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-comment"># plot with outlier analysis</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
-                            <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;, a(x) title 'Minimum', b(x) title 'Maximum'&quot;</span>
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-comment"># add data point names if desired</span>
-                        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span>)
-                            <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
-                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}&quot;</span>
-                            }
-                        <span class="ruby-keyword">end</span>
-
-                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plotString</span>
-
+                    <span class="ruby-comment"># check if graphs need to be logscaled</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logx</span>)
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale x&quot;</span>
                     <span class="ruby-keyword">end</span>
-                <span class="ruby-keyword">end</span>
 
-            <span class="ruby-keyword">else</span>
-                <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X and Y are different sizes&quot;</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">logy</span>)
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;set logscale y&quot;</span>
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-comment"># check if a linear regression is desired</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;f(x) = m*x + b&quot;</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;fit f(x) '&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">datfile</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;' using 1:2 via m,b&quot;</span>
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-comment"># perform outlier analysis</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
+
+                        <span class="ruby-comment"># generate array of slopes of data</span>
+                        <span class="ruby-identifier">yDivX</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+                        <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                            <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">push</span>(<span class="ruby-ivar">@y_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@x_data</span>[<span class="ruby-identifier">key</span>].<span class="ruby-identifier">to_f</span>)
+                        }
+
+                        <span class="ruby-comment"># apply the 5 number summary function</span>
+                        <span class="ruby-identifier">summData</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+                        <span class="ruby-identifier">summData</span> = <span class="ruby-identifier">yDivX</span>.<span class="ruby-identifier">fiveNumSum</span> <span class="ruby-comment"># match to new function</span>
+
+                        <span class="ruby-comment"># Calculate slopes of minimum and maximum lines to show outliers</span>
+                        <span class="ruby-identifier">maxline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
+                        <span class="ruby-identifier">minline</span> = <span class="ruby-identifier">summData</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">1</span>] * (<span class="ruby-identifier">summData</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">-</span> <span class="ruby-identifier">summData</span>[<span class="ruby-value">1</span>])
+
+                        <span class="ruby-comment"># Define the minline and maxline in gnuplot</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;a(x) = #{minline}*x&quot;</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;b(x) = #{maxline}*x&quot;</span>
+
+                    <span class="ruby-keyword">end</span> <span class="ruby-comment">#outlier analysis</span>
+
+                    <span class="ruby-comment"># Construct plot string</span>
+                    <span class="ruby-identifier">plotString</span> = <span class="ruby-node">&quot;plot '#{datfile}'&quot;</span>
+
+                    <span class="ruby-comment"># plot with a regression line</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">linreg</span>)
+                        <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; notitle, f(x) title 'Linear Fit'&quot;</span>
+                        <span class="ruby-comment"># old method</span>
+                        <span class="ruby-comment">#plot.arbitrary_lines &lt;&lt; &quot;plot '#{datfile}' notitle, f(x) title 'Linear Fit'&quot;</span>
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-comment"># plot with outlier analysis</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">outlierAnalysis</span>[<span class="ruby-value">0</span>])
+                        <span class="ruby-identifier">plotString</span> = <span class="ruby-identifier">plotString</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;, a(x) title 'Minimum', b(x) title 'Maximum'&quot;</span>
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-comment"># add data point names if desired</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-comment"># Won't add labels to everything if we only want outliers labeled.</span>
+                        <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}&quot;</span>
+                        }
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-comment"># add outlier data labels</span>
+                    <span class="ruby-keyword">if</span> ( <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> )
+                        <span class="ruby-keyword">self</span>.<span class="ruby-identifier">findOutliers</span>( <span class="ruby-identifier">filename</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.outlierdata&quot;</span>, <span class="ruby-identifier">addOutlierLabels</span> )
+                        <span class="ruby-ivar">@outlier_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+                            <span class="ruby-comment"># add labels to each point where an outlier exists</span>
+                            <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}&quot;</span>
+                        }
+                    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Labeled #{@outlier_data.size} outliers.&quot;</span>
+                    <span class="ruby-keyword">end</span>
+
+                    <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plotString</span>
+
+                <span class="ruby-keyword">end</span>
             <span class="ruby-keyword">end</span>
-        <span class="ruby-keyword">end</span> <span class="ruby-comment"># scatter</span>
-    <span class="ruby-keyword">end</span></pre>
+
+        <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;X and Y are different sizes&quot;</span>
+        <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span> <span class="ruby-comment"># scatter</span>
+<span class="ruby-keyword">end</span></pre>
           </div><!-- plotToScreen-source -->
           
         </div>

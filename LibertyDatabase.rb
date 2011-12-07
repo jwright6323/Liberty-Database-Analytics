@@ -176,7 +176,7 @@ class LibertyDatabase
     }
 
     results
-  end #getWhenData
+  end #getLeakage
 
   # Get the current PVT corner (Not Implemented)
   #

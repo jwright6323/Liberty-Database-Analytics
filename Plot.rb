@@ -32,10 +32,10 @@ class Plot
             @plottype = :histogram
         end
     end # initialize
-    
+
     #
     # Find outliers for a given set of data and print them to a file. Outliers are defined as any numbers that lie outside median +- k(q3-q1)
-    # 
+    #
     # ====Parameters
     # [+filename+] A string representing the name of the file to be generated. Default is "outliers.dat".
     # [+k+] Number of IQRs to check outliers against. Default is 1.
@@ -80,7 +80,7 @@ class Plot
             @x_data.keys.each { |key|
                 x_array.push( @x_data[key])
             }
-            
+
             # 5 Number Analysis on Data
             summary = Array.new
             summary = x_array.fiveNumSum
@@ -88,7 +88,7 @@ class Plot
             # Determine the max and min non-outliers
             minOut = summary[2] - k * (summary[3] - summary[1])
             maxOut = summary[2] + k * (summary[3] - summary[1])
-            
+
             # Select any outliers and print their cell names to a datafile
 
             newfile = File.new(filename, "w")
@@ -119,17 +119,17 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
-    # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
+    # [+:doOutliers+] Bool to enable calculation of outliers.  Default is false (off).
+    # [+:outlierK+] Outlier K value.  Default is 2.
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     # [+:addOutlierLabels+] Int to enable outlier labeling. Value represents the number of IQRs to consider when generating the list. Default is 0 (off). Must be > 0 to enable.
     #
-
     def plotToFile( options={} )
         x_array = Array.new
         @x_data.keys.each { |key|
             x_array.push( @x_data[key])
         }
-        
+
         defaults = { :filename => "out",
                      :numBins => 2,
                      :x_label => "X",
@@ -140,8 +140,9 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => [false, 1],
                      :dataLabels => false,
+                     :doOutliers => false,
+                     :outlierK => 3,
                      :addOutlierLabels => 0 }
 
         options = defaults.merge(options)
@@ -156,7 +157,7 @@ class Plot
         logx = options[:logx]
         logy = options[:logy]
         linreg = options[:linreg]
-        outlierAnalysis = options[:outlierAnalysis]
+        outlierAnalysis = Array.[](options[:doOutliers],options[:outlierK])
         dataLabels = options[:dataLabels]
         addOutlierLabels = options[:addOutlierLabels]
 
@@ -180,11 +181,11 @@ class Plot
                     count = count + 1
                 end
                 }
-                
+
                 x_count.push(count)
             }
             if (min == x.min)
-                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in
             end
 
             # To check bin counts
@@ -219,14 +220,6 @@ class Plot
         end
 
         if (@plottype == :scatter)
-#            y = Array.new
- #           x = Array.new
-  #          @x_data.keys.each { |key|
-   #             x.push(x_data[key].to_f)
-    #        }
-     #       @y_data.keys.each { |key|
-      #          y.push(y_data[key].to_f)
-       #     }
 
             if(@x_data.length == @y_data.length)
 
@@ -325,7 +318,7 @@ class Plot
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
                         }
                         puts "Labeled #{@outlier_data.size} outliers."
-                    end    
+                    end
                     plot.arbitrary_lines << plotString
                 end
             end
@@ -350,7 +343,8 @@ class Plot
     # [+:logx+] Bool to apply a log scale to the x axis of a scatter plot. Default is false (off).
     # [+:logy+] Bool to apply a log scale to the y axis of a scatter plot. Default is false (off).
     # [+:linreg+] Bool to add a linear regression line to a scatter plot. Default is false (off).
-    # [+:outlierAnalysis+] Array to add outlier analysis lines. This array is of the form [ bool, k]. Bool turns on the analysis and k is the number of IQRs to use. Default is [false, 1] (off with 1 IQR).
+    # [+:doOutliers+] Bool to enable calculation of outliers.  Default is false (off).
+    # [+:outlierK+] Outlier K value.  Default is 2.
     # [+:dataLabels+] Bool to include the key of the @x_data hash at the appropriate point of the plot. Default is false (off).
     # [+:addOutlierLabels+] Int to enable outlier labeling. Value represents the number of IQRs to consider when generating the list. Default is 0 (off). Must be > 0 to enable.
     #
@@ -360,7 +354,7 @@ class Plot
         @x_data.keys.each { |key|
             x_array.push( @x_data[key] )
         }
-                
+
         defaults = { :filename => "out",
                      :numBins => 2,
                      :x_label => "X",
@@ -371,7 +365,8 @@ class Plot
                      :logx => false,
                      :logy => false,
                      :linreg => false,
-                     :outlierAnalysis => [false, 1],
+                     :doOutliers => false,
+                     :outlierK => 3,
                      :dataLabels => false,
                      :addOutlierLabels => 0 }
 
@@ -387,7 +382,7 @@ class Plot
         logx = options[:logx]
         logy = options[:logy]
         linreg = options[:linreg]
-        outlierAnalysis = options[:outlierAnalysis]
+        outlierAnalysis = Array.[](options[:doOutliers],options[:outlierK])
         dataLabels = options[:dataLabels]
         addOutlierLabels = options[:addOutlierLabels]
 
@@ -412,9 +407,9 @@ class Plot
                 }
             x_count.push(count)
             }
-            
+
             if (min == x_array.min)
-                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in 
+                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in
             end
 
             # To check bin counts
@@ -449,17 +444,6 @@ class Plot
         end
 
         if (@plottype == :scatter)
-
-#            y = Array.new
- #           x = Array.new
-  #          @x_data.keys.each { |key|
-   #             x.push(x_data[key].to_f)
-    #        }
-     #       @y_data.keys.each { |key|
-      #          y.push(y_data[key].to_f)
-       #     }
-
-
 
             if(@x_data.length == @y_data.length)
 
@@ -555,8 +539,8 @@ class Plot
                                 plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
                             }
                         puts "Labeled #{@outlier_data.size} outliers."
-                        end 
-                        
+                        end
+
                         plot.arbitrary_lines << plotString
 
                     end
