@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link">Object
   
 </nav>
 
@@ -100,76 +100,17 @@
   </div>
 
   <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
-  
-    <li class="file"><a href="./inv_txt.html">inv</a>
-  
-    <li class="file"><a href="./log.html">log</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="./testout.html">testout</a>
-  
-  </ul>
-</nav>
-
+    
     <nav id="classindex-section" class="section project-section">
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
   
-    <li><a href="./Mysql.html">Mysql</a>
-  
-    <li><a href="./Mysql/Error.html">Mysql::Error</a>
-  
-    <li><a href="./Mysql/Field.html">Mysql::Field</a>
-  
-    <li><a href="./Mysql/Result.html">Mysql::Result</a>
-  
-    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
-  
-    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
-  
-    <li><a href="./Mysql/Time.html">Mysql::Time</a>
-  
-    <li><a href="./Gnuplot.html">Gnuplot</a>
-  
-    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
-  
-    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
-  
-    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
-  
-    <li><a href="./Array.html">Array</a>
-  
     <li><a href="./Enumerable.html">Enumerable</a>
   
     <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
   
-    <li><a href="./Matrix.html">Matrix</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
     <li><a href="./Plot.html">Plot</a>
-  
-    <li><a href="./TC_Mysql.html">TC_Mysql</a>
-  
-    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
-  
-    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
-  
-    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
-  
-    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
-  
-    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
   
   </ul>
 </nav>
@@ -379,7 +320,7 @@ change.</p>
 
           
           <div class="method-source-code" id="close-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 356</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 378</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">close</span>
   <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@db</span>
   <span class="ruby-identifier">log</span> <span class="ruby-string">&quot;Database closed&quot;</span>
@@ -463,8 +404,7 @@ change.</p>
 <h4 id="method-i-getCells-label-Returns">Returns</h4>
 <dl class="rdoc-list label-list"><dt><code>result</code>
 <dd>
-<p>An <a href="Array.html">Array</a> containing the names of all cells as
-strings</p>
+<p>An Array containing the names of all cells as strings</p>
 </dd></dl>
           
 
@@ -513,8 +453,7 @@ strings</p>
 <h4 id="method-i-getCellsInFootprint-label-Returns">Returns</h4>
 <dl class="rdoc-list label-list"><dt><code>results</code>
 <dd>
-<p>An <a href="Array.html">Array</a> containing the cell names in the
-specified footprint</p>
+<p>An Array containing the cell names in the specified footprint</p>
 </dd></dl>
           
 
@@ -651,8 +590,7 @@ Default is <code>nil</code>.</p>
 <h4 id="method-i-getFootprints-label-Returns">Returns</h4>
 <dl class="rdoc-list label-list"><dt><code>result</code>
 <dd>
-<p>An <a href="Array.html">Array</a> containing the names of all cell
-footprints as strings</p>
+<p>An Array containing the names of all cell footprints as strings</p>
 </dd></dl>
           
 
@@ -764,7 +702,7 @@ by “when” condition, containing leakage data.</p>
         
         <div class="method-heading">
           <span class="method-name">getOutputMaxCap</span><span
-            class="method-args">()</span>
+            class="method-args">(options={})</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -773,6 +711,20 @@ by “when” condition, containing leakage data.</p>
           
           <p>Query Max Capacitance values for output pins of all cells. If a cell has
 more than one output, add the max capacitance values</p>
+
+<h4 id="method-i-getOutputMaxCap-label-Options">Options</h4>
+<dl class="rdoc-list label-list"><dt><code>:cells</code>
+<dd>
+<p>An array of cells to query.  <code>nil</code> uses all cells.  Default is
+<code>nil</code>.</p>
+</dd><dt><code>:footprint</code>
+<dd>
+<p>A single footprint to query.  <code>nil</code> uses all footprints. 
+Default is <code>nil</code>.</p>
+</dd><dt><code>:pvt</code>
+<dd>
+<p>The PVT corner to use.  Default is <code>this.pvt</code>.</p>
+</dd></dl>
 
 <h4 id="method-i-getOutputMaxCap-label-Returns">Returns</h4>
 <dl class="rdoc-list label-list"><dt><code>result</code>
@@ -783,11 +735,27 @@ more than one output, add the max capacitance values</p>
 
           
           <div class="method-source-code" id="getOutputMaxCap-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 287</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">getOutputMaxCap</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 293</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getOutputMaxCap</span>(<span class="ruby-identifier">options</span>={})
+  <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:cells</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:footprint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
+               <span class="ruby-value">:pvt</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@pvt</span> }
+  <span class="ruby-identifier">options</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:footprint</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] = <span class="ruby-identifier">getCellsInFootprint</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:footprint</span>])
+  <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">querystr</span> =  <span class="ruby-string">&quot;SELECT cells.name AS cellname ,pins.max_capacitance\n&quot;</span>
   <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n&quot;</span>
-  <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE pins.direction = 'output';&quot;</span> <span class="ruby-comment"># AND cells.cell_footprint = 105 OR pins.direction = 'output' AND cells.cell_footprint = 54;&quot;</span>
+  <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE pins.direction = 'output'&quot;</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE cells.name IN (&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{cell}',&quot;</span>
+    }
+    <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">','</span>)
+    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;;&quot;</span>
   <span class="ruby-identifier">results</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-identifier">query</span>( <span class="ruby-identifier">querystr</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">results</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">row</span>[<span class="ruby-string">&quot;cellname&quot;</span>]) <span class="ruby-keyword">then</span>
@@ -885,7 +853,7 @@ with keys of min,max,avg</p>
 
           
           <div class="method-source-code" id="getTimingData-source">
-            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 314</span>
+            <pre><span class="ruby-comment"># File LibertyDatabase.rb, line 336</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">getTimingData</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">defaults</span> = { <span class="ruby-value">:cells</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,
                <span class="ruby-value">:footprint</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>,

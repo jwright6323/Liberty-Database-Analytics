@@ -1,28 +1,29 @@
-#  Add methods to Enumerable, which makes them available to Array
+# Add methods to Enumerable, which makes them available to Array
 module Enumerable
 
-  #  sum of an array of numbers
+  # Return the sum of the data
   def sum
     return self.inject(0){ |acc,i| acc + i }
   end
 
-  #  average of an array of numbers
+  # Return the mean of the data
   def mean
     return self.sum/self.length.to_f
   end
 
-  #  variance of an array of numbers
+  # Return the variance of the data
   def variance
     avg=self.mean
     sum=self.inject(0){ |acc,i| acc + (i-avg)**2 }
     sum / self.length.to_f
   end
 
-  #  standard deviation of an array of numbers
+  # Return the standard deviation of the data
   def stdDev
     return Math.sqrt(self.variance)
   end
 
+  # Return the five number summary as an Array
   def fiveNumSum
       data = self.sort
       min = data[0].to_f
@@ -42,13 +43,7 @@ module Enumerable
       Array.[](min,q1,med,q3,max)
   end # fiveNumSum
 
-  # Return the median of a set of data
-  #
-  # ==== Parameters
-  #
-  # [+:data_in+] An array of data to be analyzed
-  #
-
+  # Return the median of the data
   def median
     data = self.sort
     if (data.size % 2 == 0) then #even

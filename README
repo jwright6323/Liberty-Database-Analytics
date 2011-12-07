@@ -1,0 +1,96 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Liberty Database Analytics
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~~~~~~
+Contributors
+~~~~~~~~~~~~
+John Wright
+Edward Poore
+Danny Peters
+
+~~~~~~
+Files:
+~~~~~~
+LibertyDatabase.rb
+Plot.rb
+analytics.rb
+various testing files
+
+~~~~~~~~~~~~~~~~~~~
+Required Ruby Gems:
+~~~~~~~~~~~~~~~~~~~
+mysql
+gnuplot
+
+~~~~~~~~~~~~~~~~~~~~
+LibertyDatabase.rb
+~~~~~~~~~~~~~~~~~~~
+
+~~~~~~~
+Methods
+~~~~~~~
+
+new: creates a new database object with the ability to specific a certain database
+
+getData: returns a hash keyed by cell names after recieving the database parameter to query. 
+
+getLeakage: returns a hash keyed by cells names, the value of each entry is another hash keyed by 'when' conditions containing leakage data.
+
+getFootprints: returns an array containing the names of all cell footprints as strings
+
+getCellFootprint: returns the name of the givens cell's footprint as a string
+
+getCells: returns an array containing the names of all cells
+
+getCellsInFootprint: returns an array containing the cell names in the specified footprint
+
+query: performs a custom database query with logging, used by other 'get' functions as well
+
+getOutputMaxCap: returns a hash with cell names as keys and the sum of the pin max capacitance as a value
+
+getTimingData: returns a hash with keys of the format cell_name.pin_name.timing_type[when], values are hashes with keys of min,max,avg
+
+close: Closes the database and logfile
+
+
+
+~~~~~~~~~
+Plot.rb
+~~~~~~~~~
+
+~~~~~~~
+Methods
+~~~~~~~
+
+new: creates a new plot object and requires two arrays passed as hashs (x,y)
+findOutliers: finds outliers and outputs them in a seperate data file, defaulted to "outliers.dat"
+plotToFile: generates a plot in gnuplot and outputs it as a file. 
+plotToScreen: generates a plot in gnuplot and outputs it to the screen in gnuplot
+
+
+~~~~~~~~~~~~~
+Analyitics.rb
+~~~~~~~~~~~~~
+Extends the Enumerable and adds the following functions
+~~~~~~~
+Methods
+~~~~~~~
+sum: returns a sum of the given array
+mean: returns the average of the given array
+variance: returns of variance of the given array
+stdDev: returns the standard deviation of the given array
+fiveNumSum: returns the five number summary of the given array as an array {min,q1,med,q3,max}
+median: returns the median of the given array 
+
+
+
+
+
+
+Included is a set of tools that connect to  a remote database, with defaults set  in LibertyDatabase.rb. 
+The default configuration for our uses is as follows:
+mysql host: xxxxxxxxxxxxxx
+mysql db: LiberyFileUpdate
+mysql user: guest
+mysql pass: liberty
