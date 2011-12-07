@@ -35,5 +35,6 @@ plot = Plot.new percent_difference
 plot.plotToScreen :title => "Percent Difference Between Best and Worst Case Timing per Pin by When Cond",
                   :filename => "timing",
                   :numBins => 10,
+                  :doOutliers => true,
                   :x_label => "% diff"
 

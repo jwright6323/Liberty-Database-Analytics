@@ -289,6 +289,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
                 <span class="ruby-keyword">end</span>
         }
         <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@outlier_data</span>.<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$verbose</span>
     <span class="ruby-keyword">end</span> <span class="ruby-comment"># 2D Plotting</span>
 
     <span class="ruby-keyword">if</span> ( <span class="ruby-ivar">@y_data</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>) <span class="ruby-comment"># For 1D Plotting</span>
@@ -317,6 +318,7 @@ are defined as any numbers that lie outside median +- k(q3-q1)</p>
             <span class="ruby-keyword">end</span>
         }
         <span class="ruby-identifier">newfile</span>.<span class="ruby-identifier">close</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@outlier_data</span>.<span class="ruby-identifier">keys</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">$verbose</span>
     <span class="ruby-keyword">end</span> <span class="ruby-comment"># 1D Plotting</span>
 
 <span class="ruby-keyword">end</span></pre>
@@ -401,7 +403,7 @@ enable.</p>
 
           
           <div class="method-source-code" id="plotToFile-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 127</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToFile</span>( <span class="ruby-identifier">options</span>={} )
     <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
     <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
@@ -686,7 +688,7 @@ enable.</p>
 
           
           <div class="method-source-code" id="plotToScreen-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 352</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 354</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plotToScreen</span>( <span class="ruby-identifier">options</span> = {}  )
     <span class="ruby-identifier">x_array</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
     <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
@@ -863,7 +865,7 @@ enable.</p>
                     <span class="ruby-keyword">end</span>
 
                     <span class="ruby-comment"># add data point names if desired</span>
-                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-comment"># Won't add labels to everything if we only want outliers labeled.</span>
+                    <span class="ruby-keyword">if</span> (<span class="ruby-identifier">dataLabels</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">addOutlierLabels</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-comment"># Won't add labels to everything if we only want outliers labeled.</span>
                         <span class="ruby-ivar">@x_data</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
                         <span class="ruby-identifier">plot</span>.<span class="ruby-identifier">arbitrary_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;set label '#{key}' at #{@x_data[key]}, #{@y_data[key]}&quot;</span>
                         }
