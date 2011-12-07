@@ -391,7 +391,7 @@ ul.link-list .type {
   cursor: pointer;
 }
 #documentation .method-detail:hover {
-  background-color: #efcfcf;
+  background-color: #cac6e3;
 }
 #documentation .method-heading {
   position: relative;
