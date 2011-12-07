@@ -90,9 +90,7 @@ median: returns the median of the given array
 
 Included is a set of tools that connect to  a remote database, with defaults set  in LibertyDatabase.rb. 
 The default configuration for our uses is as follows:
-mysql host: wildcat.ee.engr.uky.edu
+mysql host: xxxxxxxxxxxxxx
 mysql db: LiberyFileUpdate
 mysql user: guest
 mysql pass: liberty
-
-after a connection has been estiblished and a mysql object made its information is logged in log.
