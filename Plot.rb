@@ -311,7 +311,7 @@ class Plot
                         plotString = plotString + ", a(x) title 'Minimum', b(x) title 'Maximum'"
                     end
                     # add data point names if desired
-                    if (dataLabels && addOutlierLabels = 0) # Won't label everything if outlier labeling is enabled
+                    if (dataLabels && addOutlierLabels == 0) # Won't label everything if outlier labeling is enabled
                         @x_data.keys.each { |key|
                             plot.arbitrary_lines << "set label '#{key}' at #{@x_data[key].to_f}, #{@y_data[key].to_f}"
                         }
