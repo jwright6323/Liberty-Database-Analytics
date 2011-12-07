@@ -1,27 +1,4 @@
-Mon, 05 Dec 2011 02:21:23 -0500
-./leakage_vs_area.rb	Mon, 05 Dec 2011 01:56:59 -0500
-./LibertyDatabase.rb	Mon, 05 Dec 2011 01:24:17 -0500
-./mysql-ruby-2.8.2/Makefile	Wed, 09 Nov 2011 15:44:55 -0500
-./test2.rb	Mon, 21 Nov 2011 16:16:20 -0500
-./leakage_vs_maxcap.rb	Mon, 05 Dec 2011 00:48:44 -0500
-./maxcap_vs_area.rb	Mon, 05 Dec 2011 00:15:25 -0500
-./test.rb	Mon, 05 Dec 2011 01:23:14 -0500
-./mysql-ruby-2.8.2/COPYING	Wed, 06 Nov 2002 23:06:59 -0500
-./testtiming.rb	Sun, 04 Dec 2011 23:46:32 -0500
-./edtest.rb	Tue, 29 Nov 2011 23:10:35 -0500
-./comparison_notes.txt~	Sun, 04 Dec 2011 17:56:14 -0500
-./mysql-ruby-2.8.2/mysql.c	Thu, 11 Feb 2010 05:42:54 -0500
-./old_code/plothist.rb	Mon, 21 Nov 2011 16:16:20 -0500
-./timing_histogram.rb	Mon, 05 Dec 2011 01:23:14 -0500
-./mysql-ruby-2.8.2/extconf.rb	Sun, 01 Feb 2009 03:31:18 -0500
-./liberty2db.rb	Wed, 09 Nov 2011 12:50:52 -0500
-./analytics.rb	Mon, 21 Nov 2011 16:16:20 -0500
-./mysql-ruby-2.8.2/error_const.h	Wed, 09 Nov 2011 15:44:55 -0500
-./inv.txt	Wed, 09 Nov 2011 12:51:59 -0500
-./gnuplot.rb	Fri, 02 Dec 2011 14:59:47 -0500
-./log	Mon, 05 Dec 2011 01:57:01 -0500
-./testout	Wed, 16 Nov 2011 22:22:08 -0500
-./teststats.rb	Mon, 21 Nov 2011 16:16:20 -0500
-./mysql-ruby-2.8.2/test.rb	Thu, 11 Feb 2010 05:42:54 -0500
-./Plot.rb	Sun, 04 Dec 2011 23:44:34 -0500
-./old_code/plotpoints.rb	Mon, 21 Nov 2011 16:16:20 -0500
+Tue, 06 Dec 2011 21:34:40 -0500
+Plot.rb	Tue, 06 Dec 2011 20:21:45 -0500
+LibertyDatabase.rb	Tue, 06 Dec 2011 21:23:38 -0500
+Analytics.rb	Tue, 06 Dec 2011 21:32:33 -0500

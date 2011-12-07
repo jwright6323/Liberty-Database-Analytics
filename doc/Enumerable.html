@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>analytics.rb
+    <li>Analytics.rb
   </ul>
 </nav>
 
@@ -82,76 +82,17 @@
   </div>
 
   <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./comparison_notes_txt~.html">comparison_notes</a>
-  
-    <li class="file"><a href="./inv_txt.html">inv</a>
-  
-    <li class="file"><a href="./log.html">log</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/COPYING.html">COPYING</a>
-  
-    <li class="file"><a href="./mysql-ruby-2_8_2/Makefile.html">Makefile</a>
-  
-    <li class="file"><a href="./testout.html">testout</a>
-  
-  </ul>
-</nav>
-
+    
     <nav id="classindex-section" class="section project-section">
   <h3 class="section-header">Class and Module Index</h3>
 
   <ul class="link-list">
   
-    <li><a href="./Mysql.html">Mysql</a>
-  
-    <li><a href="./Mysql/Error.html">Mysql::Error</a>
-  
-    <li><a href="./Mysql/Field.html">Mysql::Field</a>
-  
-    <li><a href="./Mysql/Result.html">Mysql::Result</a>
-  
-    <li><a href="./Mysql/RowOffset.html">Mysql::RowOffset</a>
-  
-    <li><a href="./Mysql/Stmt.html">Mysql::Stmt</a>
-  
-    <li><a href="./Mysql/Time.html">Mysql::Time</a>
-  
-    <li><a href="./Gnuplot.html">Gnuplot</a>
-  
-    <li><a href="./Gnuplot/DataSet.html">Gnuplot::DataSet</a>
-  
-    <li><a href="./Gnuplot/Plot.html">Gnuplot::Plot</a>
-  
-    <li><a href="./Gnuplot/SPlot.html">Gnuplot::SPlot</a>
-  
-    <li><a href="./Array.html">Array</a>
-  
     <li><a href="./Enumerable.html">Enumerable</a>
   
     <li><a href="./LibertyDatabase.html">LibertyDatabase</a>
   
-    <li><a href="./Matrix.html">Matrix</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
     <li><a href="./Plot.html">Plot</a>
-  
-    <li><a href="./TC_Mysql.html">TC_Mysql</a>
-  
-    <li><a href="./TC_Mysql2.html">TC_Mysql2</a>
-  
-    <li><a href="./TC_MysqlRes.html">TC_MysqlRes</a>
-  
-    <li><a href="./TC_MysqlStmt.html">TC_MysqlStmt</a>
-  
-    <li><a href="./TC_MysqlStmt2.html">TC_MysqlStmt2</a>
-  
-    <li><a href="./TC_MysqlTime.html">TC_MysqlTime</a>
   
   </ul>
 </nav>
@@ -165,7 +106,7 @@
   <div id="description" class="description">
     
 <p>Add methods to <a href="Enumerable.html">Enumerable</a>, which makes them
-available to <a href="Array.html">Array</a></p>
+available to Array</p>
 
   </div><!-- description -->
 
@@ -198,12 +139,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          
+          <p>Return the five number summary as an Array</p>
           
 
           
           <div class="method-source-code" id="fiveNumSum-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 26</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fiveNumSum</span>
     <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
     <span class="ruby-identifier">min</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_f</span>
@@ -243,12 +184,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          <p>average of an array of numbers</p>
+          <p>Return the mean of the data</p>
           
 
           
           <div class="method-source-code" id="mean-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 10</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mean</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sum</span><span class="ruby-operator">/</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span>
 <span class="ruby-keyword">end</span></pre>
@@ -273,18 +214,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          <p>Return the median of a set of data</p>
-
-<h4 id="method-i-median-label-Parameters">Parameters</h4>
-<dl class="rdoc-list label-list"><dt><code>:data_in</code>
-<dd>
-<p>An array of data to be analyzed</p>
-</dd></dl>
+          <p>Return the median of the data</p>
           
 
           
           <div class="method-source-code" id="median-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 52</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">median</span>
   <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span> <span class="ruby-comment">#even</span>
@@ -314,12 +249,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          <p>standard deviation of an array of numbers</p>
+          <p>Return the standard deviation of the data</p>
           
 
           
           <div class="method-source-code" id="stdDev-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 22</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdDev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">variance</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -344,12 +279,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          <p>sum of an array of numbers</p>
+          <p>Return the sum of the data</p>
           
 
           
           <div class="method-source-code" id="sum-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 5</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sum</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -374,12 +309,12 @@ available to <a href="Array.html">Array</a></p>
 
         <div class="method-description">
           
-          <p>variance of an array of numbers</p>
+          <p>Return the variance of the data</p>
           
 
           
           <div class="method-source-code" id="variance-source">
-            <pre><span class="ruby-comment"># File analytics.rb, line 15</span>
+            <pre><span class="ruby-comment"># File Analytics.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">variance</span>
   <span class="ruby-identifier">avg</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">mean</span>
   <span class="ruby-identifier">sum</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-identifier">avg</span>)<span class="ruby-operator">**</span><span class="ruby-value">2</span> }
