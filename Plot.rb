@@ -187,10 +187,13 @@ class Plot
                 count = 0
                 histfile.puts "Values from #{(min.to_f + (n.to_f-1) * bw.to_f)} to #{min.to_f + n.to_f * bw.to_f}." # Label the bin in the file.
                 
-                if (min == x.min && n == 1) # To fix the issue with the min value being left out if the bin minimum == data minimum
-                    if (@x_data.key(x.min) != nil) # Make sure that the value finds a key
-                        histfile.puts @x_data.key(x.min) # Write the key into the file
-                    end
+                if (min == x.min && n == 1) # To fix the issue with keys being left out if the bin minimum == data minimum(s)
+                    @x_data.keys.each {|key|
+                        if (@x_data[key] == x.min)
+                            histfile.puts key # Place a copy of the minimum(s) in the first bin
+                            count = count + 1 # Increment the first bin to reflect this
+                        end
+                    }
                 end
 
                 @x_data.keys.each {|v|
@@ -204,11 +207,6 @@ class Plot
             }
             
             histfile.close
-
-            # If the minimum histogram value is used as the left bound, the first bin will be one unit short.
-            if (min == x.min)
-                x_count[0] = x_count[0] + 1 # Increments the first bin to account for the minimum value not being added in
-            end
 
             # To check bin counts
             binSum = 0;
@@ -235,8 +233,8 @@ class Plot
                         plot.output filename + ".gif"
                     end
 
-                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]"
-                    plot.arbitrary_lines << "set yrange [0:#{x_count.max + 1}]"
+                    plot.arbitrary_lines << "set xrange [" + min.to_s + ":" + max.to_s + "]" # Set x axis according to max and mins
+                    plot.arbitrary_lines << "set yrange [0:#{x_count.max.to_f + x_count.max.to_f * 0.1}]" # Make the y axis 110% of the highest count
 
                     plot.data << Gnuplot::DataSet.new( [x_axis, x_count] ) do |ds|
                         ds.with = "boxes"
