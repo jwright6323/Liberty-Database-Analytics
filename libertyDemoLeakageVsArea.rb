@@ -32,7 +32,7 @@ cell_leakage = database.getData( "cell_leakage_power" )
 plot = Plot.new( cell_area, cell_leakage )
 
 # Generate a scatter plot on-screen.
-plot.plotToScreen :title => "Leakage Power vs. Area",
+plot.generatePlot :title => "Leakage Power vs. Area",
                   :x_label => "Area",
                   :y_label => "Leakage",
                   :filename => "leakageVsArea",
@@ -42,7 +42,7 @@ plot.plotToScreen :title => "Leakage Power vs. Area",
 ## Other things we could do:
 #
 ## Add labels to all points
-#plot.plotToScreen :title => "Leakage Power vs. Area",
+#plot.generatePlot :title => "Leakage Power vs. Area",
 #                  :x_label => "Area",
 #                  :y_label => "Leakage",
 #                  :filename => "leakageVsArea",
@@ -51,7 +51,7 @@ plot.plotToScreen :title => "Leakage Power vs. Area",
 
 
 ## or just to outlier cells
-#plot.plotToScreen :title => "Leakage Power vs. Area",
+#plot.generatePlot :title => "Leakage Power vs. Area",
 #                  :x_label => "Area",
 #                  :y_label => "Leakage",
 #                  :filename => "leakageVsArea",
@@ -59,7 +59,7 @@ plot.plotToScreen :title => "Leakage Power vs. Area",
 #                  :addOutlierLabels => 1
 
 ## We can also add lines to show outlier bounds.
-#plot.plotToScreen :title => "Leakage Power vs. Area",
+#plot.generatePlot :title => "Leakage Power vs. Area",
 #                  :x_label => "Area",
 #                  :y_label => "Leakage",
 #                  :filename => "leakageVsArea",
@@ -71,7 +71,7 @@ plot.plotToScreen :title => "Leakage Power vs. Area",
 ## Plot the data on log scales
 
 ## The x axis
-#plot.plotToScreen :title => "Leakage Power vs. Area",
+#plot.generatePlot :title => "Leakage Power vs. Area",
 #                  :x_label => "Area",
 #                  :y_label => "Leakage",
 #                  :filename => "leakageVsArea",
@@ -81,7 +81,7 @@ plot.plotToScreen :title => "Leakage Power vs. Area",
 
 
 ## and the y axis
-#plot.plotToScreen :title => "Leakage Power vs. Area",
+#plot.generatePlot :title => "Leakage Power vs. Area",
 #                  :x_label => "Area",
 #                  :y_label => "Leakage",
 #                  :filename => "leakageVsArea",
