@@ -65,12 +65,10 @@ Methods
 
 new: creates a new plot object and requires two arrays passed as hashs (x,y)
 findOutliers: finds outliers and outputs them in a seperate data file, defaulted to "outliers.dat"
-plotToFile: generates a plot in gnuplot and outputs it as a file. 
-plotToScreen: generates a plot in gnuplot and outputs it to the screen in gnuplot
-
+generatePlot: generates a plot based on options given
 
 ~~~~~~~~~~~~~
-Analyitics.rb
+Analytics.rb
 ~~~~~~~~~~~~~
 Extends the Enumerable and adds the following functions
 ~~~~~~~
