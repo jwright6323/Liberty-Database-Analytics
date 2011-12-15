@@ -319,11 +319,11 @@ class Plot
 
 
                     # Generate a plot string
-                    plotString = "plot '#{datfile}'"
+                    plotString = "plot '#{datfile}' notitle"
 
                     # add linear regression
                     if (linreg)
-                        plotString = plotString + " notitle, f(x) title 'Linear Fit'"
+                        plotString = plotString + ", f(x) title 'Linear Fit'"
                     end
 
                     # plot with outlier analysis
