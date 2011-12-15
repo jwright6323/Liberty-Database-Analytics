@@ -59,7 +59,10 @@ class LibertyDatabase
                                 options[:mysqlport] )
       unless @pvt #is defined
         #query for a default
-        #TODO
+        query_string = "SELECT * FROM pvt WHERE id = 1;"
+        query ( query_string ) { |row|
+          @pvt = Array.[](row["process"].to_i,row["nom_voltage"].to_f,row["nom_temperature"].to_f)
+        }
       end
       log "Connected to mysql database successfully.  Info:"
       log "  host : #{options[:mysqlhost]}"
@@ -124,7 +127,7 @@ class LibertyDatabase
       query_string.chomp!(',')
       query_string << ")"
     end
-    query_string << ";"
+    query_string << "AND cells.pvt_id = #{getPVTid( options[:pvt] )};"
     results = Hash.new
     query(query_string) { |row|
       results.store( row["name"], row[parameter] )
@@ -170,7 +173,7 @@ class LibertyDatabase
       query_string.chomp!(',')
       query_string << ")"
     end
-    query_string << ";"
+    query_string << "\nAND cells.pvt_id = #{getPVTid( options[:pvt] )};"
     query(query_string) { |row|
       results[row["name"]].store(row["when"],row["value"].to_f)
     }
@@ -178,15 +181,25 @@ class LibertyDatabase
     results
   end #getLeakage
 
-  # Get the current PVT corner (Not Implemented)
+  # Get the current PVT corner
   #
   # ==== Returns
-  # * +nil+
+  # [+pvt+] The PVT array [process,voltage,temperature]
   #
   def getPVT
-    #TODO
-    nil
-  end #getPVTs
+    @pvt
+  end #getPVT
+
+  # Set the current PVT corner
+  #
+  # ==== Parameters
+  # [+p+] The process (always 1 at the moment)
+  # [+v+] The Voltage (float)
+  # [+t+] The temperature in C (float)
+  #
+  def setPVT( p, v, t)
+    @pvt = Array.[](p,v,t)
+  end #setPVT
 
   # Get an array of all cell footprints
   #
@@ -201,7 +214,6 @@ class LibertyDatabase
       result.push(row["name"])
     }
 
-    result
   end #getFootprints
 
   # Get the footprint of a single cell
@@ -222,7 +234,6 @@ class LibertyDatabase
     query(query_string) { |row|
       result = row["name"]
     }
-
     result
   end #getCellFootprint
 
@@ -236,7 +247,7 @@ class LibertyDatabase
     query_string << "FROM cells;"
     results = Array.new
     query(query_string) { |row|
-      results.push( row["name"] )
+      results.push( row["name"] ) unless results.include?( row["name"] )
     }
 
     results
@@ -309,7 +320,7 @@ class LibertyDatabase
       querystr.chomp!(',')
       querystr << ")"
     end
-    querystr << ";"
+    query_string << "\nAND cells.pvt_id = #{getPVTid(options[:pvt])};"
     results = Hash.new
     query( querystr ) { |row|
         if results.has_key?(row["cellname"]) then
@@ -360,7 +371,8 @@ class LibertyDatabase
       query_string.chomp!(',')
       query_string << ")"
     end
-    query_string << "\nGROUP BY timing.id;"
+    query_string << "\nAND cells.pvt_id = #{getPVTid(options[:pvt])}\n"
+    query_string << "GROUP BY timing.id;"
     results = Hash.new
     query(query_string) { |row|
       key = "#{row['cell_name']}.#{row['pin_name']}.#{row['timing_type']}"
@@ -382,6 +394,30 @@ class LibertyDatabase
   end #close
 
   private
+
+  def getPVTid( pvt )
+    query_string =  "SELECT pvt.id FROM pvt\n"
+    # Use < and > beacuse = in floating point is unreliable
+    if pvt[1] > 0 then
+      query_string << "WHERE pvt.nom_voltage < #{pvt[1]*1.001}\n"
+      query_string << "  AND pvt.nom_voltage > #{pvt[1]*0.999}\n"
+    else
+      query_string << "WHERE pvt.nom_voltage < #{pvt[1]*0.999}\n"
+      query_string << "  AND pvt.nom_voltage > #{pvt[1]*1.001}\n"
+    end
+    if pvt[2] > 0 then
+      query_string << "  AND pvt.nom_temperature < #{pvt[2]*1.001}\n"
+      query_string << "  AND pvt.nom_temperature > #{pvt[2]*0.999};"
+    else
+      query_string << "  AND pvt.nom_temperature < #{pvt[2]*0.999}\n"
+      query_string << "  AND pvt.nom_temperature > #{pvt[2]*1.001};"
+    end
+    results = nil
+    query ( query_string ) { |row|
+      results = row["id"].to_i
+    }
+    results || 0
+  end #getPVTid
 
   # Log an error to the logfile and stderr
   def errlog( str )

@@ -1,6 +1,6 @@
 #!/bin/sh
 mysql \
---host=wildcat.ee.engr.uky.edu \
+--host=hendrix \
 --pass=liberty \
 --user=guest \
 --database=LibertyFile

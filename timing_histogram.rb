@@ -7,8 +7,8 @@ require 'Plot.rb'
 $verbose = true
 
 # Create a connection to the database
-database = LibertyDatabase.new :mysqldb => "LibertyFileUpdate", 
-                               :mysqlhost => "wildcat.ee.engr.uky.edu",
+database = LibertyDatabase.new :mysqldb => "LibertyFile",
+                               :mysqlhost => "hendrix",
                                :logfile => "log"
 
 # Query timing information using LibertyDatabase.getTimingData
