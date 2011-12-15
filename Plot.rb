@@ -48,7 +48,7 @@ class Plot
 
     def findOutliers( filename = "outliers", k = 1 )
         if ( @y_data != nil ) # 2D Plotting
-            # We can only compare one set of data at a time, so we need to merge the x and y data. This is done by dividing y values by 
+            # We can only compare one set of data at a time, so we need to merge the x and y data. This is done by dividing y values by
             # the corresponding x value and creating a new hash of slopes.
             slopeHash = Hash.new
             slopeArray = Array.new # For use with the fiveNumSum method.
@@ -158,7 +158,7 @@ class Plot
                      :savePlot => false }
 
         options = defaults.merge(options)
-        
+
         savePlot = options[:savePlot]
         filename = options[:filename]
         numBins = options[:numBins]
@@ -175,18 +175,18 @@ class Plot
         addOutlierLabels = options[:addOutlierLabels]
 
         if (@plottype == :histogram)
-                
+
             bw = (max.to_f - min.to_f) / numBins.to_f # Calculate bin width
             x_count = Array.new
             x_axis = Array.new
-            
+
             histfile = File.new(filename + ".histo", "w") # File that shows the keys that belong in each bin.
 
             # checks which values belong in each bin. Edgecases go to the lower bin.
             (1..numBins).each {|n|
                 count = 0
                 histfile.puts "Values from #{(min.to_f + (n.to_f-1) * bw.to_f)} to #{min.to_f + n.to_f * bw.to_f}." # Label the bin in the file.
-                
+
                 if (min == x.min && n == 1) # To fix the issue with keys being left out if the bin minimum == data minimum(s)
                     @x_data.keys.each {|key|
                         if (@x_data[key] == x.min)
@@ -205,7 +205,7 @@ class Plot
 
                 x_count.push(count) # Add the bin count to the count array.
             }
-            
+
             histfile.close
 
             # To check bin counts
@@ -226,7 +226,7 @@ class Plot
                     plot.title   title
                     plot.ylabel  "Frequency"
                     plot.xlabel  x_label
-                    
+
                     # Save the plot to a file
                     if (savePlot == true)
                         plot.terminal "gif"
@@ -259,7 +259,7 @@ class Plot
                 newfile.puts "#{@x_data[i]}\t#{@y_data[i]}"
                 pointCount = pointCount + 1
             }
-            
+
             puts "There are #{pointCount} points on the plot." if $verbose
 
             newfile.close
@@ -267,7 +267,7 @@ class Plot
             # plot data
             Gnuplot.open do |gp|
                 Gnuplot::Plot.new( gp ) do |plot|
-                    
+
                     # plot to a file
                     if (savePlot == true)
                         plot.terminal "gif"

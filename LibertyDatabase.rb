@@ -302,12 +302,12 @@ class LibertyDatabase
     querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
     querystr << "WHERE pins.direction = 'output'"
     if options[:cells] then
-      query_string << "WHERE cells.name IN ("
+      querystr << "WHERE cells.name IN ("
       options[:cells].each { |cell|
-        query_string << "'#{cell}',"
+        querystr << "'#{cell}',"
       }
-      query_string.chomp!(',')
-      query_string << ")"
+      querystr.chomp!(',')
+      querystr << ")"
     end
     querystr << ";"
     results = Hash.new

@@ -32,7 +32,7 @@ timingdata.each { |cell,when_condition|
 plot = Plot.new percent_difference
 
 # Plot to screen.  Use plotToFile to plot to a gif image
-plot.plotToScreen :title => "Percent Difference Between Best and Worst Case Timing per Pin by When Cond",
+plot.generatePlot :title => "Percent Difference Between Best and Worst Case Timing per Pin by When Cond",
                   :filename => "timing",
                   :numBins => 10,
                   :x_label => "% diff"
