@@ -134,14 +134,7 @@ given data.</p>
 
         <div class="method-description">
         
-        <p>Class Variables <a
-href="Plot.html#attribute-i-outlier_data">#outlier_data</a> is a class
-variable used to store a list of keys from the data hashes that have been
-deemed to be outliers. <a href="Plot.html#attribute-i-x_data">#x_data</a>
-is a hash to store passed x axis data. <a
-href="Plot.html#attribute-i-y_data">#y_data</a> is a hash to store passed y
-axis data. plottype is a symbol to determine which type of plot is to be
-generated.</p>
+        
         
         </div>
       </div>
@@ -154,14 +147,7 @@ generated.</p>
 
         <div class="method-description">
         
-        <p>Class Variables <a
-href="Plot.html#attribute-i-outlier_data">#outlier_data</a> is a class
-variable used to store a list of keys from the data hashes that have been
-deemed to be outliers. <a href="Plot.html#attribute-i-x_data">#x_data</a>
-is a hash to store passed x axis data. <a
-href="Plot.html#attribute-i-y_data">#y_data</a> is a hash to store passed y
-axis data. plottype is a symbol to determine which type of plot is to be
-generated.</p>
+        
         
         </div>
       </div>
@@ -174,14 +160,7 @@ generated.</p>
 
         <div class="method-description">
         
-        <p>Class Variables <a
-href="Plot.html#attribute-i-outlier_data">#outlier_data</a> is a class
-variable used to store a list of keys from the data hashes that have been
-deemed to be outliers. <a href="Plot.html#attribute-i-x_data">#x_data</a>
-is a hash to store passed x axis data. <a
-href="Plot.html#attribute-i-y_data">#y_data</a> is a hash to store passed y
-axis data. plottype is a symbol to determine which type of plot is to be
-generated.</p>
+        
         
         </div>
       </div>
@@ -221,7 +200,7 @@ passed.</p>
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 29</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>=<span class="ruby-keyword">nil</span> )
     <span class="ruby-ivar">@x_data</span> = <span class="ruby-identifier">x</span>.<span class="ruby-identifier">clone</span>
     <span class="ruby-ivar">@y_data</span> = <span class="ruby-identifier">y</span>.<span class="ruby-identifier">clone</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">y</span>
@@ -276,7 +255,7 @@ are defined as any numbers that lie outside median +- k(q3-q1).</p>
 
           
           <div class="method-source-code" id="findOutliers-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 49</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">findOutliers</span>( <span class="ruby-identifier">filename</span> = <span class="ruby-string">&quot;outliers&quot;</span>, <span class="ruby-identifier">k</span> = <span class="ruby-value">1</span> )
     <span class="ruby-keyword">if</span> ( <span class="ruby-ivar">@y_data</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> ) <span class="ruby-comment"># 2D Plotting</span>
         <span class="ruby-comment"># We can only compare one set of data at a time, so we need to merge the x and y data. This is done by dividing y values by</span>
@@ -430,7 +409,7 @@ href="Plot.html">Plot</a> to screen)</p>
 
           
           <div class="method-source-code" id="generatePlot-source">
-            <pre><span class="ruby-comment"># File Plot.rb, line 137</span>
+            <pre><span class="ruby-comment"># File Plot.rb, line 132</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generatePlot</span>( <span class="ruby-identifier">options</span>={} )
     <span class="ruby-comment"># Generate an array of the x hash values to easily find the minimum and maximum.</span>
     <span class="ruby-identifier">x</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
