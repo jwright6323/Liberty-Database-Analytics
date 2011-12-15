@@ -744,16 +744,16 @@ Default is <code>nil</code>.</p>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:footprint</span>] <span class="ruby-keyword">then</span>
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] = <span class="ruby-identifier">getCellsInFootprint</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:footprint</span>])
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">querystr</span> =  <span class="ruby-string">&quot;SELECT cells.name AS cellname ,pins.max_capacitance\n&quot;</span>
+  <span class="ruby-identifier">querystr</span> =  <span class="ruby-string">&quot;SELECT cells.name AS cellname, pins.max_capacitance\n&quot;</span>
   <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n&quot;</span>
   <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE pins.direction = 'output'&quot;</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>] <span class="ruby-keyword">then</span>
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;WHERE cells.name IN (&quot;</span>
+    <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot; AND cells.name IN (&quot;</span>
     <span class="ruby-identifier">options</span>[<span class="ruby-value">:cells</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cell</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{cell}',&quot;</span>
+      <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{cell}',&quot;</span>
     }
-    <span class="ruby-identifier">query_string</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">','</span>)
-    <span class="ruby-identifier">query_string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
+    <span class="ruby-identifier">querystr</span>.<span class="ruby-identifier">chomp!</span>(<span class="ruby-string">','</span>)
+    <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;)&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">querystr</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">&quot;;&quot;</span>
   <span class="ruby-identifier">results</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>

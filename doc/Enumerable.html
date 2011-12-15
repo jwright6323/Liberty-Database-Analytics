@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>Analytics.rb
+    <li>analytics.rb
   </ul>
 </nav>
 
@@ -144,7 +144,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="fiveNumSum-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 27</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">fiveNumSum</span>
     <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
     <span class="ruby-identifier">min</span> = <span class="ruby-identifier">data</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">to_f</span>
@@ -189,7 +189,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="mean-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 10</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 10</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">mean</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sum</span><span class="ruby-operator">/</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_f</span>
 <span class="ruby-keyword">end</span></pre>
@@ -219,7 +219,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="median-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 47</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">median</span>
   <span class="ruby-identifier">data</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">sort</span>
   <span class="ruby-keyword">if</span> (<span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">then</span> <span class="ruby-comment">#even</span>
@@ -254,7 +254,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="stdDev-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 22</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">stdDev</span>
   <span class="ruby-keyword">return</span> <span class="ruby-constant">Math</span>.<span class="ruby-identifier">sqrt</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">variance</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -284,7 +284,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="sum-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 5</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">sum</span>
   <span class="ruby-keyword">return</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">i</span> }
 <span class="ruby-keyword">end</span></pre>
@@ -314,7 +314,7 @@ available to Array</p>
 
           
           <div class="method-source-code" id="variance-source">
-            <pre><span class="ruby-comment"># File Analytics.rb, line 15</span>
+            <pre><span class="ruby-comment"># File analytics.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">variance</span>
   <span class="ruby-identifier">avg</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">mean</span>
   <span class="ruby-identifier">sum</span>=<span class="ruby-keyword">self</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">acc</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">acc</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-identifier">avg</span>)<span class="ruby-operator">**</span><span class="ruby-value">2</span> }

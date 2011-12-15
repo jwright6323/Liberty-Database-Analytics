@@ -13,11 +13,6 @@ require 'analytics.rb'
 
 # Plot is a class to generate various plots from given data.
 class Plot
-    # Class Variables
-    # outlier_data is a class variable used to store a list of keys from the data hashes that have been deemed to be outliers.
-    # x_data is a hash to store passed x axis data.
-    # y_data is a hash to store passed y axis data.
-    # plottype is a symbol to determine which type of plot is to be generated.
     attr_reader :x_data, :y_data, :outlier_data
 
     # Constructor
@@ -351,8 +346,9 @@ class Plot
             end
 
             # Regenerate the data file to add in key names.
-            File.delete(datfile) # Delete the old one
-            newfile = File.new(datfile, "w")
+            newfile = File.new(datfile+ "WITHNAMES", "w")
+            
+            newfile.puts "Name\tX\tY"
 
             @x_data.keys.each { |i|
                 newfile.puts "#{i}\t#{@x_data[i]}\t#{@y_data[i]}"
