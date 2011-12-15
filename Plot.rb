@@ -352,6 +352,8 @@ class Plot
 
             # Regenerate the data file to add in key names.
             newfile = File.new(datfile+ "WITHNAMES", "w")
+            
+            newfile.puts "Name\tX\tY"
 
             @x_data.keys.each { |i|
                 newfile.puts "#{i}\t#{@x_data[i]}\t#{@y_data[i]}"
