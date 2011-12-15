@@ -7,23 +7,33 @@ require 'Plot.rb'
 
 #plot(x, y, "x", "x^2", "X squared")
 $verbose = true
-test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", :logfile => "log"
-lkg = test.getData "cell_leakage_power"
-area = test.getData "area"
-p = Plot.new area,lkg
+test = LibertyDatabase.new :mysqlhost => "wildcat.ee.engr.uky.edu", 
+                           :logfile => "log", 
+                           :mysqldb => "LibertyFileUpdate",
+                           :pvt => 1
+#lkg = test.getData "cell_leakage_power"
+#area = test.getData "area"
 
 #puts test.getLeakage(:cells => "INVM1S").inspect
 
 #fh = File.new("testout","w")
-#x = Array.new
-#test.getLeakage.each do |cell_name,leakage_data|
-#  min = leakage_data.values.sort[0]
-#  max = leakage_data.values.sort[-1]
-#  diff = (max-min)*200/(max+min)
-#  x.push(diff)
+x = Hash.new
+test.getLeakage.each do |cell_name,leakage_data|
+  min = leakage_data.values.sort[0]
+  max = leakage_data.values.sort[-1]
+  diff = (max-min)*200/(max+min)
+  x[cell_name] = diff
 #  fh.puts("#{cell_name},#{diff}")
-#end
+end
 #fh.close
+
+histogram = Plot.new( x )
+histogram.generatePlot :filename => "percentDiffLkg",
+                       :numBins => 20,
+                       :title => "% Diff of BC and WC Leakage",
+                       :x_label => "Percent Difference",
+                       :savePlot => false
+
 #plothist( 10, x, "%diff", "%diff between BC and WC when condition leakages" )
 #t = test.getCellFootprint("INVM1S")
 #puts t
