@@ -298,11 +298,11 @@ class LibertyDatabase
     if options[:footprint] then
       options[:cells] = getCellsInFootprint(options[:footprint])
     end
-    querystr =  "SELECT cells.name AS cellname ,pins.max_capacitance\n"
+    querystr =  "SELECT cells.name AS cellname, pins.max_capacitance\n"
     querystr << "FROM pins LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
     querystr << "WHERE pins.direction = 'output'"
     if options[:cells] then
-      querystr << "WHERE cells.name IN ("
+      querystr << " AND cells.name IN ("
       options[:cells].each { |cell|
         querystr << "'#{cell}',"
       }

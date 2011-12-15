@@ -37,5 +37,6 @@ plot.generatePlot :title => "Percent Difference Between Best and Worst Case Timi
                   :numBins => 10,
                   :x_label => "% diff"
 # Find outliers and log them
+puts "Outliers:"
 plot.findOutliers "timing_outliers.dat", 6
 
