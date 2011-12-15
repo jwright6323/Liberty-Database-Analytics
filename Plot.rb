@@ -351,8 +351,7 @@ class Plot
             end
 
             # Regenerate the data file to add in key names.
-            File.delete(datfile) # Delete the old one
-            newfile = File.new(datfile, "w")
+            newfile = File.new(datfile+ "WITHNAMES", "w")
 
             @x_data.keys.each { |i|
                 newfile.puts "#{i}\t#{@x_data[i]}\t#{@y_data[i]}"
