@@ -6,8 +6,8 @@
 #
 
 require 'gnuplot.rb' # Includes the gnuplot gem from the local directory if it is not installed in rubygems
-require 'rubygems'
-require 'mysql'
+#require 'rubygems'
+require 'mysql.rb'
 require 'analytics.rb'
 
 
