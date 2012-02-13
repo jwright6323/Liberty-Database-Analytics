@@ -5,8 +5,8 @@
 # jcwr@cypress.com, danmanstx@gmail.com, edward.poore@gmail.com
 #
 
-require 'rubygems'
-require 'mysql'
+#require 'rubygems'
+require 'mysql.rb'
 
 # LibertyDatabase is a class to connect to and query a MySQL database containing Liberty file data
 class LibertyDatabase
@@ -113,10 +113,10 @@ class LibertyDatabase
       query_string << "ON footprints.id = cells.cell_footprint\n"
       query_string << "WHERE footprints.name "
       query_string << "= '#{options[:footprint]}'"
-      if options[:cells] then
+      if options[:cells] || options[:pvt] then
         query_string << "\nAND "
       end
-    elsif options[:cells] then
+    elsif options[:cells] || options[:pvt] then
       query_string << "\nWHERE "
     end
     if options[:cells] then
@@ -126,8 +126,13 @@ class LibertyDatabase
       }
       query_string.chomp!(',')
       query_string << ")"
+      if options[:pvt] then
+        query_string << "\nAND"
+      end
     end
-    query_string << "AND cells.pvt_id = #{getPVTid( options[:pvt] )};"
+    if options[:pvt] then
+      query_string << " cells.pvt_id = #{getPVTid( options[:pvt] )};"
+    end
     results = Hash.new
     query(query_string) { |row|
       results.store( row["name"], row[parameter] )
