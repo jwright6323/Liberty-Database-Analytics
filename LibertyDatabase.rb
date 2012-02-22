@@ -392,6 +392,55 @@ class LibertyDatabase
     results
   end #getTimingData
 
+  def getAllPowerData(options = {})
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
+    query_string =  "SELECT internal_power_data.value AS val,\n"
+    query_string << "       internal_power_data.index_1 AS slew,\n"
+    query_string << "       internal_power_data.index_2 AS cap,\n"
+    query_string << "       internal_power.when AS when_cond,\n"
+    query_string << "       pins.name AS pin_name,\n"
+    query_string << "       cells.name AS cell_name\n"
+    query_string << "FROM internal_power_data LEFT OUTER JOIN internal_power ON internal_power.id = internal_power_data.internal_power_id\n"
+    query_string << "                 LEFT OUTER JOIN pins ON pins.id = internal_power.pin_id\n"
+    query_string << "                 LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
+    query_string << "WHERE "
+    if options[:cells] then
+      query_string << "cells.name IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")\n AND "
+    end
+    query_string << "cells.pvt_id = #{getPVTid(options[:pvt])}\n"
+    query_string << "GROUP BY internal_power.id;"
+    results = Hash.new
+    query(query_string) { |row|
+      key = "#{row['cell_name']}.#{row['pin_name']}"
+      whenval = row['when_cond'].to_s
+      cap = row['cap'].to_s
+      slew = row['slew'].to_s
+      unless results[key]
+        results.store(key,Hash.new)
+      end
+      unless results[key][whenval]
+        results[key].store(whenval,Hash.new)
+      end
+      unless results[key][whenval][slew]
+        results[key][whenval].store(slew,Hash.new)
+      end
+      results[key][whenval][slew].store(cap,row['val'])
+    }
+
+    results
+  end #getPowerData
+
 
   def getPowerData(options = {})
     defaults = { :cells => nil,
@@ -433,7 +482,7 @@ class LibertyDatabase
     }
 
     results
-  end #getTimingData
+  end #getPowerData
 
   # Close the database and logfile
   def close
