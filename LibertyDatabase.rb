@@ -368,19 +368,63 @@ class LibertyDatabase
     query_string << "FROM timing_data LEFT OUTER JOIN timing ON timing.id = timing_data.timing_id\n"
     query_string << "                 LEFT OUTER JOIN pins ON pins.id = timing.pin_id\n"
     query_string << "                 LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
+    query_string << "WHERE "
     if options[:cells] then
-      query_string << "WHERE cells.name IN ("
+      query_string << "cells.name IN ("
       options[:cells].each { |cell|
         query_string << "'#{cell}',"
       }
       query_string.chomp!(',')
-      query_string << ")"
+      query_string << ")\n AND "
     end
-    query_string << "\nAND cells.pvt_id = #{getPVTid(options[:pvt])}\n"
+    query_string << "cells.pvt_id = #{getPVTid(options[:pvt])}\n"
     query_string << "GROUP BY timing.id;"
     results = Hash.new
     query(query_string) { |row|
       key = "#{row['cell_name']}.#{row['pin_name']}.#{row['timing_type']}"
+      whenval = row['when_cond'] || "null"
+      unless results[key]
+        results.store(key,Hash.new)
+      end
+      results[key].store(whenval,row["val"].to_f)
+    }
+
+    results
+  end #getTimingData
+
+
+  def getPowerData(options = {})
+    defaults = { :cells => nil,
+                 :footprint => nil,
+                 :type => :wc,
+                 :pvt => @pvt }
+    options = defaults.merge(options)
+    if options[:footprint] then
+      options[:cells] = getCellsInFootprint(options[:footprint])
+    end
+    query_string =  "SELECT max(internal_power_data.value) AS val,\n"
+    query_string =  "SELECT sum(internal_power_data.value)/count(internal_power_data.value) AS val,\n" if options[:type] == :avg
+    query_string =  "SELECT min(internal_power_data.value) AS val,\n" if options[:type] == :bc
+    query_string << "       internal_power.when AS when_cond,\n"
+    query_string << "       pins.name AS pin_name,\n"
+    query_string << "       cells.name AS cell_name\n"
+    query_string << "FROM internal_power_data LEFT OUTER JOIN internal_power ON internal_power.id = internal_power_data.internal_power_id\n"
+    query_string << "                 LEFT OUTER JOIN pins ON pins.id = internal_power.pin_id\n"
+    query_string << "                 LEFT OUTER JOIN cells ON cells.id = pins.cell_id\n"
+    query_string << "WHERE "
+    if options[:cells] then
+      query_string << "cells.name IN ("
+      options[:cells].each { |cell|
+        query_string << "'#{cell}',"
+      }
+      query_string.chomp!(',')
+      query_string << ")\n AND "
+    end
+    query_string << "cells.pvt_id = #{getPVTid(options[:pvt])}\n"
+    query_string << "GROUP BY internal_power.id;"
+    results = Hash.new
+    query(query_string) { |row|
+      key = "#{row['cell_name']}.#{row['pin_name']}.#{row['internal_power_type']}"
       whenval = row['when_cond'] || "null"
       unless results[key]
         results.store(key,Hash.new)
