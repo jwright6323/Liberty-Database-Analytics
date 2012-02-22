@@ -418,21 +418,20 @@ class LibertyDatabase
       query_string.chomp!(',')
       query_string << ")\n AND "
     end
-    query_string << "cells.pvt_id = #{getPVTid(options[:pvt])}\n"
-    query_string << "GROUP BY internal_power.id;"
+    query_string << "cells.pvt_id = #{getPVTid(options[:pvt])};"
     results = Hash.new
     query(query_string) { |row|
       key = "#{row['cell_name']}.#{row['pin_name']}"
       whenval = row['when_cond'].to_s
       cap = row['cap'].to_s
       slew = row['slew'].to_s
-      unless results[key]
+      unless results.has_key?(key)
         results.store(key,Hash.new)
       end
-      unless results[key][whenval]
+      unless results[key].has_key?(whenval)
         results[key].store(whenval,Hash.new)
       end
-      unless results[key][whenval][slew]
+      unless results[key][whenval].has_key?(slew)
         results[key][whenval].store(slew,Hash.new)
       end
       results[key][whenval][slew].store(cap,row['val'])
