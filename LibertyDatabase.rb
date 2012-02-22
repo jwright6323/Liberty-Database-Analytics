@@ -401,8 +401,8 @@ class LibertyDatabase
       options[:cells] = getCellsInFootprint(options[:footprint])
     end
     query_string =  "SELECT internal_power_data.value AS val,\n"
-    query_string << "       internal_power_data.index_1 AS slew,\n"
-    query_string << "       internal_power_data.index_2 AS cap,\n"
+    query_string << "       internal_power_data.index_1 AS cap,\n"
+    query_string << "       internal_power_data.index_2 AS slew,\n"
     query_string << "       internal_power.when AS when_cond,\n"
     query_string << "       pins.name AS pin_name,\n"
     query_string << "       cells.name AS cell_name\n"
