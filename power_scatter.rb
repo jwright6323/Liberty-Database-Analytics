@@ -17,26 +17,26 @@ database = LibertyDatabase.new :mysqldb => "liberty2dbFinal",
 #puts powerdata.inspect
 
 
-Hash powerdata = database.getAllPowerData
+powerdata = database.getAllPowerData
 powerValues = Hash.new
 slewValues = Hash.new
 
 
 powerdata.keys.each { |pin|
-    powerdata[pin].keys.each { |when|
-        powerdata[pin][when].keys.each { |slew|
-            powerValues[pin+"/"+when+"/"+slew] = powerdata[pin][when][".133417"][slew] #power
-            slewValues[pin+"/"+when+"/"+slew] = slew
+    powerdata[pin].keys.each { |wh|
+        powerdata[pin][wh].keys.each { |slew|
+            powerValues[pin+"/"+wh+"/"+slew] = powerdata[pin][wh][".133417"][slew] #power
+            slewValues[pin+"/"+wh+"/"+slew] = slew
             }
         }
     }
 
 
 
-scatterPlot = Plot.( slewValues, powerValues )
+scatterPlot = Plot( slewValues, powerValues )
 
 scatterPlot.generatePlot( :savePlot => false,
-                          :title = "Power vs. Slew",
+                          :title => "Power vs. Slew",
 
 
 
