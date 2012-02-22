@@ -432,9 +432,9 @@ class LibertyDatabase
         results[key].store(whenval,Hash.new)
       end
       unless results[key][whenval].has_key?(slew)
-        results[key][whenval].store(slew,Hash.new)
+        results[key][whenval].store(cap,Hash.new)
       end
-      results[key][whenval][slew].store(cap,row['val'])
+      results[key][whenval][cap].store(slew,row['val'])
     }
 
     results

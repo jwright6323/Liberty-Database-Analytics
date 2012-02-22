@@ -25,8 +25,8 @@ slewValues = Hash.new
 powerdata.keys.each { |pin|
     powerdata[pin].keys.each { |when|
         powerdata[pin][when].keys.each { |slew|
-            powerValues[pin+when] = powerdata[pin][when][slew][".133417"] #power
-            slewValues[pin+when] = slew
+            powerValues[pin+"/"+when+"/"+slew] = powerdata[pin][when][".133417"][slew] #power
+            slewValues[pin+"/"+when+"/"+slew] = slew
             }
         }
     }
